@@ -5,6 +5,8 @@ import Layout from "../components/Layout/Layout";
 import NuevoReclamo from "../pages/NuevoReclamo";
 import VerReclamos from "../pages/VerReclamos";
 import DetalleReclamo from "../pages/DetalleReclamo";
+import AgentesInfo from "../pages/AgentesInfo";
+import ModificarAgentes from "../pages/ModificarAgentes";
 
 const Perfil1 = `${import.meta.env.VITE_ROL_ADMIN_PERSONAL}`;
 const Perfil3 = `${import.meta.env.VITE_ROL_CARGA_PERSONAL}`;
@@ -33,22 +35,25 @@ const router = createBrowserRouter(
               path: "/reclamos/ver-Reclamos",
               element: <VerReclamos />,
             },
-            // {
-            //   path: "/personas/ver-TramitesTodos",
-            //   element: <TramitesTodos />,
-            // },
-            // {
-            //   path: "/personas/persona/:id",
-            //   element: <DetalleTramite />,
-            // },
+
             {
               path: "/reclamos/ver-Reclamos/:id",
               element: <DetalleReclamo />,
             },
-            // {
-            //   path: "/personas/carga-datos",
-            //   element: <CargaDatos />,
-            // },
+          ],
+        },
+        {
+          path: "/agentes",
+
+          children: [
+            {
+              path: "/agentes/ver-Agentes",
+              element: <AgentesInfo />,
+            },
+            {
+              path: "/agentes/modificar-Agentes",
+              element: <ModificarAgentes />,
+            },
           ],
         },
         //     {

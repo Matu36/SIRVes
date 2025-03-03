@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FaHospitalSymbol, FaRegFileAlt } from "react-icons/fa";
+import { FaHospitalSymbol, FaRegFileAlt, FaUsers } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import { useCredencial } from "../../hooks/UseCredenciales";
 
@@ -48,13 +48,13 @@ function SideBar({ isOpen, setIsOpen }) {
             aria-expanded="false"
             className="nav-link dropdown-toggle"
             data-bs-toggle="collapse"
-            href="#collapseAgentes"
+            href="#collapseReclamos"
             role="button"
           >
             <FaRegFileAlt className="sidebarIcons text-muted" size="1.50em" />{" "}
             Reclamos
           </a>
-          <ul className="collapse sub-menu" id="collapseAgentes">
+          <ul className="collapse sub-menu" id="collapseReclamos">
             <li>
               <Link
                 to="/reclamos/nuevo-Reclamo"
@@ -71,115 +71,36 @@ function SideBar({ isOpen, setIsOpen }) {
                 Ver reclamos
               </Link>
             </li>
-            {/* <li>
-              <Link
-                to="/personas/ver-TramitesFinalizados"
-                onClick={() => setIsOpen(false)}
-              >
-                Trámites Finalizados
-              </Link>
-            </li>
+          </ul>
+        </li>
+        <li>
+          <a
+            aria-controls="collapseExample"
+            aria-expanded="false"
+            className={`nav-link dropdown-toggle`}
+            data-bs-toggle="collapse"
+            href="#collapseAgentes"
+            role="button"
+          >
+            <FaUsers className="sidebarIcons text-muted" size="1.50em" />
+            Agentes
+          </a>
+          <ul className="collapse sub-menu" id="collapseAgentes">
             <li>
-              <Link
-                to="/personas/ver-TramitesTodos"
-                onClick={() => setIsOpen(false)}
-              >
-                Todos los trámites
+              <Link to="/agentes/ver-Agentes" onClick={() => setIsOpen(false)}>
+                Ver agentes
               </Link>
             </li>
           </ul>
-        </li>
-        {auth.documento ? (
-          <>
+          <ul className="collapse sub-menu" id="collapseAgentes">
             <li>
-              <a
-                aria-controls="collapseExample"
-                aria-expanded="false"
-                className={`nav-link dropdown-toggle`}
-                data-bs-toggle="collapse"
-                href="#collapseOperativos"
-                role="button"
+              <Link
+                to="/agentes/modificar-Agentes"
+                onClick={() => setIsOpen(false)}
               >
-                <FaCity className="sidebarIcons text-muted" size="1.50em" />{" "}
-                Servicios Jurisdicción
-              </a>
-              <ul className="collapse sub-menu" id="collapseOperativos">
-                <li>
-                  <Link to="/servicios/jurisdicción">Cargar Servicios</Link>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a
-                aria-controls="collapseExample"
-                aria-expanded="false"
-                className={`nav-link dropdown-toggle`}
-                data-bs-toggle="collapse"
-                href="#collapseHonorarios"
-                role="button"
-              >
-                <GrUserWorker
-                  className="sidebarIcons text-muted"
-                  size="1.50em"
-                />{" "}
-                Cargos
-              </a>
-              <ul className="collapse sub-menu" id="collapseHonorarios">
-                <li>
-                  <Link to="/cargos/agregar-cargos">Agregar Cargos</Link>
-                </li>
-              </ul>
-            </li>
-
-            {Perfil2 === rolCredencial?.descripcionPerfil && (
-              <>
-                <li>
-                  <Link to="/adicionales">
-                    <VscDiffAdded
-                      className="sidebarIcons text-muted"
-                      size="1.50em"
-                    />{" "}
-                    Adicionales
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/descuentos">
-                    <MdDiscount
-                      className="sidebarIcons text-muted"
-                      size="1.50em"
-                    />{" "}
-                    Descuentos
-                  </Link>
-                </li>
-              </>
-            )}
-
-            <li>
-              <Link to="/ServAdicionales">
-                <FaGift className="sidebarIcons text-muted" size="1.50em" />{" "}
-                Servicios Adicionales
+                Modificar agentes
               </Link>
             </li>
-            {Perfil2 !== rolCredencial?.descripcionPerfil && (
-              <li>
-                <Link to="/observacionGeneral">
-                  <FaBookOpen
-                    className="sidebarIcons text-muted"
-                    size="1.50em"
-                  />{" "}
-                  Observaciones Generales
-                </Link>
-              </li>
-            )}
-          </>
-        ) : null}
-
-        <li>
-          <Link to="/historico">
-            <FaHistory className="sidebarIcons text-muted" size="1.50em" />{" "}
-            Histórico (F2828)
-          </Link>
-        </li> */}
           </ul>
         </li>
       </ul>
