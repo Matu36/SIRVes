@@ -13,11 +13,13 @@ export default function GetReclamos() {
   const [clicked, setClicked] = useState({ isClicked: false });
 
   const handleSearch = () => {
-    const result = personas.filter(
-      (persona) =>
-        persona.documento.includes(search) ||
-        persona.id.toString().includes(search)
-    );
+    const result = personas.filter((persona) => {
+      const isSearchById = search && !isNaN(search);
+      if (isSearchById) {
+        return persona.id === Number(search);
+      }
+      return persona.documento.includes(search);
+    });
     setFilteredData(result);
     setIsSearching(true);
   };
