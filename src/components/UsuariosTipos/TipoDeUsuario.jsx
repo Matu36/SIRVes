@@ -160,21 +160,29 @@ export default function TipoDeUsuario() {
       )}
 
       {/* Modal de confirmación */}
-      <Modal show={showModal} onHide={handleCancelarModificar}>
-        <Modal.Header closeButton>
-          <Modal.Title>Confirmar Modificación</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p>¿Está seguro que desea modificar los datos del agente?</p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCancelarModificar}>
-            Cancelar
-          </Button>
-          <Button variant="primary" onClick={handleConfirmarModificar}>
-            Confirmar
-          </Button>
-        </Modal.Footer>
+      <Modal
+        show={showModal}
+        onHide={handleCancelarModificar}
+        centered // Esto centra el modal verticalmente
+      >
+        <Modal.Dialog size="sm">
+          {" "}
+          // Esto reduce el tamaño del modal
+          <Modal.Header closeButton>
+            <Modal.Title>Confirmar Modificación</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>¿Está seguro que desea modificar los datos del agente?</p>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleCancelarModificar}>
+              Cancelar
+            </Button>
+            <Button variant="primary" onClick={handleConfirmarModificar}>
+              Confirmar
+            </Button>
+          </Modal.Footer>
+        </Modal.Dialog>
       </Modal>
     </div>
   );

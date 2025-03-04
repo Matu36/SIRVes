@@ -7,6 +7,10 @@ export default function PostReclamo() {
     <div>
       <TipoReclamo />
       <TipoDeUsuario />
+      <br />
+      <div className="d-flex justify-content-center">
+        <button className="btn btn-guardar md">Guardar reclamo</button>
+      </div>
     </div>
   );
 }
