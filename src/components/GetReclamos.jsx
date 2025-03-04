@@ -74,19 +74,20 @@ export default function GetReclamos() {
       <button className="btn btn-buscar btn-md" onClick={handleSearch}>
         Buscar
       </button>
-
-      <div style={{ marginTop: "2rem" }}>
-        <DataTable
-          columns={columns}
-          className="DataTableContainer"
-          data={filteredData}
-          customStyles={customStyles}
-          pagination
-          striped
-          paginationComponentOptions={paginationOptions}
-          noDataComponent={null}
-        />
-      </div>
+      {filteredData.length > 0 ? (
+        <div style={{ marginTop: "2rem" }}>
+          <DataTable
+            columns={columns}
+            className="DataTableContainer"
+            data={filteredData}
+            customStyles={customStyles}
+            pagination
+            striped
+            paginationComponentOptions={paginationOptions}
+            noDataComponent={null}
+          />
+        </div>
+      ) : null}
     </div>
   );
 }

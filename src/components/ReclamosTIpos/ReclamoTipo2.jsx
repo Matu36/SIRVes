@@ -4,8 +4,6 @@ import { FaBalanceScale } from "react-icons/fa";
 
 export default function ReclamoTipo2() {
   const [form, setForm] = useState({
-    reportante: "",
-    reportado: "",
     tipoViolencia: "",
     frecuencia: "",
     fechaSituacion: "",
@@ -32,53 +30,47 @@ export default function ReclamoTipo2() {
 
   return (
     <div>
-      {/* Título con icono */}
       <div className="tituloCeleste">
         <FaBalanceScale className="titulocelesteicono" />
         <span className="titulocelestespan">Violencia Laboral</span>
       </div>
       <br />
       <div className="form-container">
-        <input
-          type="text"
-          name="reportante"
-          placeholder="Reportante"
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="reportado"
-          placeholder="Reportado"
-          onChange={handleChange}
-        />
-        <input
-          type="date"
-          name="fechaSituacion"
-          placeholder="Fecha de la situación"
-          onChange={handleChange}
-        />
-        <input
-          type="date"
-          name="fechaReporte"
-          placeholder="Fecha del reporte"
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="expediente"
-          placeholder="Expediente gdeba"
-          onChange={handleChange}
-        />
+        <div className="form-group">
+          <label htmlFor="fechaReporte">Fecha del reporte</label>
+          <input
+            type="date"
+            name="fechaReporte"
+            placeholder="Fecha del reporte"
+            onChange={handleChange}
+          />
+        </div>
 
-        {/* Selects */}
-        <Select
-          options={opcionesTipoViolencia}
-          placeholder="Tipo de violencia"
-        />
-        <Select
-          options={opcionesFrecuencia}
-          placeholder="Frecuencia del maltrato"
-        />
+        <div className="form-group">
+          <label htmlFor="expediente">Expediente gdeba</label>
+          <input
+            type="text"
+            name="expediente"
+            placeholder="Expediente gdeba"
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Tipo de violencia</label>
+          <Select
+            options={opcionesTipoViolencia}
+            placeholder="Tipo de violencia"
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Frecuencia del maltrato</label>
+          <Select
+            options={opcionesFrecuencia}
+            placeholder="Frecuencia del maltrato"
+          />
+        </div>
       </div>
     </div>
   );

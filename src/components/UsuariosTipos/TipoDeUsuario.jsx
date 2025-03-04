@@ -7,6 +7,7 @@ import {
   FaTrash,
   FaExclamationTriangle,
   FaEdit,
+  FaUsers,
 } from "react-icons/fa";
 
 export default function TipoDeUsuario() {
@@ -40,7 +41,7 @@ export default function TipoDeUsuario() {
   return (
     <div className="container p-4">
       <div className="tituloCeleste">
-        <FaExclamationTriangle className="titulocelesteicono" />
+        <FaUsers className="titulocelesteicono" />
         <span className="titulocelestespan">Seleccionar Tipo de Usuario</span>
       </div>
 

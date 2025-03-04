@@ -1854,3 +1854,71 @@ input,
   gap: 10px;
   margin-top: 10px;
 }
+
+.form-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.form-container input,
+.form-container select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.reclamo-detail {
+  background-color: #f0f8ff;
+  border: 2px solid #00c2db;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.reclamo-detail h2 {
+  color: #00c2db;
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.reclamo-detail p {
+  color: #333;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 8px 0;
+}
+
+.reclamo-detail strong {
+  font-weight: 600;
+  color: black;
+}
+
+.reclamo-detail .reclamo-type {
+  font-weight: bold;
+  color: #ff5722;
+}
+
+.reclamo-detail .reclamo-info {
+  background-color: #ffffff;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+.reclamo-detail .reclamo-info p {
+  color: #333;
+  font-size: 1rem;
+}
+
+.reclamo-detail .reclamo-info p:last-child {
+  margin-bottom: 0;
+}
