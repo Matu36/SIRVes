@@ -14,11 +14,12 @@ export default function GetReclamos() {
 
   const handleSearch = () => {
     const result = personas.filter((persona) => {
-      const isSearchById = search && !isNaN(search);
+      const isSearchById = search && !isNaN(Number(search));
       if (isSearchById) {
         return persona.id === Number(search);
       }
-      return persona.documento.includes(search);
+
+      return persona.documento.toLowerCase().includes(search.toLowerCase());
     });
     setFilteredData(result);
     setIsSearching(true);

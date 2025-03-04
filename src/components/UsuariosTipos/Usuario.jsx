@@ -1,10 +1,58 @@
-import React from "react";
+import React, { useState } from "react";
 import Select from "react-select";
+import { personas } from "../../utils/Personas";
 
 export default function Usuario() {
+  const [nombre, setNombre] = useState("");
+  const [documento, setDocumento] = useState("");
+  const [fechaNacimiento, setFechaNacimiento] = useState("");
+  const [domicilio, setDomicilio] = useState("");
+  const [telefono, setTelefono] = useState("");
+  const [genero, setGenero] = useState(null);
+  const [email, setEmail] = useState("");
+  const [discapacidad, setDiscapacidad] = useState(null);
+  const [cobertura, setCobertura] = useState("");
+
+  const handleDocumentoChange = (e) => {
+    const doc = e.target.value;
+    setDocumento(doc);
+
+    const personaEncontrada = personas.find(
+      (persona) => persona.documento === doc
+    );
+
+    if (personaEncontrada) {
+      setNombre(personaEncontrada.nombre);
+      setFechaNacimiento(personaEncontrada.fechaNacimiento);
+      setDomicilio(personaEncontrada.domicilio);
+      setTelefono(personaEncontrada.telefono);
+      setGenero({
+        value: personaEncontrada.genero,
+        label: personaEncontrada.genero,
+      });
+      setEmail(personaEncontrada.email);
+      setDiscapacidad({
+        value: personaEncontrada.discapacidad,
+        label: personaEncontrada.discapacidad,
+      });
+      setCobertura(personaEncontrada.coberturaSocial);
+    }
+  };
+
   return (
     <div className="usuario-form">
       <div className="grid-container">
+        <div className="form-group">
+          <label htmlFor="documento">Nro de Documento</label>
+          <input
+            type="text"
+            id="documento"
+            className="form-control"
+            placeholder="Nro de Documento"
+            value={documento}
+            onChange={handleDocumentoChange}
+          />
+        </div>
         <div className="form-group">
           <label htmlFor="nombre">Nombre y Apellido</label>
           <input
@@ -12,22 +60,20 @@ export default function Usuario() {
             id="nombre"
             className="form-control"
             placeholder="Nombre y Apellido"
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="documento">Tipo y Nro de Documento</label>
-          <input
-            type="text"
-            id="documento"
-            className="form-control"
-            placeholder="Tipo y Nro de Documento"
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
           />
         </div>
 
         <div className="form-group">
           <label htmlFor="fechaNacimiento">Fecha de Nacimiento</label>
-          <input type="date" id="fechaNacimiento" className="form-control" />
+          <input
+            type="date"
+            id="fechaNacimiento"
+            className="form-control"
+            value={fechaNacimiento}
+            onChange={(e) => setFechaNacimiento(e.target.value)}
+          />
         </div>
 
         <div className="form-group">
@@ -37,6 +83,8 @@ export default function Usuario() {
             id="domicilio"
             className="form-control"
             placeholder="Domicilio"
+            value={domicilio}
+            onChange={(e) => setDomicilio(e.target.value)}
           />
         </div>
 
@@ -47,6 +95,8 @@ export default function Usuario() {
             id="telefono"
             className="form-control"
             placeholder="Teléfono"
+            value={telefono}
+            onChange={(e) => setTelefono(e.target.value)}
           />
         </div>
 
@@ -60,6 +110,8 @@ export default function Usuario() {
               { value: "no_binario", label: "No Binario" },
             ]}
             placeholder="Seleccionar Género"
+            value={genero}
+            onChange={setGenero}
           />
         </div>
 
@@ -70,6 +122,8 @@ export default function Usuario() {
             id="email"
             className="form-control"
             placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 
@@ -82,6 +136,8 @@ export default function Usuario() {
               { value: "no", label: "No" },
             ]}
             placeholder="Discapacidad"
+            value={discapacidad}
+            onChange={setDiscapacidad}
           />
         </div>
 
@@ -92,6 +148,8 @@ export default function Usuario() {
             id="cobertura"
             className="form-control"
             placeholder="Cobertura Social"
+            value={cobertura}
+            onChange={(e) => setCobertura(e.target.value)}
           />
         </div>
       </div>

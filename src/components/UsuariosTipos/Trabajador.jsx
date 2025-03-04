@@ -1,10 +1,84 @@
-import React from "react";
+import React, { useState } from "react";
 import Select from "react-select";
+import { personas } from "../../utils/Personas";
 
 export default function Trabajador() {
+  const [documento, setDocumento] = useState("");
+  const [trabajador, setTrabajador] = useState({
+    nombre: "",
+    fechaNacimiento: "",
+    domicilio: "",
+    telefono: "",
+    genero: "",
+    email: "",
+    discapacidad: "",
+    cobertura: "",
+    lugarTrabajo: "",
+    agrupamiento: "",
+    contratacion: "",
+    disciplina: "",
+    observaciones: "",
+  });
+
+  const handleDocumentoChange = (e) => {
+    const doc = e.target.value;
+    setDocumento(doc);
+
+    // Buscar trabajador por documento
+    const persona = personas.find((p) => p.documento === doc);
+    if (persona) {
+      // Autocompletar los campos con los datos de la persona
+      setTrabajador({
+        nombre: persona.nombre,
+        fechaNacimiento: persona.fechaNacimiento,
+        domicilio: persona.domicilio,
+        telefono: persona.telefono,
+        genero: persona.genero,
+        email: persona.email,
+        discapacidad: persona.discapacidad,
+        cobertura: persona.cobertura,
+        lugarTrabajo: persona.lugarTrabajo,
+        agrupamiento: persona.agrupamiento,
+        contratacion: persona.contratacion,
+        disciplina: persona.disciplina,
+        observaciones: persona.observaciones,
+        coberturaSocial: persona.coberturaSocial,
+      });
+    } else {
+      // Si no se encuentra la persona, borrar los datos
+      setTrabajador({
+        nombre: "",
+        fechaNacimiento: "",
+        domicilio: "",
+        telefono: "",
+        genero: "",
+        email: "",
+        discapacidad: "",
+        cobertura: "",
+        lugarTrabajo: "",
+        agrupamiento: "",
+        contratacion: "",
+        disciplina: "",
+        observaciones: "",
+        coberturaSocial: "",
+      });
+    }
+  };
+
   return (
     <div className="trabajador-form">
       <div className="grid-container">
+        <div className="form-group">
+          <label htmlFor="documento">Nro de Documento</label>
+          <input
+            type="text"
+            id="documento"
+            className="form-control"
+            placeholder="Nro de Documento"
+            value={documento}
+            onChange={handleDocumentoChange}
+          />
+        </div>
         <div className="form-group">
           <label htmlFor="nombre">Nombre y Apellido</label>
           <input
@@ -12,22 +86,18 @@ export default function Trabajador() {
             id="nombre"
             className="form-control"
             placeholder="Nombre y Apellido"
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="documento">Tipo y Nro de Documento</label>
-          <input
-            type="text"
-            id="documento"
-            className="form-control"
-            placeholder="Tipo y Nro de Documento"
+            value={trabajador.nombre}
           />
         </div>
 
         <div className="form-group">
           <label htmlFor="fechaNacimiento">Fecha de Nacimiento</label>
-          <input type="date" id="fechaNacimiento" className="form-control" />
+          <input
+            type="date"
+            id="fechaNacimiento"
+            className="form-control"
+            value={trabajador.fechaNacimiento}
+          />
         </div>
 
         <div className="form-group">
@@ -37,6 +107,7 @@ export default function Trabajador() {
             id="domicilio"
             className="form-control"
             placeholder="Domicilio"
+            value={trabajador.domicilio}
           />
         </div>
 
@@ -47,6 +118,7 @@ export default function Trabajador() {
             id="telefono"
             className="form-control"
             placeholder="Teléfono"
+            value={trabajador.telefono}
           />
         </div>
 
@@ -60,6 +132,12 @@ export default function Trabajador() {
               { value: "no_binario", label: "No Binario" },
             ]}
             placeholder="Seleccionar Género"
+            value={{
+              value: trabajador.genero,
+              label:
+                trabajador.genero.charAt(0).toUpperCase() +
+                trabajador.genero.slice(1),
+            }}
           />
         </div>
 
@@ -70,6 +148,7 @@ export default function Trabajador() {
             id="email"
             className="form-control"
             placeholder="Email"
+            value={trabajador.email}
           />
         </div>
 
@@ -82,6 +161,10 @@ export default function Trabajador() {
               { value: "no", label: "No" },
             ]}
             placeholder="Discapacidad"
+            value={{
+              value: trabajador.discapacidad,
+              label: trabajador.discapacidad === "si" ? "Sí" : "No",
+            }}
           />
         </div>
 
@@ -92,6 +175,7 @@ export default function Trabajador() {
             id="cobertura"
             className="form-control"
             placeholder="Cobertura Social"
+            value={trabajador.coberturaSocial}
           />
         </div>
 
@@ -102,6 +186,7 @@ export default function Trabajador() {
             id="lugarTrabajo"
             className="form-control"
             placeholder="Lugar de Trabajo"
+            value={trabajador.lugarTrabajo}
           />
         </div>
 
@@ -112,6 +197,7 @@ export default function Trabajador() {
             id="agrupamiento"
             className="form-control"
             placeholder="Agrupamiento"
+            value={trabajador.agrupamiento}
           />
         </div>
 
@@ -122,6 +208,7 @@ export default function Trabajador() {
             id="tipoContratacion"
             className="form-control"
             placeholder="Tipo de Contratación"
+            value={trabajador.contratacion}
           />
         </div>
 
@@ -132,6 +219,7 @@ export default function Trabajador() {
             id="disciplina"
             className="form-control"
             placeholder="Disciplina"
+            value={trabajador.disciplina}
           />
         </div>
 
@@ -141,6 +229,7 @@ export default function Trabajador() {
             id="observaciones"
             className="form-control"
             placeholder="Observaciones"
+            value={trabajador.observaciones}
           ></textarea>
         </div>
       </div>
