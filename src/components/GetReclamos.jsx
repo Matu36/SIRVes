@@ -12,6 +12,12 @@ export default function GetReclamos() {
   const [filteredData, setFilteredData] = useState([]);
   const [clicked, setClicked] = useState({ isClicked: false });
 
+  const handleClean = () => {
+    setFilteredData([]);
+    setSearchDoc("");
+    setSearchId("");
+  };
+
   const handleSearch = () => {
     const result = personas.filter((persona) => {
       const matchesId =
@@ -122,7 +128,7 @@ export default function GetReclamos() {
           Buscar
         </button>
 
-        <button className="btn btn-limpiar btn-md" onClick={handleSearch}>
+        <button className="btn btn-limpiar btn-md" onClick={handleClean}>
           Limpiar
         </button>
       </div>

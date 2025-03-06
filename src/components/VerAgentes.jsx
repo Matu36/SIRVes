@@ -27,6 +27,11 @@ export default function VerAgentes() {
     setIsSearching(true);
   };
 
+  const handleClean = () => {
+    setFilteredData([]);
+    setIsSearching("");
+  };
+
   return (
     <div>
       <div className="tituloCeleste">
@@ -35,7 +40,6 @@ export default function VerAgentes() {
       </div>
       <br />
 
-      {/* Contenedor de filtros */}
       <div className="filtros-container">
         <div className="titulofiltroseicono">
           <span>
@@ -78,11 +82,14 @@ export default function VerAgentes() {
           </div>
         </div>
       </div>
-
-      <button className="btn btn-buscar btn-md" onClick={handleSearch}>
-        Buscar
-      </button>
-
+      <div className="botonesBuscarLimpiar">
+        <button className="btn btn-buscar btn-md" onClick={handleSearch}>
+          Buscar
+        </button>
+        <button className="btn btn-limpiar btn-md" onClick={handleClean}>
+          Limpiar
+        </button>
+      </div>
       <br />
 
       {isSearching &&
