@@ -1922,3 +1922,8 @@ input,
 .reclamo-detail .reclamo-info p:last-child {
   margin-bottom: 0;
 }
+
+.botonesBuscarLimpiar {
+  display: flex;
+  justify-content: space-around;
+}

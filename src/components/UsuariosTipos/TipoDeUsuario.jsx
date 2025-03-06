@@ -59,7 +59,7 @@ export default function TipoDeUsuario() {
   };
 
   return (
-    <div className="container p-4">
+    <div className="container">
       <div className="tituloCeleste">
         <FaUsers className="titulocelesteicono" />
         <span className="titulocelestespan">Seleccionar Tipo de Usuario</span>

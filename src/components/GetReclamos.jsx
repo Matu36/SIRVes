@@ -1,28 +1,33 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { personas } from "../utils/Personas";
-import { FaSearch, FaInfoCircle } from "react-icons/fa";
+import { FaSearch, FaInfoCircle, FaFilter } from "react-icons/fa";
 import { usePagination } from "../hooks/usePagination";
 import DataTable from "react-data-table-component";
 import Dropdown from "../components/UI/Dropdown";
 
 export default function GetReclamos() {
-  const [search, setSearch] = useState("");
+  const [searchId, setSearchId] = useState("");
+  const [searchDoc, setSearchDoc] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-  const [isSearching, setIsSearching] = useState(false);
   const [clicked, setClicked] = useState({ isClicked: false });
 
   const handleSearch = () => {
     const result = personas.filter((persona) => {
-      const isSearchById = search && !isNaN(Number(search));
-      if (isSearchById) {
-        return persona.id === Number(search);
-      }
+      const matchesId =
+        searchId.trim() !== "" && !isNaN(Number(searchId))
+          ? persona.id === Number(searchId)
+          : true;
 
-      return persona.documento.toLowerCase().includes(search.toLowerCase());
+      const matchesDoc =
+        searchDoc.trim() !== ""
+          ? persona.documento.toLowerCase().includes(searchDoc.toLowerCase())
+          : true;
+
+      return matchesId && matchesDoc;
     });
+
     setFilteredData(result);
-    setIsSearching(true);
   };
 
   const columns = [
@@ -66,18 +71,62 @@ export default function GetReclamos() {
         <FaSearch className="titulocelesteicono" />
         <span className="titulocelestespan">Búsqueda de reclamos</span>
       </div>
+
+      {/* Contenedor de filtros */}
+      <div className="filtros-container">
+        <div className="titulofiltroseicono">
+          <span>
+            <FaFilter style={{ marginRight: "8px" }} />
+            Filtros
+          </span>
+        </div>
+        <div className="inputs-tramites">
+          <div
+            className="input-group mb-3 inputSearch"
+            style={{ maxWidth: "20%" }}
+          >
+            <div className="input-label-filtros">
+              Nro de Reclamo
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Buscar por Nro de Reclamo"
+                onChange={(e) => setSearchId(e.target.value)}
+                value={searchId}
+                autoComplete="off"
+              />
+            </div>
+          </div>
+
+          <div
+            className="input-group mb-3 inputSearch"
+            style={{ maxWidth: "20%" }}
+          >
+            <div className="input-label-filtros">
+              Documento
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Buscar por Documento"
+                onChange={(e) => setSearchDoc(e.target.value)}
+                value={searchDoc}
+                autoComplete="off"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
       <br />
-      <input
-        type="text"
-        placeholder="Buscar por documento o número de reclamo"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="search-input"
-      />
-      <button className="btn btn-buscar btn-md" onClick={handleSearch}>
-        Buscar
-      </button>
-      {filteredData.length > 0 ? (
+      <div className="botonesBuscarLimpiar">
+        <button className="btn btn-buscar btn-md" onClick={handleSearch}>
+          Buscar
+        </button>
+
+        <button className="btn btn-limpiar btn-md" onClick={handleSearch}>
+          Limpiar
+        </button>
+      </div>
+      {filteredData.length > 0 && (
         <div style={{ marginTop: "2rem" }}>
           <DataTable
             columns={columns}
@@ -90,7 +139,7 @@ export default function GetReclamos() {
             noDataComponent={null}
           />
         </div>
-      ) : null}
+      )}
     </div>
   );
 }
