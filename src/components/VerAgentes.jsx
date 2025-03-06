@@ -1,18 +1,29 @@
 import React, { useState } from "react";
-import { FaSearch, FaInfoCircle } from "react-icons/fa";
-import { personas } from "../utils/Personas"; // Suponiendo que las personas están definidas aquí
+import { FaSearch, FaInfoCircle, FaFilter } from "react-icons/fa";
+import { personas } from "../utils/Personas";
 
 export default function VerAgentes() {
-  const [search, setSearch] = useState("");
+  const [searchId, setSearchId] = useState("");
+  const [searchDoc, setSearchDoc] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
-  const [filteredData, setFilteredData] = useState(personas); // Inicializamos con el objeto personas
 
-  const handleSearchByDocumento = () => {
-    // Filtramos personas por documento
-    const result = personas.filter((persona) =>
-      persona.documento.includes(search)
-    );
-    setFilteredData(result); // Actualizamos el estado con los resultados filtrados
+  const handleSearch = () => {
+    const result = personas.filter((persona) => {
+      const matchesId =
+        searchId.trim() !== "" && !isNaN(Number(searchId))
+          ? persona.id === Number(searchId)
+          : true;
+
+      const matchesDoc =
+        searchDoc.trim() !== ""
+          ? persona.documento.toLowerCase().includes(searchDoc.toLowerCase())
+          : true;
+
+      return matchesId && matchesDoc;
+    });
+
+    setFilteredData(result);
     setIsSearching(true);
   };
 
@@ -24,22 +35,53 @@ export default function VerAgentes() {
       </div>
       <br />
 
-      <div className="search-container">
-        <input
-          id="search"
-          type="text"
-          placeholder="Buscar por documento o número de reclamo"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="search-input"
-        />
-        <button
-          className="btn btn-buscar btn-md"
-          onClick={handleSearchByDocumento}
-        >
-          Buscar
-        </button>
+      {/* Contenedor de filtros */}
+      <div className="filtros-container">
+        <div className="titulofiltroseicono">
+          <span>
+            <FaFilter style={{ marginRight: "8px" }} /> Filtros
+          </span>
+        </div>
+        <div className="inputs-tramites">
+          <div
+            className="input-group mb-3 inputSearch"
+            style={{ maxWidth: "20%" }}
+          >
+            <div className="input-label-filtros">
+              Nro de Reclamo
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Buscar por Nro de Reclamo"
+                onChange={(e) => setSearchId(e.target.value)}
+                value={searchId}
+                autoComplete="off"
+              />
+            </div>
+          </div>
+
+          <div
+            className="input-group mb-3 inputSearch"
+            style={{ maxWidth: "20%" }}
+          >
+            <div className="input-label-filtros">
+              Documento
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Buscar por Documento"
+                onChange={(e) => setSearchDoc(e.target.value)}
+                value={searchDoc}
+                autoComplete="off"
+              />
+            </div>
+          </div>
+        </div>
       </div>
+
+      <button className="btn btn-buscar btn-md" onClick={handleSearch}>
+        Buscar
+      </button>
 
       <br />
 
