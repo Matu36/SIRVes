@@ -15,11 +15,11 @@ export default function ReclamoTipo2({ reclamoDataProp }) {
     if (reclamoDataProp?.reclamo) {
       setForm((prev) => ({
         ...prev,
-        tipoViolencia: reclamoDataProp.reclamo.tipo || "", // Asumí que 'tipo' corresponde a 'tipoViolencia'
-        frecuencia: reclamoDataProp.reclamo.frecuencia || "", // Si existe, se asigna, si no, vacío
+        tipoViolencia: reclamoDataProp.reclamo.tipo || "",
+        frecuencia: reclamoDataProp.reclamo.frecuencia || "",
         fechaSituacion: reclamoDataProp.reclamo.fechaSituacion || "",
-        fechaReporte: reclamoDataProp.reclamo.fechaReclamo || "", // Asegúrate de usar la propiedad correcta
-        expediente: reclamoDataProp.reclamo.expGEDEBA || "", // Usé 'expGEDEBA' como expediente
+        fechaReporte: reclamoDataProp.reclamo.fechaReclamo || "",
+        expediente: reclamoDataProp.reclamo.expGEDEBA || "",
       }));
     }
   }, [reclamoDataProp]);
