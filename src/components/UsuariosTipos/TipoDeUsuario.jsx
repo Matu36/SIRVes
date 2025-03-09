@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Usuario from "./Usuario";
 import Trabajador from "./Trabajador";
 import Select from "react-select";
@@ -17,6 +17,18 @@ export default function TipoDeUsuario({ personaDataProp }) {
   const [reportados, setReportados] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [currentPersonaIndex, setCurrentPersonaIndex] = useState(null);
+
+  useEffect(() => {
+    if (personaDataProp) {
+      const reportante = { tipo: personaDataProp.tipo };
+      const reportado = { tipo: personaDataProp.tipo };
+
+      if (personaDataProp) {
+        setReportantes([reportante]);
+        setReportados([reportado]);
+      }
+    }
+  }, [personaDataProp]);
 
   const agregarPersona = (tipoLista) => {
     if (!tipo) {
@@ -71,7 +83,7 @@ export default function TipoDeUsuario({ personaDataProp }) {
           { value: "usuario", label: "Usuario" },
           { value: "trabajador", label: "Trabajador de la Salud" },
         ]}
-        placeholder="Seleccionar..."
+        placeholder="Seleccionar tipo de usuario"
         onChange={(selected) => setTipo(selected.value)}
       />
 
@@ -87,6 +99,7 @@ export default function TipoDeUsuario({ personaDataProp }) {
           ) : (
             <Trabajador personaDataProp={personaDataProp} />
           )}
+
           <div className="botonera">
             <button
               className="btn btn-success btn-round mt-2"
@@ -94,6 +107,7 @@ export default function TipoDeUsuario({ personaDataProp }) {
             >
               <FaUserPlus /> Agregar Reportante
             </button>
+
             <button
               className="btn btn-outline-guardar btn-round"
               onClick={() => handleModificar(index)}
@@ -126,6 +140,16 @@ export default function TipoDeUsuario({ personaDataProp }) {
         <span className="titulocelestespan">Personas Reportadas</span>
       </div>
       <br />
+      <Select
+        options={[
+          { value: "usuario", label: "Usuario" },
+          { value: "trabajador", label: "Trabajador de la Salud" },
+        ]}
+        placeholder="Seleccionar tipo de usuario"
+        onChange={(selected) => setTipo(selected.value)}
+      />
+      <br />
+
       {reportados.map((persona, index) => (
         <div key={index} className="formulario-persona">
           {persona.tipo === "usuario" ? (

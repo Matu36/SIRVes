@@ -15,7 +15,9 @@ export default function PostReclamo() {
       <TipoDeUsuario personaDataProp={persona} />
       <br />
       <div className="d-flex justify-content-center">
-        <button className="btn btn-guardar md">Guardar reclamo</button>
+        <button className="btn btn-guardar md">
+          {persona && persona.id ? "Modificar Reclamo" : "Guardar Reclamo"}
+        </button>
       </div>
     </div>
   );
