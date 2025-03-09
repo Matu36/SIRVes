@@ -7,6 +7,7 @@ import VerReclamos from "../pages/VerReclamos";
 import DetalleReclamo from "../pages/DetalleReclamo";
 import AgentesInfo from "../pages/AgentesInfo";
 import ModificarAgentes from "../pages/ModificarAgentes";
+import EditarReclamos from "../pages/EditarReclamos";
 
 const Perfil1 = `${import.meta.env.VITE_ROL_ADMIN_PERSONAL}`;
 const Perfil3 = `${import.meta.env.VITE_ROL_CARGA_PERSONAL}`;
@@ -39,6 +40,10 @@ const router = createBrowserRouter(
             {
               path: "/reclamos/ver-Reclamos/:id",
               element: <DetalleReclamo />,
+            },
+            {
+              path: "/reclamos/editar-Reclamos/:id",
+              element: <EditarReclamos />,
             },
           ],
         },

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { FaVenusMars } from "react-icons/fa";
 
-export default function ReclamoTipo3() {
+export default function ReclamoTipo3({ reclamoDataProp }) {
   const [form, setForm] = useState({
     tipoViolencia: "",
     vinculacion: "",
@@ -10,6 +10,19 @@ export default function ReclamoTipo3() {
     fechaReporte: "",
     expediente: "",
   });
+
+  useEffect(() => {
+    if (reclamoDataProp?.reclamo) {
+      setForm((prev) => ({
+        ...prev,
+        tipoViolencia: reclamoDataProp.reclamo.tipo || "", // 'tipo' corresponde a 'tipoViolencia'
+        vinculacion: reclamoDataProp.reclamo.vincReportante || "", // Asumí que 'vincReportante' corresponde a 'vinculacion'
+        fechaSituacion: reclamoDataProp.reclamo.fechaSituacion || "",
+        fechaReporte: reclamoDataProp.reclamo.fechaReclamo || "", // Asegúrate de usar la propiedad correcta
+        expediente: reclamoDataProp.reclamo.expGEDEBA || "", // Usé 'expGEDEBA' como expediente
+      }));
+    }
+  }, [reclamoDataProp]);
 
   const opcionesTipoViolencia = [
     { value: "fisica", label: "Física" },

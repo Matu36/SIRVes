@@ -11,7 +11,7 @@ import {
 } from "react-icons/fa";
 import { Modal, Button } from "react-bootstrap";
 
-export default function TipoDeUsuario() {
+export default function TipoDeUsuario({ personaDataProp }) {
   const [tipo, setTipo] = useState("");
   const [reportantes, setReportantes] = useState([]);
   const [reportados, setReportados] = useState([]);
@@ -82,7 +82,11 @@ export default function TipoDeUsuario() {
       <br />
       {reportantes.map((persona, index) => (
         <div key={index} className="formulario-persona">
-          {persona.tipo === "usuario" ? <Usuario /> : <Trabajador />}
+          {persona.tipo === "usuario" ? (
+            <Usuario personaDataProp={personaDataProp} />
+          ) : (
+            <Trabajador personaDataProp={personaDataProp} />
+          )}
           <div className="botonera">
             <button
               className="btn btn-success btn-round mt-2"
@@ -124,7 +128,11 @@ export default function TipoDeUsuario() {
       <br />
       {reportados.map((persona, index) => (
         <div key={index} className="formulario-persona">
-          {persona.tipo === "usuario" ? <Usuario /> : <Trabajador />}
+          {persona.tipo === "usuario" ? (
+            <Usuario personaDataProp={personaDataProp} />
+          ) : (
+            <Trabajador personaDataProp={personaDataProp} />
+          )}
           <div className="botonera">
             <button
               className="btn btn-success btn-round mt-2"
@@ -134,7 +142,7 @@ export default function TipoDeUsuario() {
             </button>
             <button
               className="btn btn-outline-guardar btn-round"
-              onClick={() => handleModificar(index)} // Llamar a handleModificar para abrir el modal
+              onClick={() => handleModificar(index)}
             >
               <FaEdit /> Modificar datos del agente
             </button>

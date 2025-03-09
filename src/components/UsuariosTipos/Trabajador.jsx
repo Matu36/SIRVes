@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { personas } from "../../utils/Personas";
 
-export default function Trabajador() {
+export default function Trabajador({ personaDataProp }) {
   const [documento, setDocumento] = useState("");
   const [trabajador, setTrabajador] = useState({
     nombre: "",
@@ -19,6 +19,28 @@ export default function Trabajador() {
     disciplina: "",
     observaciones: "",
   });
+
+  useEffect(() => {
+    if (personaDataProp) {
+      const persona = personaDataProp;
+      setTrabajador((prev) => ({
+        ...prev,
+        nombre: persona.nombre || "",
+        fechaNacimiento: persona.fechaNacimiento || "",
+        domicilio: persona.domicilio || "",
+        telefono: persona.telefono || "",
+        genero: persona.genero || "",
+        email: persona.email || "",
+        discapacidad: persona.discapacidad || "",
+        cobertura: persona.coberturaSocial || "",
+        lugarTrabajo: persona.lugarTrabajo || "",
+        agrupamiento: persona.agrupamiento || "",
+        contratacion: persona.contratacion || "",
+        disciplina: persona.disciplina || "",
+        observaciones: persona.observaciones || "",
+      }));
+    }
+  }, [personaDataProp]);
 
   const handleDocumentoChange = (e) => {
     const doc = e.target.value;

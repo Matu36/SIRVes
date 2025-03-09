@@ -16,6 +16,9 @@ export const personas = [
       descripcion: "Problema con la autorización de una cirugía",
       estado: "Pendiente",
       fechaReclamo: "2024-02-15",
+      expGEDEBA: "12345",
+      vincReportante: "jefe",
+      fechaSituacion: "12/12/1985",
     },
   },
   {
@@ -40,6 +43,10 @@ export const personas = [
       descripcion: "Solicita revisión de turnos nocturnos excesivos",
       estado: "En proceso",
       fechaReclamo: "2024-01-10",
+      expGEDEBA: "12345EWEWEWE",
+      vincReportante: "compañeros",
+      fechaSituacion: "1985/12/03",
+      jerarquia: "Superior",
     },
   },
   {
@@ -59,6 +66,7 @@ export const personas = [
       descripcion: "Falta de atención prioritaria para discapacitados",
       estado: "Resuelto",
       fechaReclamo: "2023-12-20",
+      fechaSituacion: "03/07/1985",
     },
   },
   {

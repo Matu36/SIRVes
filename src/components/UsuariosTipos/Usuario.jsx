@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { personas } from "../../utils/Personas";
 
-export default function Usuario() {
+export default function Usuario({ personaDataProp }) {
   const [nombre, setNombre] = useState("");
   const [documento, setDocumento] = useState("");
   const [fechaNacimiento, setFechaNacimiento] = useState("");
@@ -12,6 +12,31 @@ export default function Usuario() {
   const [email, setEmail] = useState("");
   const [discapacidad, setDiscapacidad] = useState(null);
   const [cobertura, setCobertura] = useState("");
+
+  useEffect(() => {
+    if (personaDataProp) {
+      setNombre(personaDataProp.nombre || "");
+      setDocumento(personaDataProp.documento || "");
+      setFechaNacimiento(personaDataProp.fechaNacimiento || "");
+      setDomicilio(personaDataProp.domicilio || "");
+      setTelefono(personaDataProp.telefono || "");
+      setGenero(
+        personaDataProp.genero
+          ? { value: personaDataProp.genero, label: personaDataProp.genero }
+          : null
+      );
+      setEmail(personaDataProp.email || "");
+      setDiscapacidad(
+        personaDataProp.discapacidad
+          ? {
+              value: personaDataProp.discapacidad,
+              label: personaDataProp.discapacidad,
+            }
+          : null
+      );
+      setCobertura(personaDataProp.coberturaSocial || "");
+    }
+  }, [personaDataProp]);
 
   const handleDocumentoChange = (e) => {
     const doc = e.target.value;

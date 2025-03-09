@@ -64,6 +64,14 @@ export default function GetReclamos() {
               </span>
             </button>
           </Link>
+          <Link to={`/reclamos/editar-Reclamos/${row.id}`}>
+            <button className="dropdown-item w-100 dropdown-item-custom">
+              <FaInfoCircle size="1em" />
+              <span style={{ marginLeft: "10px", textDecoration: "none" }}>
+                Editar Reclamo
+              </span>
+            </button>
+          </Link>
         </Dropdown>
       ),
     },

@@ -5,7 +5,7 @@ import ReclamoTipo1 from "./ReclamoTipo1";
 import ReclamoTipo2 from "./ReclamoTipo2";
 import ReclamoTipo3 from "./ReclamoTipo3";
 
-export default function TipoReclamo() {
+export default function TipoReclamo({ reclamoDataProp }) {
   const [tipoSeleccionado, setTipoSeleccionado] = useState(null);
 
   const opciones = [
@@ -36,9 +36,15 @@ export default function TipoReclamo() {
       <br />
       {/* Renderizar el formulario según la selección */}
       <div className="reclamo-container">
-        {tipoSeleccionado === "tipo1" && <ReclamoTipo1 />}
-        {tipoSeleccionado === "tipo2" && <ReclamoTipo2 />}
-        {tipoSeleccionado === "tipo3" && <ReclamoTipo3 />}
+        {tipoSeleccionado === "tipo1" && (
+          <ReclamoTipo1 reclamoDataProp={reclamoDataProp} />
+        )}
+        {tipoSeleccionado === "tipo2" && (
+          <ReclamoTipo2 reclamoDataProp={reclamoDataProp} />
+        )}
+        {tipoSeleccionado === "tipo3" && (
+          <ReclamoTipo3 reclamoDataProp={reclamoDataProp} />
+        )}
       </div>
     </div>
   );

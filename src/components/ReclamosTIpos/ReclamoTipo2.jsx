@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { FaBalanceScale } from "react-icons/fa";
 
-export default function ReclamoTipo2() {
+export default function ReclamoTipo2({ reclamoDataProp }) {
   const [form, setForm] = useState({
     tipoViolencia: "",
     frecuencia: "",
@@ -10,6 +10,19 @@ export default function ReclamoTipo2() {
     fechaReporte: "",
     expediente: "",
   });
+
+  useEffect(() => {
+    if (reclamoDataProp?.reclamo) {
+      setForm((prev) => ({
+        ...prev,
+        tipoViolencia: reclamoDataProp.reclamo.tipo || "", // Asumí que 'tipo' corresponde a 'tipoViolencia'
+        frecuencia: reclamoDataProp.reclamo.frecuencia || "", // Si existe, se asigna, si no, vacío
+        fechaSituacion: reclamoDataProp.reclamo.fechaSituacion || "",
+        fechaReporte: reclamoDataProp.reclamo.fechaReclamo || "", // Asegúrate de usar la propiedad correcta
+        expediente: reclamoDataProp.reclamo.expGEDEBA || "", // Usé 'expGEDEBA' como expediente
+      }));
+    }
+  }, [reclamoDataProp]);
 
   const opcionesTipoViolencia = [
     { value: "fisica", label: "Física" },
