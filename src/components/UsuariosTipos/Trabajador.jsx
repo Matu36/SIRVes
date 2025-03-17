@@ -2,18 +2,26 @@ import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { personas } from "../../utils/Personas";
 
-export default function Trabajador({ personaDataProp }) {
+export default function Trabajador({ personaDataProp, personas }) {
   const [documento, setDocumento] = useState("");
   const [trabajador, setTrabajador] = useState({
+    tipoDocumento: "",
+    documento: "",
     nombre: "",
     fechaNacimiento: "",
     domicilio: "",
+    localidad: "",
+    partido: "",
+    provincia: "",
+    pais: "",
     telefono: "",
     genero: "",
     email: "",
     discapacidad: "",
     cobertura: "",
-    lugarTrabajo: "",
+    hospitalTrabajo: "",
+    localidadHospital: "",
+    regionSanitariaHospital: "",
     agrupamiento: "",
     contratacion: "",
     disciplina: "",
@@ -33,11 +41,18 @@ export default function Trabajador({ personaDataProp }) {
         email: persona.email || "",
         discapacidad: persona.discapacidad || "",
         cobertura: persona.coberturaSocial || "",
-        lugarTrabajo: persona.lugarTrabajo || "",
+        hospitalTrabajo: persona.hospitalTrabajo || "",
+        localidadHospital: persona.localidadHospital || "",
+        regionSanitariaHospital: persona.regionSanitariaHospital || "",
         agrupamiento: persona.agrupamiento || "",
         contratacion: persona.contratacion || "",
         disciplina: persona.disciplina || "",
         observaciones: persona.observaciones || "",
+        tipoDocumento: persona.tipoDocumento || "",
+        localidad: persona.localidad || "",
+        partido: persona.partido || "",
+        provincia: persona.provincia || "",
+        pais: persona.pais || "",
       }));
     }
   }, [personaDataProp]);
@@ -58,13 +73,19 @@ export default function Trabajador({ personaDataProp }) {
         genero: persona.genero,
         email: persona.email,
         discapacidad: persona.discapacidad,
-        cobertura: persona.cobertura,
-        lugarTrabajo: persona.lugarTrabajo,
+        cobertura: persona.coberturaSocial,
+        hospitalTrabajo: persona.hospitalTrabajo,
+        localidadHospital: persona.localidadHospital,
+        regionSanitariaHospital: persona.regionSanitariaHospital,
         agrupamiento: persona.agrupamiento,
         contratacion: persona.contratacion,
         disciplina: persona.disciplina,
         observaciones: persona.observaciones,
-        coberturaSocial: persona.coberturaSocial,
+        tipoDocumento: persona.tipoDocumento,
+        localidad: persona.localidad,
+        partido: persona.partido,
+        provincia: persona.provincia,
+        pais: persona.pais,
       });
     } else {
       // Si no se encuentra la persona, borrar los datos
@@ -77,12 +98,18 @@ export default function Trabajador({ personaDataProp }) {
         email: "",
         discapacidad: "",
         cobertura: "",
-        lugarTrabajo: "",
+        hospitalTrabajo: "",
+        localidadHospital: "",
+        regionSanitariaHospital: "",
         agrupamiento: "",
         contratacion: "",
         disciplina: "",
         observaciones: "",
-        coberturaSocial: "",
+        tipoDocumento: "",
+        localidad: "",
+        partido: "",
+        provincia: "",
+        pais: "",
       });
     }
   };
@@ -90,6 +117,27 @@ export default function Trabajador({ personaDataProp }) {
   return (
     <div className="trabajador-form">
       <div className="grid-container">
+        <div className="form-group">
+          <label htmlFor="tipoDocumento">Tipo de Documento</label>
+          <Select
+            id="tipoDocumento"
+            options={[
+              { value: "dni", label: "DNI" },
+              { value: "pasaporte", label: "Pasaporte" },
+              { value: "extranjero", label: "Extranjero" },
+              { value: "otros", label: "Otros" },
+            ]}
+            placeholder="Seleccionar Tipo de Documento"
+            value={{
+              value: trabajador.tipoDocumento,
+              label: trabajador.tipoDocumento,
+            }}
+            onChange={(e) =>
+              setTrabajador({ ...trabajador, tipoDocumento: e.value })
+            }
+          />
+        </div>
+
         <div className="form-group">
           <label htmlFor="documento">Nro de Documento</label>
           <input
@@ -101,6 +149,7 @@ export default function Trabajador({ personaDataProp }) {
             onChange={handleDocumentoChange}
           />
         </div>
+
         <div className="form-group">
           <label htmlFor="nombre">Nombre y Apellido</label>
           <input
@@ -109,6 +158,9 @@ export default function Trabajador({ personaDataProp }) {
             className="form-control"
             placeholder="Nombre y Apellido"
             value={trabajador.nombre}
+            onChange={(e) =>
+              setTrabajador({ ...trabajador, nombre: e.target.value })
+            }
           />
         </div>
 
@@ -119,6 +171,9 @@ export default function Trabajador({ personaDataProp }) {
             id="fechaNacimiento"
             className="form-control"
             value={trabajador.fechaNacimiento}
+            onChange={(e) =>
+              setTrabajador({ ...trabajador, fechaNacimiento: e.target.value })
+            }
           />
         </div>
 
@@ -130,6 +185,57 @@ export default function Trabajador({ personaDataProp }) {
             className="form-control"
             placeholder="Domicilio"
             value={trabajador.domicilio}
+            onChange={(e) =>
+              setTrabajador({ ...trabajador, domicilio: e.target.value })
+            }
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="localidad">Localidad de Residencia</label>
+          <Select
+            id="localidad"
+            // options={/* Cargar opciones de localidad */}
+            placeholder="Seleccionar Localidad"
+            value={{ value: trabajador.localidad, label: trabajador.localidad }}
+            onChange={(e) =>
+              setTrabajador({ ...trabajador, localidad: e.value })
+            }
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="partido">Partido de Residencia</label>
+          <Select
+            id="partido"
+            // options={/* Cargar opciones de partido */}
+            placeholder="Seleccionar Partido"
+            value={{ value: trabajador.partido, label: trabajador.partido }}
+            onChange={(e) => setTrabajador({ ...trabajador, partido: e.value })}
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="provincia">Provincia de Residencia</label>
+          <Select
+            id="provincia"
+            // options={/* Cargar opciones de provincia */}
+            placeholder="Seleccionar Provincia"
+            value={{ value: trabajador.provincia, label: trabajador.provincia }}
+            onChange={(e) =>
+              setTrabajador({ ...trabajador, provincia: e.value })
+            }
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="pais">País de Residencia</label>
+          <Select
+            id="pais"
+            // options={/* Cargar opciones de país */}
+            placeholder="Seleccionar País"
+            value={{ value: trabajador.pais, label: trabajador.pais }}
+            onChange={(e) => setTrabajador({ ...trabajador, pais: e.value })}
           />
         </div>
 
@@ -141,25 +247,28 @@ export default function Trabajador({ personaDataProp }) {
             className="form-control"
             placeholder="Teléfono"
             value={trabajador.telefono}
+            onChange={(e) =>
+              setTrabajador({ ...trabajador, telefono: e.target.value })
+            }
           />
         </div>
 
         <div className="form-group">
-          <label htmlFor="genero">Género</label>
+          <label htmlFor="genero">Género Autopercibido</label>
           <Select
             id="genero"
             options={[
-              { value: "masculino", label: "Masculino" },
-              { value: "femenino", label: "Femenino" },
-              { value: "no_binario", label: "No Binario" },
+              { value: "mujer", label: "Mujer" },
+              { value: "varon", label: "Varón" },
+              { value: "travesti", label: "Travesti" },
+              { value: "no_binario", label: "No binarix" },
+              { value: "varon_trans", label: "Varón trans" },
+              { value: "mujer_trans", label: "Mujer trans" },
+              { value: "otros", label: "Otros" },
             ]}
             placeholder="Seleccionar Género"
-            value={{
-              value: trabajador.genero,
-              label:
-                trabajador.genero.charAt(0).toUpperCase() +
-                trabajador.genero.slice(1),
-            }}
+            value={{ value: trabajador.genero, label: trabajador.genero }}
+            onChange={(e) => setTrabajador({ ...trabajador, genero: e.value })}
           />
         </div>
 
@@ -171,6 +280,9 @@ export default function Trabajador({ personaDataProp }) {
             className="form-control"
             placeholder="Email"
             value={trabajador.email}
+            onChange={(e) =>
+              setTrabajador({ ...trabajador, email: e.target.value })
+            }
           />
         </div>
 
@@ -187,61 +299,121 @@ export default function Trabajador({ personaDataProp }) {
               value: trabajador.discapacidad,
               label: trabajador.discapacidad === "si" ? "Sí" : "No",
             }}
+            onChange={(e) =>
+              setTrabajador({ ...trabajador, discapacidad: e.value })
+            }
           />
         </div>
 
         <div className="form-group">
           <label htmlFor="cobertura">Cobertura Social</label>
-          <input
-            type="text"
+          <Select
             id="cobertura"
-            className="form-control"
-            placeholder="Cobertura Social"
-            value={trabajador.coberturaSocial}
+            // options={/* Cargar opciones de cobertura */}
+            placeholder="Seleccionar Cobertura Social"
+            value={{ value: trabajador.cobertura, label: trabajador.cobertura }}
+            onChange={(e) =>
+              setTrabajador({ ...trabajador, cobertura: e.value })
+            }
           />
         </div>
 
         <div className="form-group">
-          <label htmlFor="lugarTrabajo">Lugar de Trabajo</label>
-          <input
-            type="text"
-            id="lugarTrabajo"
-            className="form-control"
-            placeholder="Lugar de Trabajo"
-            value={trabajador.lugarTrabajo}
+          <label htmlFor="hospitalTrabajo">Hospital donde Trabaja</label>
+          <Select
+            id="hospitalTrabajo"
+            // options={/* Cargar opciones de hospitales */}
+            placeholder="Seleccionar Hospital"
+            value={{
+              value: trabajador.hospitalTrabajo,
+              label: trabajador.hospitalTrabajo,
+            }}
+            onChange={(e) =>
+              setTrabajador({ ...trabajador, hospitalTrabajo: e.value })
+            }
           />
         </div>
 
         <div className="form-group">
-          <label htmlFor="agrupamiento">Agrupamiento</label>
+          <label htmlFor="localidadHospital">Localidad del Hospital</label>
+          <Select
+            id="localidadHospital"
+            // options={/* Cargar opciones de localidad hospital */}
+            placeholder="Seleccionar Localidad Hospital"
+            value={{
+              value: trabajador.localidadHospital,
+              label: trabajador.localidadHospital,
+            }}
+            onChange={(e) =>
+              setTrabajador({ ...trabajador, localidadHospital: e.value })
+            }
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="regionSanitariaHospital">
+            Región Sanitaria del Hospital
+          </label>
+          <Select
+            id="regionSanitariaHospital"
+            // options={/* Cargar opciones de región sanitaria */}
+            placeholder="Seleccionar Región Sanitaria"
+            value={{
+              value: trabajador.regionSanitariaHospital,
+              label: trabajador.regionSanitariaHospital,
+            }}
+            onChange={(e) =>
+              setTrabajador({ ...trabajador, regionSanitariaHospital: e.value })
+            }
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="agrupamiento">Agrupamiento Reportante</label>
           <input
             type="text"
             id="agrupamiento"
             className="form-control"
             placeholder="Agrupamiento"
             value={trabajador.agrupamiento}
+            onChange={(e) =>
+              setTrabajador({ ...trabajador, agrupamiento: e.target.value })
+            }
           />
         </div>
 
         <div className="form-group">
-          <label htmlFor="tipoContratacion">Tipo de Contratación</label>
+          <label htmlFor="contratacion">Tipo de Contratación</label>
           <input
             type="text"
-            id="tipoContratacion"
+            id="contratacion"
             className="form-control"
             placeholder="Tipo de Contratación"
             value={trabajador.contratacion}
+            onChange={(e) =>
+              setTrabajador({ ...trabajador, contratacion: e.target.value })
+            }
           />
         </div>
 
         <div className="form-group">
           <label htmlFor="disciplina">Disciplina</label>
-          <input
-            type="text"
+          <Select
             id="disciplina"
-            className="form-control"
-            placeholder="Disciplina"
-            value={trabajador.disciplina}
+            options={[
+              { value: "medico", label: "Médico" },
+              { value: "psicologo", label: "Psicólogo" },
+              { value: "enfermero", label: "Enfermero" },
+              { value: "administrativo", label: "Administrativo" },
+              { value: "etc", label: "Etc" },
+            ]}
+            placeholder="Seleccionar Disciplina"
+            value={{
+              value: trabajador.disciplina,
+              label:
+                trabajador.disciplina.charAt(0).toUpperCase() +
+                trabajador.disciplina.slice(1),
+            }}
           />
         </div>
 
@@ -252,6 +424,12 @@ export default function Trabajador({ personaDataProp }) {
             className="form-control"
             placeholder="Observaciones"
             value={trabajador.observaciones}
+            onChange={(e) =>
+              setTrabajador({
+                ...trabajador,
+                observaciones: e.target.value,
+              })
+            }
           ></textarea>
         </div>
       </div>
