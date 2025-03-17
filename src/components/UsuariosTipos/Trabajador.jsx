@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { personas } from "../../utils/Personas";
 
-export default function Trabajador({ personaDataProp, personas }) {
+export default function Trabajador({ personaDataProp }) {
   const [documento, setDocumento] = useState("");
   const [trabajador, setTrabajador] = useState({
     tipoDocumento: "",

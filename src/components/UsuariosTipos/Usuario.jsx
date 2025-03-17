@@ -53,6 +53,40 @@ export default function Usuario({ personaDataProp }) {
   const handleDocumentoChange = (e) => {
     const doc = e.target.value;
     setDocumento(doc);
+
+    // Buscar el documento en el arreglo personas
+    const personaEncontrada = personas.find(
+      (persona) => persona.documento === doc
+    );
+
+    // Si se encuentra, autocompletar los datos
+    if (personaEncontrada) {
+      setTipoDocumento(personaEncontrada.tipoDocumento || "");
+      setNombre(personaEncontrada.nombre || "");
+      setFechaNacimiento(personaEncontrada.fechaNacimiento || "");
+      setDomicilio(personaEncontrada.domicilio || "");
+      setLocalidad(personaEncontrada.localidad || "");
+      setPartido(personaEncontrada.partido || "");
+      setProvincia(personaEncontrada.provincia || "");
+      setPais(personaEncontrada.pais || "");
+      setTelefono(personaEncontrada.telefono || "");
+      setGenero(
+        personaEncontrada.genero
+          ? { value: personaEncontrada.genero, label: personaEncontrada.genero }
+          : null
+      );
+      setEmail(personaEncontrada.email || "");
+      setDiscapacidad(
+        personaEncontrada.discapacidad
+          ? {
+              value: personaEncontrada.discapacidad,
+              label: personaEncontrada.discapacidad,
+            }
+          : null
+      );
+      setCobertura(personaEncontrada.coberturaSocial || "");
+      setPersonaACargo(personaEncontrada.personaACargo || "");
+    }
   };
 
   return (
