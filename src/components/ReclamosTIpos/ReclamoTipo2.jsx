@@ -24,19 +24,6 @@ export default function ReclamoTipo2({ reclamoDataProp }) {
     }
   }, [reclamoDataProp]);
 
-  const opcionesTipoViolencia = [
-    { value: "fisica", label: "Física" },
-    { value: "psicologica", label: "Psicológica" },
-    { value: "verbal", label: "Verbal" },
-    { value: "economica", label: "Económica" },
-  ];
-
-  const opcionesFrecuencia = [
-    { value: "unaVez", label: "Ocurrió una vez" },
-    { value: "recurrente", label: "Ha ocurrido varias veces" },
-    { value: "prolongado", label: "Persiste en el tiempo" },
-  ];
-
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
