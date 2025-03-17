@@ -11,13 +11,13 @@ export default function TipoReclamo({ reclamoDataProp }) {
   const opciones = [
     {
       value: "tipo1",
-      label: "Conflictos entre trabajadores/as del Ministerio",
+      label: "Laborales",
     },
     {
       value: "tipo2",
-      label: "Violencia laboral entre trabajadores/as del Ministerio",
+      label: "VRG",
     },
-    { value: "tipo3", label: "Violencia por razones de género a trabajadoras" },
+    { value: "tipo3", label: "Institucional" },
   ];
 
   return (
