@@ -264,6 +264,7 @@ export default function ReclamoTipo2({ reclamoDataProp }) {
           />
         </div>
       </div>
+      <br />
     </div>
   );
 }
