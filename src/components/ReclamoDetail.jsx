@@ -42,7 +42,6 @@ export default function ReclamoDetail() {
         </>
 
         <>
-          {/* Ajustar según los datos disponibles en tu objeto */}
           <p>
             <strong>Fecha del Reclamo:</strong> {persona.reclamo.fechaReclamo}
           </p>
@@ -53,7 +52,6 @@ export default function ReclamoDetail() {
 
         {persona.reclamo.tipo === "administrativo" && (
           <>
-            {/* Ajustar según los datos disponibles en tu objeto */}
             <p>
               <strong>Fecha del Reclamo:</strong> {persona.reclamo.fechaReclamo}
             </p>

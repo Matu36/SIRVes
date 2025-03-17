@@ -64,7 +64,6 @@ export default function PostIntervenciones() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Formulario enviado:", formData);
-    // Aquí puedes procesar el envío del formulario
   };
 
   return (

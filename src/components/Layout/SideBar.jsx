@@ -101,10 +101,10 @@ function SideBar({ isOpen, setIsOpen }) {
             </li>
             <li>
               <Link
-                to="/intervenciones/ver-intervenciones"
+                to="/intervenciones/ver-Intervenciones"
                 onClick={() => setIsOpen(false)}
               >
-                Ver intervenciones
+                Ver intervencionesS
               </Link>
             </li>
           </ul>
