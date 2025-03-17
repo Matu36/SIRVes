@@ -8,6 +8,8 @@ import DetalleReclamo from "../pages/DetalleReclamo";
 import AgentesInfo from "../pages/AgentesInfo";
 import ModificarAgentes from "../pages/ModificarAgentes";
 import EditarReclamos from "../pages/EditarReclamos";
+import Intervenciones from "../pages/Intervenciones";
+import VerIntervenciones from "../pages/VerIntervenciones";
 
 const Perfil1 = `${import.meta.env.VITE_ROL_ADMIN_PERSONAL}`;
 const Perfil3 = `${import.meta.env.VITE_ROL_CARGA_PERSONAL}`;
@@ -47,6 +49,21 @@ const router = createBrowserRouter(
             },
           ],
         },
+
+        {
+          path: "/intervenciones",
+
+          children: [
+            {
+              path: "/intervenciones/ver-Intervenciones",
+              element: <VerIntervenciones />,
+            },
+            {
+              path: "/intervenciones/nueva-Intervencion",
+              element: <Intervenciones />,
+            },
+          ],
+        },
         {
           path: "/agentes",
 
@@ -61,81 +78,6 @@ const router = createBrowserRouter(
             },
           ],
         },
-        //     {
-        //       path: "/servicios",
-
-        //       children: [
-        //         {
-        //           path: "/servicios/jurisdicción",
-        //           element: <ServiciosJurisdicción />,
-        //         },
-        //       ],
-        //     },
-        //     {
-        //       path: "/cargos",
-
-        //       children: [
-        //         {
-        //           path: "/cargos/agregar-cargos",
-        //           children: [
-        //             {
-        //               index: true,
-        //               element: <Cargos />,
-        //             },
-        //           ],
-        //         },
-        //       ],
-        //     },
-
-        //     {
-        //       path: "/adicionales",
-        //       element: (
-        //         <ProtectedRoute
-        //           element={<Adicionales />}
-        //           allowedRoles={[Perfil2]}
-        //         />
-        //       ),
-        //     },
-        //     {
-        //       path: "/descuentos",
-        //       element: (
-        //         <ProtectedRoute element={<Descuentos />} allowedRoles={[Perfil2]} />
-        //       ),
-        //     },
-
-        //     {
-        //       path: "/ServAdicionales",
-        //       element: <ServiciosAdicionales />,
-        //     },
-        //     {
-        //       path: "/suplentes",
-        //       element: <Suplentes />,
-        //     },
-        //     {
-        //       path: "/observacionGeneral",
-        //       element: (
-        //         <ProtectedRoute
-        //           element={<ObservacionGeneral />}
-        //           allowedRoles={[Perfil1, Perfil3]}
-        //         />
-        //       ),
-        //     },
-
-        //     {
-        //       path: "/historico",
-        //       element: <Historico />,
-        //     },
-
-        //     {
-        //       path: "*",
-        //       element: <ErrorPage />,
-        //     },
-        //     {
-        //       path: "/error",
-        //       element: <ErrorPage />,
-        //     },
-        //   ],
-        // },
       ],
     },
   ]
