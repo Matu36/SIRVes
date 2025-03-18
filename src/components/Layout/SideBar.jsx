@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FaHospitalSymbol, FaRegFileAlt, FaUsers } from "react-icons/fa";
+import {
+  FaHospitalSymbol,
+  FaRegFileAlt,
+  FaUsers,
+  FaProcedures,
+} from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import { useCredencial } from "../../hooks/UseCredenciales";
 
@@ -69,6 +74,37 @@ function SideBar({ isOpen, setIsOpen }) {
                 onClick={() => setIsOpen(false)}
               >
                 Ver reclamos
+              </Link>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a
+            aria-controls="collapseIntervenciones"
+            aria-expanded="false"
+            className="nav-link dropdown-toggle"
+            data-bs-toggle="collapse"
+            href="#collapseIntervenciones"
+            role="button"
+          >
+            <FaProcedures className="sidebarIcons text-muted" size="1.50em" />{" "}
+            Intervenciones
+          </a>
+          <ul className="collapse sub-menu" id="collapseIntervenciones">
+            <li>
+              <Link
+                to="/intervenciones/nueva-Intervencion"
+                onClick={() => setIsOpen(false)}
+              >
+                Ingresar intervenciones
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/intervenciones/ver-Intervenciones"
+                onClick={() => setIsOpen(false)}
+              >
+                Ver intervencionesS
               </Link>
             </li>
           </ul>

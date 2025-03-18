@@ -3,22 +3,33 @@ import Select from "react-select";
 import { personas } from "../../utils/Personas";
 
 export default function Usuario({ personaDataProp }) {
-  const [nombre, setNombre] = useState("");
+  const [tipoDocumento, setTipoDocumento] = useState("");
   const [documento, setDocumento] = useState("");
+  const [nombre, setNombre] = useState("");
   const [fechaNacimiento, setFechaNacimiento] = useState("");
   const [domicilio, setDomicilio] = useState("");
+  const [localidad, setLocalidad] = useState("");
+  const [partido, setPartido] = useState("");
+  const [provincia, setProvincia] = useState("");
+  const [pais, setPais] = useState("");
   const [telefono, setTelefono] = useState("");
   const [genero, setGenero] = useState(null);
   const [email, setEmail] = useState("");
   const [discapacidad, setDiscapacidad] = useState(null);
   const [cobertura, setCobertura] = useState("");
+  const [personaACargo, setPersonaACargo] = useState("");
 
   useEffect(() => {
     if (personaDataProp) {
-      setNombre(personaDataProp.nombre || "");
+      setTipoDocumento(personaDataProp.tipoDocumento || "");
       setDocumento(personaDataProp.documento || "");
+      setNombre(personaDataProp.nombre || "");
       setFechaNacimiento(personaDataProp.fechaNacimiento || "");
       setDomicilio(personaDataProp.domicilio || "");
+      setLocalidad(personaDataProp.localidad || "");
+      setPartido(personaDataProp.partido || "");
+      setProvincia(personaDataProp.provincia || "");
+      setPais(personaDataProp.pais || "");
       setTelefono(personaDataProp.telefono || "");
       setGenero(
         personaDataProp.genero
@@ -35,6 +46,7 @@ export default function Usuario({ personaDataProp }) {
           : null
       );
       setCobertura(personaDataProp.coberturaSocial || "");
+      setPersonaACargo(personaDataProp.personaACargo || "");
     }
   }, [personaDataProp]);
 
@@ -42,31 +54,60 @@ export default function Usuario({ personaDataProp }) {
     const doc = e.target.value;
     setDocumento(doc);
 
+    // Buscar el documento en el arreglo personas
     const personaEncontrada = personas.find(
       (persona) => persona.documento === doc
     );
 
+    // Si se encuentra, autocompletar los datos
     if (personaEncontrada) {
-      setNombre(personaEncontrada.nombre);
-      setFechaNacimiento(personaEncontrada.fechaNacimiento);
-      setDomicilio(personaEncontrada.domicilio);
-      setTelefono(personaEncontrada.telefono);
-      setGenero({
-        value: personaEncontrada.genero,
-        label: personaEncontrada.genero,
-      });
-      setEmail(personaEncontrada.email);
-      setDiscapacidad({
-        value: personaEncontrada.discapacidad,
-        label: personaEncontrada.discapacidad,
-      });
-      setCobertura(personaEncontrada.coberturaSocial);
+      setTipoDocumento(personaEncontrada.tipoDocumento || "");
+      setNombre(personaEncontrada.nombre || "");
+      setFechaNacimiento(personaEncontrada.fechaNacimiento || "");
+      setDomicilio(personaEncontrada.domicilio || "");
+      setLocalidad(personaEncontrada.localidad || "");
+      setPartido(personaEncontrada.partido || "");
+      setProvincia(personaEncontrada.provincia || "");
+      setPais(personaEncontrada.pais || "");
+      setTelefono(personaEncontrada.telefono || "");
+      setGenero(
+        personaEncontrada.genero
+          ? { value: personaEncontrada.genero, label: personaEncontrada.genero }
+          : null
+      );
+      setEmail(personaEncontrada.email || "");
+      setDiscapacidad(
+        personaEncontrada.discapacidad
+          ? {
+              value: personaEncontrada.discapacidad,
+              label: personaEncontrada.discapacidad,
+            }
+          : null
+      );
+      setCobertura(personaEncontrada.coberturaSocial || "");
+      setPersonaACargo(personaEncontrada.personaACargo || "");
     }
   };
 
   return (
     <div className="usuario-form">
       <div className="grid-container">
+        <div className="form-group">
+          <label htmlFor="tipoDocumento">Tipo de Documento</label>
+          <Select
+            id="tipoDocumento"
+            options={[
+              { value: "dni", label: "DNI" },
+              { value: "pasaporte", label: "Pasaporte" },
+              { value: "extranjero", label: "Extranjero" },
+              { value: "otros", label: "Otros" },
+            ]}
+            placeholder="Seleccionar Tipo de Documento"
+            value={tipoDocumento}
+            onChange={setTipoDocumento}
+          />
+        </div>
+
         <div className="form-group">
           <label htmlFor="documento">Nro de Documento</label>
           <input
@@ -78,6 +119,7 @@ export default function Usuario({ personaDataProp }) {
             onChange={handleDocumentoChange}
           />
         </div>
+
         <div className="form-group">
           <label htmlFor="nombre">Nombre y Apellido</label>
           <input
@@ -102,7 +144,7 @@ export default function Usuario({ personaDataProp }) {
         </div>
 
         <div className="form-group">
-          <label htmlFor="domicilio">Domicilio</label>
+          <label htmlFor="domicilio">Domicilio de Residencia</label>
           <input
             type="text"
             id="domicilio"
@@ -110,6 +152,54 @@ export default function Usuario({ personaDataProp }) {
             placeholder="Domicilio"
             value={domicilio}
             onChange={(e) => setDomicilio(e.target.value)}
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="localidad">Localidad de Residencia</label>
+          <input
+            type="text"
+            id="localidad"
+            className="form-control"
+            placeholder="Localidad"
+            value={localidad}
+            onChange={(e) => setLocalidad(e.target.value)}
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="partido">Partido de Residencia</label>
+          <input
+            type="text"
+            id="partido"
+            className="form-control"
+            placeholder="Partido"
+            value={partido}
+            onChange={(e) => setPartido(e.target.value)}
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="provincia">Provincia de Residencia</label>
+          <input
+            type="text"
+            id="provincia"
+            className="form-control"
+            placeholder="Provincia"
+            value={provincia}
+            onChange={(e) => setProvincia(e.target.value)}
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="pais">País de Residencia</label>
+          <input
+            type="text"
+            id="pais"
+            className="form-control"
+            placeholder="País"
+            value={pais}
+            onChange={(e) => setPais(e.target.value)}
           />
         </div>
 
@@ -126,13 +216,17 @@ export default function Usuario({ personaDataProp }) {
         </div>
 
         <div className="form-group">
-          <label htmlFor="genero">Género</label>
+          <label htmlFor="genero">Género Autopercibido</label>
           <Select
             id="genero"
             options={[
-              { value: "masculino", label: "Masculino" },
-              { value: "femenino", label: "Femenino" },
-              { value: "no_binario", label: "No Binario" },
+              { value: "mujer", label: "Mujer" },
+              { value: "varon", label: "Varón" },
+              { value: "travesti", label: "Travesti" },
+              { value: "no_binario", label: "No binarix" },
+              { value: "varon_trans", label: "Varón trans" },
+              { value: "mujer_trans", label: "Mujer trans" },
+              { value: "otros", label: "Otros" },
             ]}
             placeholder="Seleccionar Género"
             value={genero}
@@ -175,6 +269,18 @@ export default function Usuario({ personaDataProp }) {
             placeholder="Cobertura Social"
             value={cobertura}
             onChange={(e) => setCobertura(e.target.value)}
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="personaACargo">Persona a Cargo</label>
+          <input
+            type="text"
+            id="personaACargo"
+            className="form-control"
+            placeholder="Persona a Cargo"
+            value={personaACargo}
+            onChange={(e) => setPersonaACargo(e.target.value)}
           />
         </div>
       </div>
