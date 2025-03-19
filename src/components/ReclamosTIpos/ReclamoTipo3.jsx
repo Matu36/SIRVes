@@ -127,6 +127,27 @@ export default function ReclamoTipo3({ reclamoDataProp }) {
       <br />
       <div className="form-container">
         <div className="form-group">
+          <label>Tipo de reporte</label>
+          <Select
+            options={opcionesTipoReporte}
+            placeholder={"Seleccionar"}
+            name="tipoReporte"
+            value={form.tipoReporte}
+            onChange={(e) => setForm({ ...form, tipoReporte: e.value })}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Tipo de situación</label>
+          <Select
+            placeholder={"Seleccionar"}
+            options={opcionesTipoSituacion}
+            name="tipoSituacion"
+            value={form.tipoSituacion}
+            onChange={(e) => setForm({ ...form, tipoSituacion: e.value })}
+          />
+        </div>
+        <div className="form-group">
           <label htmlFor="fechaSituacion">Fecha de la situación</label>
           <input
             type="date"
@@ -147,26 +168,6 @@ export default function ReclamoTipo3({ reclamoDataProp }) {
         </div>
 
         <div className="form-group">
-          <label htmlFor="expediente">Expediente GEDEBA</label>
-          <input
-            type="text"
-            name="expediente"
-            value={form.expediente}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="form-group">
-          <label>Tipo de reporte</label>
-          <Select
-            options={opcionesTipoReporte}
-            name="tipoReporte"
-            value={form.tipoReporte}
-            onChange={(e) => setForm({ ...form, tipoReporte: e.value })}
-          />
-        </div>
-
-        <div className="form-group">
           <label>Registro por (si es de oficio)</label>
           <input
             type="text"
@@ -177,18 +178,9 @@ export default function ReclamoTipo3({ reclamoDataProp }) {
         </div>
 
         <div className="form-group">
-          <label>Tipo de situación</label>
-          <Select
-            options={opcionesTipoSituacion}
-            name="tipoSituacion"
-            value={form.tipoSituacion}
-            onChange={(e) => setForm({ ...form, tipoSituacion: e.value })}
-          />
-        </div>
-
-        <div className="form-group">
           <label>Tipo de violencia</label>
           <Select
+            placeholder={"Seleccionar"}
             options={opcionesTipoViolencia}
             name="tipoViolencia"
             value={form.tipoViolencia}
@@ -199,6 +191,7 @@ export default function ReclamoTipo3({ reclamoDataProp }) {
         <div className="form-group">
           <label>Modalidad de violencia</label>
           <Select
+            placeholder={"Seleccionar"}
             options={opcionesModalidadViolencia}
             name="modalidadViolencia"
             value={form.modalidadViolencia}
@@ -209,6 +202,7 @@ export default function ReclamoTipo3({ reclamoDataProp }) {
         <div className="form-group">
           <label>Frecuencia del maltrato</label>
           <Select
+            placeholder={"Seleccionar"}
             options={opcionesFrecuenciaMaltrato}
             name="frecuenciaMaltrato"
             value={form.frecuenciaMaltrato}
@@ -220,6 +214,7 @@ export default function ReclamoTipo3({ reclamoDataProp }) {
           <label>¿Es violencia por VRG o NNyA?</label>
           <Select
             options={opcionesSiNo}
+            placeholder={"Seleccionar"}
             name="esViolenciaVRG"
             value={form.esViolenciaVRG}
             onChange={(e) => setForm({ ...form, esViolenciaVRG: e.value })}
@@ -237,6 +232,7 @@ export default function ReclamoTipo3({ reclamoDataProp }) {
               { value: "sin_dato", label: "Sin dato" },
             ]}
             name="antiguedadVinculo"
+            placeholder={"Seleccionar"}
             value={form.antiguedadVinculo}
             onChange={(e) => setForm({ ...form, antiguedadVinculo: e.value })}
           />
@@ -245,6 +241,7 @@ export default function ReclamoTipo3({ reclamoDataProp }) {
         <div className="form-group">
           <label>¿La situación ocurrió en?</label>
           <Select
+            placeholder={"Seleccionar"}
             options={opcionesLugarSituacion}
             name="lugarSituacion"
             value={form.lugarSituacion}
@@ -256,6 +253,7 @@ export default function ReclamoTipo3({ reclamoDataProp }) {
           <label>¿Puede reconocer al agresor/a?</label>
           <Select
             options={opcionesSiNo}
+            placeholder={"Seleccionar"}
             name="puedeReconocerAgresor"
             value={form.puedeReconocerAgresor}
             onChange={(e) =>
@@ -278,6 +276,7 @@ export default function ReclamoTipo3({ reclamoDataProp }) {
           <label>¿Transita embarazo actualmente?</label>
           <Select
             options={opcionesSiNo}
+            placeholder={"Seleccionar"}
             name="transitaEmbarazo"
             value={form.transitaEmbarazo}
             onChange={(e) => setForm({ ...form, transitaEmbarazo: e.value })}
@@ -288,6 +287,7 @@ export default function ReclamoTipo3({ reclamoDataProp }) {
           <label>¿Transita etapa de puerperio actualmente?</label>
           <Select
             options={opcionesSiNo}
+            placeholder={"Seleccionar"}
             name="transitaPuerperio"
             value={form.transitaPuerperio}
             onChange={(e) => setForm({ ...form, transitaPuerperio: e.value })}
@@ -300,6 +300,7 @@ export default function ReclamoTipo3({ reclamoDataProp }) {
             options={opcionesSiNo}
             name="abortoCausaViolencia"
             value={form.abortoCausaViolencia}
+            placeholder={"Seleccionar"}
             onChange={(e) =>
               setForm({ ...form, abortoCausaViolencia: e.value })
             }
@@ -312,6 +313,7 @@ export default function ReclamoTipo3({ reclamoDataProp }) {
             options={opcionesSiNo}
             name="existeDenuncia"
             value={form.existeDenuncia}
+            placeholder={"Seleccionar"}
             onChange={(e) => setForm({ ...form, existeDenuncia: e.value })}
           />
         </div>
@@ -322,6 +324,7 @@ export default function ReclamoTipo3({ reclamoDataProp }) {
             options={opcionesSiNo}
             name="existenMedidasProteccion"
             value={form.existenMedidasProteccion}
+            placeholder={"Seleccionar"}
             onChange={(e) =>
               setForm({ ...form, existenMedidasProteccion: e.value })
             }
@@ -334,7 +337,17 @@ export default function ReclamoTipo3({ reclamoDataProp }) {
             options={opcionesSiNo}
             name="estaJudicializada"
             value={form.estaJudicializada}
+            placeholder={"Seleccionar"}
             onChange={(e) => setForm({ ...form, estaJudicializada: e.value })}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="expediente">Expediente GEDEBA</label>
+          <input
+            type="text"
+            name="expediente"
+            value={form.expediente}
+            onChange={handleChange}
           />
         </div>
       </div>

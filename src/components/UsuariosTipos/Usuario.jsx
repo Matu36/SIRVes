@@ -233,6 +233,17 @@ export default function Usuario({ personaDataProp }) {
         </div>
 
         <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            className="form-control"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
           <label htmlFor="genero">Género Autopercibido</label>
           <Select
             id="genero"
@@ -248,18 +259,6 @@ export default function Usuario({ personaDataProp }) {
             placeholder="Seleccionar Género"
             value={genero}
             onChange={setGenero}
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            className="form-control"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 

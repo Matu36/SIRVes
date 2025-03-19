@@ -178,7 +178,7 @@ export default function Trabajador({ personaDataProp }) {
         </div>
 
         <div className="form-group">
-          <label htmlFor="domicilio">Domicilio</label>
+          <label htmlFor="domicilio">Domicilio de Residencia</label>
           <input
             type="text"
             id="domicilio"
@@ -252,7 +252,19 @@ export default function Trabajador({ personaDataProp }) {
             }
           />
         </div>
-
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            className="form-control"
+            placeholder="Email"
+            value={trabajador.email}
+            onChange={(e) =>
+              setTrabajador({ ...trabajador, email: e.target.value })
+            }
+          />
+        </div>
         <div className="form-group">
           <label htmlFor="genero">Género Autopercibido</label>
           <Select
@@ -269,20 +281,6 @@ export default function Trabajador({ personaDataProp }) {
             placeholder="Seleccionar Género"
             value={{ value: trabajador.genero, label: trabajador.genero }}
             onChange={(e) => setTrabajador({ ...trabajador, genero: e.value })}
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            className="form-control"
-            placeholder="Email"
-            value={trabajador.email}
-            onChange={(e) =>
-              setTrabajador({ ...trabajador, email: e.target.value })
-            }
           />
         </div>
 

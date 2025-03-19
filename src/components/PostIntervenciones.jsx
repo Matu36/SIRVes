@@ -163,8 +163,13 @@ export default function PostIntervenciones() {
           </div>
 
           <div className="form-group">
-            <label>Informe Adjunto</label>
-            <input type="file" onChange={handleFileChange} />
+            <label>Informe Adjunto (PDF)</label>
+            <input
+              type="file"
+              accept="application/pdf"
+              onChange={handleFileChange}
+              className="form-control pdf-input"
+            />
           </div>
         </div>
         <br />

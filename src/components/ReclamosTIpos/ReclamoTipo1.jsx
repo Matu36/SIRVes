@@ -97,6 +97,21 @@ export default function ReclamoTipo1({ reclamoDataProp }) {
       <br />
       <div className="form-container">
         <div className="form-group">
+          <label>Tipo de Reporte</label>
+          <Select
+            options={opcionesTipoReporte}
+            value={opcionesTipoReporte.find(
+              (option) => option.value === form.tipoReporte
+            )}
+            onChange={(e) =>
+              handleChange({
+                target: { name: "tipoReporte", value: e.value },
+              })
+            }
+            placeholder={"Seleccionar"}
+          />
+        </div>
+        <div className="form-group">
           <label>Descripción de la situación</label>
           <Select
             options={opcionesTipoLaborales}
@@ -108,21 +123,7 @@ export default function ReclamoTipo1({ reclamoDataProp }) {
                 target: { name: "opcionesTipoLaborales", value: e.value },
               })
             }
-            placeholder="Descripción de la situación"
-          />
-        </div>
-
-        <div className="form-group">
-          <label>Tipo de Reporte</label>
-          <Select
-            options={opcionesTipoReporte}
-            value={opcionesTipoReporte.find(
-              (option) => option.value === form.tipoReporte
-            )}
-            onChange={(e) =>
-              handleChange({ target: { name: "tipoReporte", value: e.value } })
-            }
-            placeholder="Tipo de Reporte"
+            placeholder={"Seleccionar"}
           />
         </div>
 
@@ -151,7 +152,7 @@ export default function ReclamoTipo1({ reclamoDataProp }) {
                 target: { name: "tipoViolencia", value: e.value },
               })
             }
-            placeholder="Tipo de violencia"
+            placeholder={"Seleccionar"}
           />
         </div>
 
@@ -167,7 +168,7 @@ export default function ReclamoTipo1({ reclamoDataProp }) {
                 target: { name: "frecuenciaMaltrato", value: e.value },
               })
             }
-            placeholder="Frecuencia del maltrato"
+            placeholder={"Seleccionar"}
           />
         </div>
 
@@ -181,7 +182,7 @@ export default function ReclamoTipo1({ reclamoDataProp }) {
             onChange={(e) =>
               handleChange({ target: { name: "viaIngreso", value: e.value } })
             }
-            placeholder="Vía de ingreso"
+            placeholder={"Seleccionar"}
           />
         </div>
 
@@ -195,7 +196,7 @@ export default function ReclamoTipo1({ reclamoDataProp }) {
             onChange={(e) =>
               handleChange({ target: { name: "percepcion", value: e.value } })
             }
-            placeholder="Percepción de la situación"
+            placeholder={"Seleccionar"}
           />
         </div>
         <div className="form-group">

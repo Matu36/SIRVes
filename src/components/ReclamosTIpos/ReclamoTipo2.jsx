@@ -38,29 +38,18 @@ export default function ReclamoTipo2({ reclamoDataProp }) {
       <div className="form-container">
         {/* Datos básicos del reporte */}
         <div className="form-group">
-          <label>Fecha del reporte</label>
-          <input type="date" name="fechaReporte" onChange={handleChange} />
-        </div>
-
-        <div className="form-group">
-          <label>Expediente GDEBA</label>
-          <input
-            type="text"
-            name="expediente"
-            placeholder="Expediente GDEBA"
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="form-group">
           <label>Tipo de Reporte</label>
           <Select
             options={[
               { value: "individual", label: "Individual" },
               { value: "de_oficio", label: "De oficio" },
             ]}
-            placeholder="Seleccione el tipo de reporte"
+            placeholder={"Seleccionar"}
           />
+        </div>
+        <div className="form-group">
+          <label>Fecha del reporte</label>
+          <input type="date" name="fechaReporte" onChange={handleChange} />
         </div>
 
         <div className="form-group">
@@ -87,7 +76,7 @@ export default function ReclamoTipo2({ reclamoDataProp }) {
                 label: "Trabajadores agresores por VRG",
               },
             ]}
-            placeholder="Seleccione el tipo de situación"
+            placeholder={"Seleccionar"}
           />
         </div>
 
@@ -103,7 +92,7 @@ export default function ReclamoTipo2({ reclamoDataProp }) {
               { value: "digital", label: "Digital" },
               { value: "politica", label: "Política" },
             ]}
-            placeholder="Seleccione el tipo de violencia"
+            placeholder={"Seleccionar"}
           />
         </div>
 
@@ -124,7 +113,7 @@ export default function ReclamoTipo2({ reclamoDataProp }) {
               { value: "telematica", label: "Telemática" },
               { value: "otros", label: "Otros" },
             ]}
-            placeholder="Seleccione la modalidad de violencia"
+            placeholder={"Seleccionar"}
           />
         </div>
 
@@ -137,7 +126,7 @@ export default function ReclamoTipo2({ reclamoDataProp }) {
               { value: "convivio", label: "No convive, pero convivió" },
               { value: "sin_dato", label: "Sin dato" },
             ]}
-            placeholder="Seleccione una opción"
+            placeholder={"Seleccionar"}
           />
         </div>
 
@@ -156,7 +145,7 @@ export default function ReclamoTipo2({ reclamoDataProp }) {
               { value: "otros", label: "Otros" },
               { value: "sin_vinculo", label: "Sin vínculo" },
             ]}
-            placeholder="Seleccione el vínculo"
+            placeholder={"Seleccionar"}
           />
         </div>
 
@@ -169,7 +158,7 @@ export default function ReclamoTipo2({ reclamoDataProp }) {
               { value: "no", label: "No" },
               { value: "no_sabe", label: "No sabe" },
             ]}
-            placeholder="Seleccione una opción"
+            placeholder={"Seleccionar"}
           />
         </div>
 
@@ -181,7 +170,7 @@ export default function ReclamoTipo2({ reclamoDataProp }) {
               { value: "no", label: "No" },
               { value: "no_sabe", label: "No sabe" },
             ]}
-            placeholder="Seleccione una opción"
+            placeholder={"Seleccionar"}
           />
         </div>
 
@@ -193,7 +182,7 @@ export default function ReclamoTipo2({ reclamoDataProp }) {
               { value: "si", label: "Sí" },
               { value: "no", label: "No" },
             ]}
-            placeholder="Seleccione una opción"
+            placeholder={"Seleccionar"}
           />
         </div>
 
@@ -205,7 +194,7 @@ export default function ReclamoTipo2({ reclamoDataProp }) {
               { value: "anterior", label: "Ya tramitó en otra oportunidad" },
               { value: "no_tramito", label: "No tramitó" },
             ]}
-            placeholder="Seleccione una opción"
+            placeholder={"Seleccionar"}
           />
         </div>
 
@@ -216,7 +205,7 @@ export default function ReclamoTipo2({ reclamoDataProp }) {
               { value: "si", label: "Sí" },
               { value: "no", label: "No" },
             ]}
-            placeholder="Seleccione una opción"
+            placeholder={"Seleccionar"}
           />
         </div>
 
@@ -238,7 +227,7 @@ export default function ReclamoTipo2({ reclamoDataProp }) {
               { value: "no_concurrencia", label: "No concurrencia" },
               { value: "no_acciones", label: "No se realizaron acciones" },
             ]}
-            placeholder="Seleccione una opción"
+            placeholder={"Seleccionar"}
           />
         </div>
 
@@ -247,6 +236,15 @@ export default function ReclamoTipo2({ reclamoDataProp }) {
           <textarea
             name="seguimientoAcciones"
             placeholder="Detalles del seguimiento"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label>Expediente GDEBA</label>
+          <input
+            type="text"
+            name="expediente"
+            placeholder="Expediente GDEBA"
             onChange={handleChange}
           />
         </div>
