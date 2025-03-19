@@ -302,20 +302,6 @@ export default function Usuario({ personaDataProp }) {
             onChange={(selectedOption) => setEsMenor(selectedOption?.value)}
           />
         </div>
-
-        <div className="form-group">
-          <label htmlFor="esMenor">¿Es menor de edad?</label>
-          <Select
-            id="esMenor"
-            options={[
-              { value: "si", label: "Sí" },
-              { value: "no", label: "No" },
-            ]}
-            placeholder="Seleccionar"
-            value={esMenor}
-            onChange={(selectedOption) => setEsMenor(selectedOption?.value)}
-          />
-        </div>
       </div>
 
       {esMenor === "si" && (
