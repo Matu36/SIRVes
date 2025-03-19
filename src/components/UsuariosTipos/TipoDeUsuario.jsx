@@ -181,7 +181,7 @@ export default function TipoDeUsuario({ personaDataProp }) {
           <br />
         </div>
       ))}
-      {/* Mostrar el primer botón solo si no hay reportados */}
+
       {reportados.length === 0 && (
         <button
           className="btn btn-success btn-round mt-2"
@@ -191,12 +191,7 @@ export default function TipoDeUsuario({ personaDataProp }) {
         </button>
       )}
 
-      {/* Modal de confirmación */}
-      <Modal
-        show={showModal}
-        onHide={handleCancelarModificar}
-        centered // Esto centra el modal verticalmente
-      >
+      <Modal show={showModal} onHide={handleCancelarModificar} centered>
         <Modal.Dialog size="sm">
           {" "}
           // Esto reduce el tamaño del modal

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { personas } from "../../utils/Personas";
+import { MdContacts } from "react-icons/md";
 
 export default function Usuario({ personaDataProp }) {
   const [tipoDocumento, setTipoDocumento] = useState("");
@@ -17,7 +18,12 @@ export default function Usuario({ personaDataProp }) {
   const [email, setEmail] = useState("");
   const [discapacidad, setDiscapacidad] = useState(null);
   const [cobertura, setCobertura] = useState("");
-  const [personaACargo, setPersonaACargo] = useState("");
+  const [esMenor, setEsMenor] = useState("");
+  const [personaCargoNombre, setPersonaACargoNombre] = useState("");
+  const [personaCargoApellido, setPersonaCargoApellido] = useState("");
+  const [personaCargoDireccion, setPersonaCargoDireccion] = useState("");
+  const [personaCargoTelefono, setPersonaCargoTelefono] = useState("");
+  const [personaCargoEmail, setPersonaACargoEmail] = useState("");
 
   useEffect(() => {
     if (personaDataProp) {
@@ -46,7 +52,12 @@ export default function Usuario({ personaDataProp }) {
           : null
       );
       setCobertura(personaDataProp.coberturaSocial || "");
-      setPersonaACargo(personaDataProp.personaACargo || "");
+      setPersonaACargoNombre(personaDataProp.personaACargo || "");
+      setPersonaCargoApellido(personaDataProp.personaACargo || "");
+      setPersonaCargoNombre(personaDataProp.personaACargo || "");
+      setPersonaCargoDireccion(personaDataProp.personaACargo || "");
+      setPersonaCargoTelefono(personaDataProp.personaACargo || "");
+      setPersonaACargoEmail(personaDataProp.personaACargo || "");
     }
   }, [personaDataProp]);
 
@@ -85,7 +96,13 @@ export default function Usuario({ personaDataProp }) {
           : null
       );
       setCobertura(personaEncontrada.coberturaSocial || "");
-      setPersonaACargo(personaEncontrada.personaACargo || "");
+      personaCargoNombre(personaDataProp.personaACargo || "");
+      personaCargoApellido(personaDataProp.personaACargo || "");
+      personaCargoNombre(personaDataProp.personaACargo || "");
+      personaCargoDireccion(personaDataProp.personaACargo || "");
+      personaCargoTelefono(personaDataProp.personaACargo || "");
+      personaCargoEmail(personaDataProp.personaACargo || "");
+      esMenor(personaDataProp.personaACargo || "");
     }
   };
 
@@ -273,17 +290,79 @@ export default function Usuario({ personaDataProp }) {
         </div>
 
         <div className="form-group">
-          <label htmlFor="personaACargo">Persona a Cargo</label>
-          <input
-            type="text"
-            id="personaACargo"
-            className="form-control"
-            placeholder="Persona a Cargo"
-            value={personaACargo}
-            onChange={(e) => setPersonaACargo(e.target.value)}
+          <label htmlFor="esMenor">¿Es menor de edad?</label>
+          <Select
+            id="esMenor"
+            options={[
+              { value: "si", label: "Sí" },
+              { value: "no", label: "No" },
+            ]}
+            placeholder="Seleccionar"
+            value={esMenor}
+            onChange={(selectedOption) => setEsMenor(selectedOption?.value)}
           />
         </div>
       </div>
+
+      {esMenor === "si" && (
+        <>
+          <br />
+          <div className="tituloCeleste">
+            <MdContacts className="titulocelesteicono" />
+            <span className="titulocelestespan">
+              Datos de contacto de la persona a cargo
+            </span>
+          </div>
+          <br />
+          <div className="grid-container">
+            <div className="form-group">
+              <label htmlFor="apellido">Apellido</label>
+              <input
+                type="text"
+                id="apellido"
+                className="form-control"
+                placeholder="Apellido"
+                value={personaCargoApellido}
+                onChange={(e) => setPersonaCargoApellido(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="nombre">Nombre</label>
+              <input
+                type="text"
+                id="nombre"
+                className="form-control"
+                placeholder="Nombre"
+                value={personaCargoNombre}
+                onChange={(e) => setPersonaACargoNombre(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="telefono">Teléfono</label>
+              <input
+                type="text"
+                id="telefono"
+                className="form-control"
+                placeholder="Teléfono"
+                value={personaCargoTelefono}
+                onChange={(e) => setPersonaCargoTelefono(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input
+                type="text"
+                id="email"
+                className="form-control"
+                placeholder="Email"
+                value={personaCargoEmail}
+                onChange={(e) => setPersonaACargoEmail(e.target.value)}
+              />
+            </div>
+          </div>
+          <br />
+        </>
+      )}
     </div>
   );
 }
