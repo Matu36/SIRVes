@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Notificacion from "../components/UI/LandingNotificacion.jsx";
-import { FaCloudDownloadAlt } from "react-icons/fa";
 
 export const Home = () => {
   const [fechaActual, setFechaActual] = useState("");
