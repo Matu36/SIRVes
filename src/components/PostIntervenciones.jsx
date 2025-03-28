@@ -76,6 +76,16 @@ export default function PostIntervenciones() {
       <form onSubmit={handleSubmit}>
         <div className="form-container">
           <div className="form-group">
+            <label>Seleccionar tipo de Reporte</label>
+            <input
+              type="text"
+              name="nroAbordaje"
+              value={formData.nroAbordaje}
+              onChange={handleInputChange}
+              placeholder="Ingrese el número de abordaje"
+            />
+          </div>
+          <div className="form-group">
             <label>Nro de Abordaje</label>
             <input
               type="text"

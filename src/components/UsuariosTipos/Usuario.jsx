@@ -54,7 +54,7 @@ export default function Usuario({ personaDataProp }) {
       setCobertura(personaDataProp.coberturaSocial || "");
       setPersonaACargoNombre(personaDataProp.personaACargo || "");
       setPersonaCargoApellido(personaDataProp.personaACargo || "");
-      setPersonaCargoNombre(personaDataProp.personaACargo || "");
+      // setPersonaCargoNombre(personaDataProp.personaACargo || "");
       setPersonaCargoDireccion(personaDataProp.personaACargo || "");
       setPersonaCargoTelefono(personaDataProp.personaACargo || "");
       setPersonaACargoEmail(personaDataProp.personaACargo || "");
