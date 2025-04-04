@@ -3,7 +3,6 @@ import Select from "react-select";
 import { personas } from "../../utils/Personas";
 
 export default function Trabajador({ personaDataProp }) {
-  const [documento, setDocumento] = useState("");
   const [trabajador, setTrabajador] = useState({
     tipoDocumento: "",
     documento: "",
@@ -49,6 +48,7 @@ export default function Trabajador({ personaDataProp }) {
         disciplina: persona.disciplina || "",
         observaciones: persona.observaciones || "",
         tipoDocumento: persona.tipoDocumento || "",
+        documento: persona.documento || "",
         localidad: persona.localidad || "",
         partido: persona.partido || "",
         provincia: persona.provincia || "",
@@ -57,62 +57,61 @@ export default function Trabajador({ personaDataProp }) {
     }
   }, [personaDataProp]);
 
-  const handleDocumentoChange = (e) => {
-    const doc = e.target.value;
-    setDocumento(doc);
+  // Buscar trabajador por documento
+  const persona = personas.find((p) => p.documento === trabajador.documento);
+  if (persona) {
+    // Autocompletar los campos con los datos de la persona
+    setTrabajador({
+      nombre: persona.nombre,
+      fechaNacimiento: persona.fechaNacimiento,
+      domicilio: persona.domicilio,
+      telefono: persona.telefono,
+      genero: persona.genero,
+      email: persona.email,
+      discapacidad: persona.discapacidad,
+      cobertura: persona.coberturaSocial,
+      hospitalTrabajo: persona.hospitalTrabajo,
+      localidadHospital: persona.localidadHospital,
+      regionSanitariaHospital: persona.regionSanitariaHospital,
+      agrupamiento: persona.agrupamiento,
+      contratacion: persona.contratacion,
+      disciplina: persona.disciplina,
+      observaciones: persona.observaciones,
+      tipoDocumento: persona.tipoDocumento,
+      localidad: persona.localidad,
+      documento: persona.documento,
+      partido: persona.partido,
+      provincia: persona.provincia,
+      pais: persona.pais,
+    });
+  } else {
+    // Si no se encuentra la persona, borrar los datos
+    setTrabajador({
+      nombre: "",
+      fechaNacimiento: "",
+      domicilio: "",
+      telefono: "",
+      genero: "",
+      email: "",
+      discapacidad: "",
+      cobertura: "",
+      hospitalTrabajo: "",
+      localidadHospital: "",
+      regionSanitariaHospital: "",
+      agrupamiento: "",
+      contratacion: "",
+      disciplina: "",
+      observaciones: "",
+      tipoDocumento: "",
+      documento: "",
+      localidad: "",
+      partido: "",
+      provincia: "",
+      pais: "",
+    });
+  }
 
-    // Buscar trabajador por documento
-    const persona = personas.find((p) => p.documento === doc);
-    if (persona) {
-      // Autocompletar los campos con los datos de la persona
-      setTrabajador({
-        nombre: persona.nombre,
-        fechaNacimiento: persona.fechaNacimiento,
-        domicilio: persona.domicilio,
-        telefono: persona.telefono,
-        genero: persona.genero,
-        email: persona.email,
-        discapacidad: persona.discapacidad,
-        cobertura: persona.coberturaSocial,
-        hospitalTrabajo: persona.hospitalTrabajo,
-        localidadHospital: persona.localidadHospital,
-        regionSanitariaHospital: persona.regionSanitariaHospital,
-        agrupamiento: persona.agrupamiento,
-        contratacion: persona.contratacion,
-        disciplina: persona.disciplina,
-        observaciones: persona.observaciones,
-        tipoDocumento: persona.tipoDocumento,
-        localidad: persona.localidad,
-        partido: persona.partido,
-        provincia: persona.provincia,
-        pais: persona.pais,
-      });
-    } else {
-      // Si no se encuentra la persona, borrar los datos
-      setTrabajador({
-        nombre: "",
-        fechaNacimiento: "",
-        domicilio: "",
-        telefono: "",
-        genero: "",
-        email: "",
-        discapacidad: "",
-        cobertura: "",
-        hospitalTrabajo: "",
-        localidadHospital: "",
-        regionSanitariaHospital: "",
-        agrupamiento: "",
-        contratacion: "",
-        disciplina: "",
-        observaciones: "",
-        tipoDocumento: "",
-        localidad: "",
-        partido: "",
-        provincia: "",
-        pais: "",
-      });
-    }
-  };
+  console.log(trabajador);
 
   return (
     <div className="trabajador-form">
@@ -145,8 +144,10 @@ export default function Trabajador({ personaDataProp }) {
             id="documento"
             className="form-control"
             placeholder="Nro de Documento"
-            value={documento}
-            onChange={handleDocumentoChange}
+            value={trabajador.documento}
+            onChange={(e) =>
+              setTrabajador({ ...trabajador, documento: e.target.value })
+            }
           />
         </div>
 

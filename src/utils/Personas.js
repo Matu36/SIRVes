@@ -4,6 +4,7 @@ export const personas = [
     tipo: "usuario",
     nombre: "Juan Pérez",
     documento: "30567890",
+    tipoDocumento: "dni",
     fechaNacimiento: "1990-05-15",
     domicilio: "Av. Siempre Viva 742",
     telefono: "1123456789",

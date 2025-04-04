@@ -11,7 +11,11 @@ import {
 } from "react-icons/fa";
 import { Modal, Button } from "react-bootstrap";
 
-export default function TipoDeUsuario({ personaDataProp }) {
+export default function TipoDeUsuario({
+  personaDataProp,
+  Usuario1,
+  setUsuario1,
+}) {
   const [tipo, setTipo] = useState("");
   const [reportantes, setReportantes] = useState([]);
   const [reportados, setReportados] = useState([]);
@@ -95,7 +99,11 @@ export default function TipoDeUsuario({ personaDataProp }) {
       {reportantes.map((persona, index) => (
         <div key={index} className="formulario-persona">
           {persona.tipo === "usuario" ? (
-            <Usuario personaDataProp={personaDataProp} />
+            <Usuario
+              personaDataProp={personaDataProp}
+              Usuario1={Usuario1}
+              setUsuario1={setUsuario1}
+            />
           ) : (
             <Trabajador personaDataProp={personaDataProp} />
           )}
@@ -153,7 +161,11 @@ export default function TipoDeUsuario({ personaDataProp }) {
       {reportados.map((persona, index) => (
         <div key={index} className="formulario-persona">
           {persona.tipo === "usuario" ? (
-            <Usuario personaDataProp={personaDataProp} />
+            <Usuario
+              personaDataProp={personaDataProp}
+              Usuario1={Usuario1}
+              setUsuario1={setUsuario1}
+            />
           ) : (
             <Trabajador personaDataProp={personaDataProp} />
           )}

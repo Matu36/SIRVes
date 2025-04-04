@@ -5,21 +5,11 @@ import ReclamoTipo1 from "./ReclamoTipo1";
 import ReclamoTipo2 from "./ReclamoTipo2";
 import ReclamoTipo3 from "./ReclamoTipo3";
 
-export default function TipoReclamo({ reclamoDataProp }) {
-  // LABORALES - RECLAMO1 //
-  const [reclamo1, setReclamo1] = useState({
-    fechaSituacion: "",
-    fechaReporte: "",
-    viaIngreso: "",
-    tipoReporte: "",
-    opcionesTipoLaborales: "",
-    registrador: "",
-    tipoViolencia: "",
-    frecuenciaMaltrato: "",
-    percepcion: "",
-    expedienteGDEBA: "",
-  });
-
+export default function TipoReclamo({
+  reclamoDataProp,
+  reclamo1,
+  setReclamo1,
+}) {
   const [tipoSeleccionado, setTipoSeleccionado] = useState(null);
 
   const opciones = [
