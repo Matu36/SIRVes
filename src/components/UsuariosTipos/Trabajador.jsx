@@ -2,33 +2,13 @@ import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { personas } from "../../utils/Personas";
 
-export default function Trabajador({ personaDataProp }) {
-  const [trabajador, setTrabajador] = useState({
-    tipoDocumento: "",
-    documento: "",
-    nombre: "",
-    fechaNacimiento: "",
-    domicilio: "",
-    localidad: "",
-    partido: "",
-    provincia: "",
-    pais: "",
-    telefono: "",
-    genero: "",
-    email: "",
-    discapacidad: "",
-    cobertura: "",
-    hospitalTrabajo: "",
-    localidadHospital: "",
-    regionSanitariaHospital: "",
-    agrupamiento: "",
-    contratacion: "",
-    disciplina: "",
-    observaciones: "",
-  });
-
+export default function Trabajador({
+  personaDataProp,
+  trabajador,
+  setTrabajador,
+}) {
   useEffect(() => {
-    if (personaDataProp) {
+    if (personaDataProp && personaDataProp.documento) {
       const persona = personaDataProp;
       setTrabajador((prev) => ({
         ...prev,
@@ -57,61 +37,37 @@ export default function Trabajador({ personaDataProp }) {
     }
   }, [personaDataProp]);
 
-  // Buscar trabajador por documento
-  const persona = personas.find((p) => p.documento === trabajador.documento);
-  if (persona) {
-    // Autocompletar los campos con los datos de la persona
-    setTrabajador({
-      nombre: persona.nombre,
-      fechaNacimiento: persona.fechaNacimiento,
-      domicilio: persona.domicilio,
-      telefono: persona.telefono,
-      genero: persona.genero,
-      email: persona.email,
-      discapacidad: persona.discapacidad,
-      cobertura: persona.coberturaSocial,
-      hospitalTrabajo: persona.hospitalTrabajo,
-      localidadHospital: persona.localidadHospital,
-      regionSanitariaHospital: persona.regionSanitariaHospital,
-      agrupamiento: persona.agrupamiento,
-      contratacion: persona.contratacion,
-      disciplina: persona.disciplina,
-      observaciones: persona.observaciones,
-      tipoDocumento: persona.tipoDocumento,
-      localidad: persona.localidad,
-      documento: persona.documento,
-      partido: persona.partido,
-      provincia: persona.provincia,
-      pais: persona.pais,
-    });
-  } else {
-    // Si no se encuentra la persona, borrar los datos
-    setTrabajador({
-      nombre: "",
-      fechaNacimiento: "",
-      domicilio: "",
-      telefono: "",
-      genero: "",
-      email: "",
-      discapacidad: "",
-      cobertura: "",
-      hospitalTrabajo: "",
-      localidadHospital: "",
-      regionSanitariaHospital: "",
-      agrupamiento: "",
-      contratacion: "",
-      disciplina: "",
-      observaciones: "",
-      tipoDocumento: "",
-      documento: "",
-      localidad: "",
-      partido: "",
-      provincia: "",
-      pais: "",
-    });
-  }
+  useEffect(() => {
+    if (!trabajador.documento) return;
+    const persona = personas.find((p) => p.documento === trabajador.documento);
 
-  console.log(trabajador);
+    if (persona) {
+      // Autocompletar los campos con los datos de la persona
+      setTrabajador({
+        nombre: persona.nombre,
+        fechaNacimiento: persona.fechaNacimiento,
+        domicilio: persona.domicilio,
+        telefono: persona.telefono,
+        genero: persona.genero,
+        email: persona.email,
+        discapacidad: persona.discapacidad,
+        cobertura: persona.coberturaSocial,
+        hospitalTrabajo: persona.hospitalTrabajo,
+        localidadHospital: persona.localidadHospital,
+        regionSanitariaHospital: persona.regionSanitariaHospital,
+        agrupamiento: persona.agrupamiento,
+        contratacion: persona.contratacion,
+        disciplina: persona.disciplina,
+        observaciones: persona.observaciones,
+        tipoDocumento: persona.tipoDocumento,
+        localidad: persona.localidad,
+        documento: persona.documento,
+        partido: persona.partido,
+        provincia: persona.provincia,
+        pais: persona.pais,
+      });
+    }
+  }, [trabajador.documento, personas]);
 
   return (
     <div className="trabajador-form">
@@ -410,8 +366,8 @@ export default function Trabajador({ personaDataProp }) {
             value={{
               value: trabajador.disciplina,
               label:
-                trabajador.disciplina.charAt(0).toUpperCase() +
-                trabajador.disciplina.slice(1),
+                (trabajador.disciplina?.charAt(0).toUpperCase() ?? "") +
+                (trabajador.disciplina?.slice(1) ?? ""),
             }}
           />
         </div>

@@ -15,6 +15,8 @@ export default function TipoDeUsuario({
   personaDataProp,
   Usuario1,
   setUsuario1,
+  trabajador,
+  setTrabajador,
 }) {
   const [tipo, setTipo] = useState("");
   const [reportantes, setReportantes] = useState([]);
@@ -105,7 +107,11 @@ export default function TipoDeUsuario({
               setUsuario1={setUsuario1}
             />
           ) : (
-            <Trabajador personaDataProp={personaDataProp} />
+            <Trabajador
+              personaDataProp={personaDataProp}
+              trabajador={trabajador}
+              setTrabajador={setTrabajador}
+            />
           )}
 
           <div className="botonera">

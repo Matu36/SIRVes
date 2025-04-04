@@ -258,7 +258,8 @@ export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
             ]}
             placeholder="Seleccionar Género"
             value={
-              Usuario1.genero
+              typeof Usuario1?.genero === "string" &&
+              Usuario1.genero.trim() !== ""
                 ? {
                     value: Usuario1.genero,
                     label: Usuario1.genero.replace("_", " "),
