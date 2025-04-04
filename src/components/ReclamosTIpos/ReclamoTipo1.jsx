@@ -2,14 +2,12 @@ import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { FaUserTie } from "react-icons/fa";
 
-export default function ReclamoTipo1({ reclamoDataProp }) {
-  const [form, setForm] = useState({
-    fechaSituacion: "",
-    fechaReporte: "",
-    jerarquia: "",
-    expediente: "",
-    viaIngreso: "",
-  });
+export default function ReclamoTipo1({
+  reclamoDataProp,
+  reclamo1,
+  setReclamo1,
+}) {
+  // LABORALES = RECLAMO1 //
 
   const opcionesTipoReporte = [
     { value: "Individual", label: "Individual" },
@@ -54,17 +52,23 @@ export default function ReclamoTipo1({ reclamoDataProp }) {
     { value: "Baja", label: "Baja" },
   ];
 
+  // SI HAY DATOS EN EL RECLAMO LOS MUESTRA //
+
   useEffect(() => {
     if (reclamoDataProp?.reclamo) {
       const reclamo = reclamoDataProp.reclamo;
-      console.log(reclamo);
-      setForm((prev) => ({
+      +setReclamo1((prev) => ({
         ...prev,
         fechaSituacion: reclamo.fechaSituacion || "",
         fechaReporte: reclamo.fechaReclamo || "",
-        jerarquia: reclamo.jerarquia || "",
-        expediente: reclamo.expGEDEBA || "",
         viaIngreso: reclamo.vincReportante || "",
+        tipoReporte: reclamo || "",
+        opcionesTipoLaborales: reclamo || "",
+        registrador: reclamo || "",
+        tipoViolencia: reclamo || "",
+        frecuenciaMaltrato: reclamo || "",
+        percepcion: reclamo || "",
+        expedienteGDEBA: reclamo || "",
       }));
     }
   }, [reclamoDataProp]);
@@ -78,14 +82,8 @@ export default function ReclamoTipo1({ reclamoDataProp }) {
     },
   ];
 
-  const opcionesJerarquia = [
-    { value: "superior", label: "Superior" },
-    { value: "igual", label: "Mismo nivel" },
-    { value: "subordinado", label: "Subordinado" },
-  ];
-
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setReclamo1({ ...reclamo1, [e.target.name]: e.target.value });
   };
 
   return (
@@ -101,7 +99,7 @@ export default function ReclamoTipo1({ reclamoDataProp }) {
           <Select
             options={opcionesTipoReporte}
             value={opcionesTipoReporte.find(
-              (option) => option.value === form.tipoReporte
+              (option) => option.value === reclamo1.tipoReporte
             )}
             onChange={(e) =>
               handleChange({
@@ -116,7 +114,7 @@ export default function ReclamoTipo1({ reclamoDataProp }) {
           <Select
             options={opcionesTipoLaborales}
             value={opcionesTipoLaborales.find(
-              (option) => option.value === form.opcionesTipoLaborales
+              (option) => option.value === reclamo1.opcionesTipoLaborales
             )}
             onChange={(e) =>
               handleChange({
@@ -127,14 +125,14 @@ export default function ReclamoTipo1({ reclamoDataProp }) {
           />
         </div>
 
-        {form.tipoReporte === "De oficio" && (
+        {reclamo1.tipoReporte === "De oficio" && (
           <div className="form-group">
             <label>¿Quién lo registra?</label>
             <input
               type="text"
               name="registrador"
               placeholder="Nombre de quien lo registra"
-              value={form.registrador}
+              value={reclamo1.registrador}
               onChange={handleChange}
             />
           </div>
@@ -145,7 +143,7 @@ export default function ReclamoTipo1({ reclamoDataProp }) {
           <Select
             options={opcionesTipoViolencia}
             value={opcionesTipoViolencia.find(
-              (option) => option.value === form.tipoViolencia
+              (option) => option.value === reclamo1.tipoViolencia
             )}
             onChange={(e) =>
               handleChange({
@@ -161,7 +159,7 @@ export default function ReclamoTipo1({ reclamoDataProp }) {
           <Select
             options={opcionesFrecuenciaMaltrato}
             value={opcionesFrecuenciaMaltrato.find(
-              (option) => option.value === form.frecuenciaMaltrato
+              (option) => option.value === reclamo1.frecuenciaMaltrato
             )}
             onChange={(e) =>
               handleChange({
@@ -177,7 +175,7 @@ export default function ReclamoTipo1({ reclamoDataProp }) {
           <Select
             options={opcionesViaIngreso}
             value={opcionesViaIngreso.find(
-              (option) => option.value === form.viaIngreso
+              (option) => option.value === reclamo1.viaIngreso
             )}
             onChange={(e) =>
               handleChange({ target: { name: "viaIngreso", value: e.value } })
@@ -191,7 +189,7 @@ export default function ReclamoTipo1({ reclamoDataProp }) {
           <Select
             options={opcionesPercepcion}
             value={opcionesPercepcion.find(
-              (option) => option.value === form.percepcion
+              (option) => option.value === reclamo1.percepcion
             )}
             onChange={(e) =>
               handleChange({ target: { name: "percepcion", value: e.value } })
@@ -204,7 +202,7 @@ export default function ReclamoTipo1({ reclamoDataProp }) {
           <input
             type="date"
             name="fechaSituacion"
-            value={form.fechaSituacion}
+            value={reclamo1.fechaSituacion}
             onChange={handleChange}
           />
         </div>
@@ -214,7 +212,7 @@ export default function ReclamoTipo1({ reclamoDataProp }) {
           <input
             type="date"
             name="fechaReporte"
-            value={form.fechaReporte}
+            value={reclamo1.fechaReporte}
             onChange={handleChange}
           />
         </div>
@@ -225,7 +223,7 @@ export default function ReclamoTipo1({ reclamoDataProp }) {
             type="text"
             name="expedienteGDEBA"
             placeholder="Ingrese el número de expediente"
-            value={form.expedienteGDEBA}
+            value={reclamo1.expedienteGDEBA}
             onChange={handleChange}
           />
         </div>
