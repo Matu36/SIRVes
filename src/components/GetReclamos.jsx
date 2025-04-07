@@ -83,7 +83,7 @@ export default function GetReclamos() {
     <div>
       <div className="tituloCeleste">
         <FaSearch className="titulocelesteicono" />
-        <span className="titulocelestespan">Búsqueda de reclamos</span>
+        <span className="titulocelestespan">Búsqueda de reportes</span>
       </div>
 
       {/* Contenedor de filtros */}

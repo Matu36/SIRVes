@@ -4,7 +4,7 @@ import ReclamoDetail from "../components/ReclamoDetail";
 
 const DetalleReclamo = () => {
   return (
-    <Layout Titulo="Detalle" Subtitulo="Detalle del reclamo">
+    <Layout Titulo="Detalle" Subtitulo="Detalle del reporte">
       <ReclamoDetail />
     </Layout>
   );

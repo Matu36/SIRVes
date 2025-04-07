@@ -32,7 +32,7 @@ export default function TipoReclamo({
     <div className="container">
       <div className="tituloCeleste">
         <FaExclamationTriangle className="titulocelesteicono" />
-        <span className="titulocelestespan">Nuevo Reclamo</span>
+        <span className="titulocelestespan">Nuevo Reporte</span>
       </div>
 
       <br />

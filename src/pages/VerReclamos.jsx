@@ -4,7 +4,7 @@ import GetReclamos from "../components/GetReclamos";
 
 const VerReclamos = () => {
   return (
-    <Layout Titulo="Reclamos" Subtitulo="Ver reclamos">
+    <Layout Titulo="Reportes" Subtitulo="Ver reportes">
       <GetReclamos />
     </Layout>
   );

@@ -4,7 +4,7 @@ import PostReclamo from "../components/PostReclamo";
 
 const EditarReclamos = () => {
   return (
-    <Layout Titulo="Reclamos" Subtitulo="Editar reclamos">
+    <Layout Titulo="Reportes" Subtitulo="Editar reportes">
       <PostReclamo />
     </Layout>
   );
