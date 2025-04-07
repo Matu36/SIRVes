@@ -11,53 +11,61 @@ export default function PostReclamo() {
 
   // ESTADOS PARA HACER EL POST DEL REPORTE //
 
-  // USUARIO1 //
-  const [Usuario1, setUsuario1] = useState({
-    tipoDocumento: "",
-    documento: "",
-    nombre: "",
-    fechaNacimiento: "",
-    domicilio: "",
-    localidad: "",
-    partido: "",
-    provincia: "",
-    pais: "",
-    telefono: "",
-    genero: null,
-    email: "",
-    discapacidad: null,
-    cobertura: "",
-    esMenor: "",
-    personaCargoNombre: "",
-    personaCargoApellido: "",
-    personaCargoDireccion: "",
-    personaCargoTelefono: "",
-    personaCargoEmail: "",
-  });
+  // USUARIOS
+  const [Usuario1, setUsuario1] = useState([
+    {
+      idReporte: null,
+      tipoUsuario: 1,
+      tipoDocumento: "",
+      documento: "",
+      nombre: "",
+      fechaNacimiento: "",
+      domicilio: "",
+      localidad: "",
+      partido: "",
+      provincia: "",
+      pais: "",
+      telefono: "",
+      genero: null,
+      email: "",
+      discapacidad: null,
+      cobertura: "",
+      esMenor: "",
+      personaCargoNombre: "",
+      personaCargoApellido: "",
+      personaCargoDireccion: "",
+      personaCargoTelefono: "",
+      personaCargoEmail: "",
+    },
+  ]);
 
-  // USUARIO2 //
-  const [trabajador, setTrabajador] = useState({
-    tipoDocumento: "",
-    documento: "",
-    nombre: "",
-    fechaNacimiento: "",
-    domicilio: "",
-    localidad: "",
-    partido: "",
-    provincia: "",
-    pais: "",
-    telefono: "",
-    genero: null,
-    email: "",
-    discapacidad: null,
-    cobertura: "",
-    esMenor: "",
-    personaCargoNombre: "",
-    personaCargoApellido: "",
-    personaCargoDireccion: "",
-    personaCargoTelefono: "",
-    personaCargoEmail: "",
-  });
+  // TRABAJADORES
+  const [trabajador, setTrabajador] = useState([
+    {
+      idReporte: null,
+      tipoUsuario: 2,
+      tipoDocumento: "",
+      documento: "",
+      nombre: "",
+      fechaNacimiento: "",
+      domicilio: "",
+      localidad: "",
+      partido: "",
+      provincia: "",
+      pais: "",
+      telefono: "",
+      genero: null,
+      email: "",
+      discapacidad: null,
+      cobertura: "",
+      esMenor: "",
+      personaCargoNombre: "",
+      personaCargoApellido: "",
+      personaCargoDireccion: "",
+      personaCargoTelefono: "",
+      personaCargoEmail: "",
+    },
+  ]);
 
   // LABORALES - RECLAMO1 //
   const [reclamo1, setReclamo1] = useState({

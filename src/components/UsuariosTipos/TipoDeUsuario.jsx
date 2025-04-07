@@ -42,21 +42,146 @@ export default function TipoDeUsuario({
 
     if (tipoLista === "reportantes" && reportantes.length < 5) {
       setReportantes([...reportantes, nuevaPersona]);
+
+      if (tipo === "usuario") {
+        setUsuario1([
+          ...Usuario1,
+          {
+            tipoDocumento: "",
+            documento: "",
+            nombre: "",
+            fechaNacimiento: "",
+            domicilio: "",
+            localidad: "",
+            partido: "",
+            provincia: "",
+            pais: "",
+            telefono: "",
+            genero: null,
+            email: "",
+            discapacidad: null,
+            cobertura: "",
+            esMenor: "",
+            personaCargoNombre: "",
+            personaCargoApellido: "",
+            personaCargoDireccion: "",
+            personaCargoTelefono: "",
+            personaCargoEmail: "",
+            tipo: 1,
+          },
+        ]);
+      } else if (tipo === "trabajador") {
+        setTrabajador([
+          ...trabajador,
+          {
+            tipoDocumento: "",
+            documento: "",
+            nombre: "",
+            fechaNacimiento: "",
+            domicilio: "",
+            localidad: "",
+            partido: "",
+            provincia: "",
+            pais: "",
+            telefono: "",
+            genero: null,
+            email: "",
+            discapacidad: null,
+            cobertura: "",
+            esMenor: "",
+            personaCargoNombre: "",
+            personaCargoApellido: "",
+            personaCargoDireccion: "",
+            personaCargoTelefono: "",
+            personaCargoEmail: "",
+            tipo: 2,
+          },
+        ]);
+      }
     } else if (tipoLista === "reportados" && reportados.length < 5) {
       setReportados([...reportados, nuevaPersona]);
+
+      if (tipo === "usuario") {
+        setUsuario1([
+          ...Usuario1,
+          {
+            tipoDocumento: "",
+            documento: "",
+            nombre: "",
+            fechaNacimiento: "",
+            domicilio: "",
+            localidad: "",
+            partido: "",
+            provincia: "",
+            pais: "",
+            telefono: "",
+            genero: null,
+            email: "",
+            discapacidad: null,
+            cobertura: "",
+            esMenor: "",
+            personaCargoNombre: "",
+            personaCargoApellido: "",
+            personaCargoDireccion: "",
+            personaCargoTelefono: "",
+            personaCargoEmail: "",
+            tipo: 1,
+          },
+        ]);
+      } else if (tipo === "trabajador") {
+        setTrabajador([
+          ...trabajador,
+          {
+            tipoDocumento: "",
+            documento: "",
+            nombre: "",
+            fechaNacimiento: "",
+            domicilio: "",
+            localidad: "",
+            partido: "",
+            provincia: "",
+            pais: "",
+            telefono: "",
+            genero: null,
+            email: "",
+            discapacidad: null,
+            cobertura: "",
+            esMenor: "",
+            personaCargoNombre: "",
+            personaCargoApellido: "",
+            personaCargoDireccion: "",
+            personaCargoTelefono: "",
+            personaCargoEmail: "",
+            tipo: 2,
+          },
+        ]);
+      }
     }
   };
 
   const eliminarPersona = (tipoLista, index) => {
     if (tipoLista === "reportantes") {
+      const tipoEliminado = reportantes[index].tipo;
       setReportantes(reportantes.filter((_, i) => i !== index));
+
+      if (tipoEliminado === "usuario") {
+        setUsuario1(Usuario1.filter((_, i) => i !== index));
+      } else if (tipoEliminado === "trabajador") {
+        setTrabajador(trabajador.filter((_, i) => i !== index));
+      }
     } else if (tipoLista === "reportados") {
+      const tipoEliminado = reportados[index].tipo;
       setReportados(reportados.filter((_, i) => i !== index));
+
+      if (tipoEliminado === "usuario") {
+        setUsuario1(Usuario1.filter((_, i) => i !== index));
+      } else if (tipoEliminado === "trabajador") {
+        setTrabajador(trabajador.filter((_, i) => i !== index));
+      }
     }
   };
 
-  console.log(Usuario1);
-  console.log(reportantes);
+  console.log(trabajador);
 
   return (
     <div className="container">
@@ -75,25 +200,37 @@ export default function TipoDeUsuario({
         onChange={(selected) => setTipo(selected.value)}
       />
 
+      {/* Reportantes */}
       <div className="tituloCeleste mt-3">
         <FaExclamationTriangle className="titulocelesteicono" />
         <span className="titulocelestespan">Personas Reportantes</span>
       </div>
       <br />
+
       {reportantes.map((persona, index) => (
         <div key={index} className="formulario-persona">
           {persona.tipo === "usuario" ? (
             <Usuario
               personaDataProp={personaDataProp}
-              Usuario1={Usuario1}
-              setUsuario1={setUsuario1}
+              Usuario1={Usuario1[index]}
+              setUsuario1={(newData) => {
+                const updated = [...Usuario1];
+                updated[index] = newData;
+                setUsuario1(updated);
+              }}
             />
           ) : (
-            <Trabajador
-              personaDataProp={personaDataProp}
-              trabajador={trabajador}
-              setTrabajador={setTrabajador}
-            />
+            trabajador[index] && (
+              <Trabajador
+                personaDataProp={personaDataProp}
+                trabajador={trabajador[index]}
+                setTrabajador={(newData) => {
+                  const updated = [...trabajador];
+                  updated[index] = newData;
+                  setTrabajador(updated);
+                }}
+              />
+            )
           )}
 
           <div className="botonera">
@@ -125,6 +262,7 @@ export default function TipoDeUsuario({
         </button>
       )}
 
+      {/* Reportados */}
       <div className="tituloCeleste mt-4">
         <FaExclamationTriangle className="titulocelesteicono" />
         <span className="titulocelestespan">Personas Reportadas</span>
@@ -145,12 +283,27 @@ export default function TipoDeUsuario({
           {persona.tipo === "usuario" ? (
             <Usuario
               personaDataProp={personaDataProp}
-              Usuario1={Usuario1}
-              setUsuario1={setUsuario1}
+              Usuario1={Usuario1[index]}
+              setUsuario1={(newData) => {
+                const updated = [...Usuario1];
+                updated[index] = newData;
+                setUsuario1(updated);
+              }}
             />
           ) : (
-            <Trabajador personaDataProp={personaDataProp} />
+            trabajador[index] && (
+              <Trabajador
+                personaDataProp={personaDataProp}
+                trabajador={trabajador[index]}
+                setTrabajador={(newData) => {
+                  const updated = [...trabajador];
+                  updated[index] = newData;
+                  setTrabajador(updated);
+                }}
+              />
+            )
           )}
+
           <div className="botonera">
             <button
               className="btn btn-success btn-round mt-2"
