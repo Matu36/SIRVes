@@ -120,13 +120,25 @@ export default function PostReclamo() {
     expediente: "",
   });
 
+  const isEmptyObject = (obj) => {
+    return Object.values(obj).every(
+      (val) => val === "" || val === null || val === undefined
+    );
+  };
+
   const GuardarReporte = () => {
-    const datosAEnviar = [Usuario1, trabajador, reclamo1];
+    const datosFinales = {};
+
+    if (!isEmptyObject(Usuario1)) datosFinales.usuario1 = Usuario1;
+    if (!isEmptyObject(trabajador)) datosFinales.trabajador = trabajador;
+    if (!isEmptyObject(reclamo1)) datosFinales.reclamo1 = reclamo1;
+    if (!isEmptyObject(VRG)) datosFinales.VRG = VRG;
+    if (!isEmptyObject(institucional))
+      datosFinales.institucional = institucional;
 
     console.log("Enviando datos al servidor...");
-    console.log("Datos:", datosAEnviar);
+    console.log("Datos:", datosFinales);
 
-    // Simulación de una respuesta del servidor
     setTimeout(() => {
       console.log("Datos enviados correctamente ✅");
     }, 1000);
