@@ -11,6 +11,8 @@ export default function TipoReclamo({
   setReclamo1,
   VRG,
   setVRG,
+  institucional,
+  setInstitucional,
 }) {
   const [tipoSeleccionado, setTipoSeleccionado] = useState(null);
 
@@ -57,7 +59,11 @@ export default function TipoReclamo({
           />
         )}
         {tipoSeleccionado === "tipo3" && (
-          <ReclamoTipo3 reclamoDataProp={reclamoDataProp} />
+          <ReclamoTipo3
+            reclamoDataProp={reclamoDataProp}
+            institucional={institucional}
+            setInstitucional={setInstitucional}
+          />
         )}
       </div>
     </div>

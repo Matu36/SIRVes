@@ -2,33 +2,14 @@ import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { FaVenusMars } from "react-icons/fa";
 
-export default function ReclamoTipo3({ reclamoDataProp }) {
-  const [form, setForm] = useState({
-    tipoReporte: "",
-    registroPor: "",
-    tipoSituacion: "",
-    tipoViolencia: "",
-    modalidadViolencia: "",
-    frecuenciaMaltrato: "",
-    esViolenciaVRG: "",
-    antiguedadVinculo: "",
-    lugarSituacion: "",
-    puedeReconocerAgresor: "",
-    cantidadAgresores: "",
-    transitaEmbarazo: "",
-    transitaPuerperio: "",
-    abortoCausaViolencia: "",
-    existeDenuncia: "",
-    existenMedidasProteccion: "",
-    estaJudicializada: "",
-    fechaSituacion: "",
-    fechaReporte: "",
-    expediente: "",
-  });
-
+export default function ReclamoTipo3({
+  reclamoDataProp,
+  institucional,
+  setInstitucional,
+}) {
   useEffect(() => {
     if (reclamoDataProp?.reclamo) {
-      setForm((prev) => ({
+      setInstitucional((prev) => ({
         ...prev,
         tipoReporte: reclamoDataProp.reclamo.tipoReporte || "",
         registroPor: reclamoDataProp.reclamo.registroPor || "",
@@ -114,8 +95,16 @@ export default function ReclamoTipo3({ reclamoDataProp }) {
     { value: "no_sabe", label: "No sabe" },
   ];
 
+  const opcionesAntiguedad = [
+    { value: "hasta_6mes", label: "Hasta 6 meses" },
+    { value: "hasta_1ano", label: "Hasta 1 año" },
+    { value: "mas_1ano", label: "Más de 1 año" },
+    { value: "no_tiene_vinculo", label: "No tiene vínculo" },
+    { value: "sin_dato", label: "Sin dato" },
+  ];
+
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setInstitucional({ ...institucional, [e.target.name]: e.target.value });
   };
 
   return (
@@ -125,228 +114,291 @@ export default function ReclamoTipo3({ reclamoDataProp }) {
         <span className="titulocelestespan">Institucional</span>
       </div>
       <br />
-      <div className="form-container">
-        <div className="form-group">
+      <div className="institucional-container">
+        <div className="institucional-group">
           <label>Tipo de reporte</label>
           <Select
             options={opcionesTipoReporte}
             placeholder={"Seleccionar"}
             name="tipoReporte"
-            value={form.tipoReporte}
-            onChange={(e) => setForm({ ...form, tipoReporte: e.value })}
+            value={opcionesTipoReporte.find(
+              (opt) => opt.value === institucional.tipoReporte
+            )}
+            onChange={(e) =>
+              setInstitucional({ ...institucional, tipoReporte: e.value })
+            }
           />
         </div>
 
-        <div className="form-group">
+        <div className="institucional-group">
           <label>Tipo de situación</label>
           <Select
             placeholder={"Seleccionar"}
             options={opcionesTipoSituacion}
             name="tipoSituacion"
-            value={form.tipoSituacion}
-            onChange={(e) => setForm({ ...form, tipoSituacion: e.value })}
+            value={opcionesTipoSituacion.find(
+              (opt) => opt.value === institucional.tipoSituacion
+            )}
+            onChange={(e) =>
+              setInstitucional({ ...institucional, tipoSituacion: e.value })
+            }
           />
         </div>
-        <div className="form-group">
+        <div className="institucional-group">
           <label htmlFor="fechaSituacion">Fecha de la situación</label>
           <input
             type="date"
             name="fechaSituacion"
-            value={form.fechaSituacion}
+            value={institucional.fechaSituacion}
             onChange={handleChange}
           />
         </div>
 
-        <div className="form-group">
+        <div className="institucional-group">
           <label htmlFor="fechaReporte">Fecha del reporte</label>
           <input
             type="date"
             name="fechaReporte"
-            value={form.fechaReporte}
+            value={institucional.fechaReporte}
             onChange={handleChange}
           />
         </div>
 
-        <div className="form-group">
+        <div className="institucional-group">
           <label>Registro por (si es de oficio)</label>
           <input
             type="text"
             name="registroPor"
-            value={form.registroPor}
+            value={institucional.registroPor}
             onChange={handleChange}
           />
         </div>
 
-        <div className="form-group">
+        <div className="institucional-group">
           <label>Tipo de violencia</label>
           <Select
             placeholder={"Seleccionar"}
             options={opcionesTipoViolencia}
             name="tipoViolencia"
-            value={form.tipoViolencia}
-            onChange={(e) => setForm({ ...form, tipoViolencia: e.value })}
+            value={opcionesTipoViolencia.find(
+              (opt) => opt.value === institucional.tipoViolencia
+            )}
+            onChange={(e) =>
+              setInstitucional({ ...institucional, tipoViolencia: e.value })
+            }
           />
         </div>
 
-        <div className="form-group">
+        <div className="institucional-group">
           <label>Modalidad de violencia</label>
           <Select
             placeholder={"Seleccionar"}
             options={opcionesModalidadViolencia}
             name="modalidadViolencia"
-            value={form.modalidadViolencia}
-            onChange={(e) => setForm({ ...form, modalidadViolencia: e.value })}
+            value={opcionesModalidadViolencia.find(
+              (opt) => opt.value === institucional.modalidadViolencia
+            )}
+            onChange={(e) =>
+              setInstitucional({
+                ...institucional,
+                modalidadViolencia: e.value,
+              })
+            }
           />
         </div>
 
-        <div className="form-group">
+        <div className="institucional-group">
           <label>Frecuencia del maltrato</label>
           <Select
             placeholder={"Seleccionar"}
             options={opcionesFrecuenciaMaltrato}
             name="frecuenciaMaltrato"
-            value={form.frecuenciaMaltrato}
-            onChange={(e) => setForm({ ...form, frecuenciaMaltrato: e.value })}
+            value={opcionesFrecuenciaMaltrato.find(
+              (opt) => opt.value === institucional.frecuenciaMaltrato
+            )}
+            onChange={(e) =>
+              setInstitucional({
+                ...institucional,
+                frecuenciaMaltrato: e.value,
+              })
+            }
           />
         </div>
 
-        <div className="form-group">
+        <div className="institucional-group">
           <label>¿Es violencia por VRG o NNyA?</label>
           <Select
             options={opcionesSiNo}
             placeholder={"Seleccionar"}
             name="esViolenciaVRG"
-            value={form.esViolenciaVRG}
-            onChange={(e) => setForm({ ...form, esViolenciaVRG: e.value })}
+            value={opcionesSiNo.find(
+              (opt) => opt.value === institucional.esViolenciaVRG
+            )}
+            onChange={(e) =>
+              setInstitucional({ ...institucional, esViolenciaVRG: e.value })
+            }
           />
         </div>
 
-        <div className="form-group">
+        <div className="institucional-group">
           <label>Antigüedad del vínculo con la persona agresora</label>
           <Select
-            options={[
-              { value: "hasta_6mes", label: "Hasta 6 meses" },
-              { value: "hasta_1ano", label: "Hasta 1 año" },
-              { value: "mas_1ano", label: "Más de 1 año" },
-              { value: "no_tiene_vinculo", label: "No tiene vínculo" },
-              { value: "sin_dato", label: "Sin dato" },
-            ]}
+            options={opcionesAntiguedad}
             name="antiguedadVinculo"
             placeholder={"Seleccionar"}
-            value={form.antiguedadVinculo}
-            onChange={(e) => setForm({ ...form, antiguedadVinculo: e.value })}
+            value={opcionesAntiguedad.find(
+              (opt) => opt.value === institucional.antiguedadVinculo
+            )}
+            onChange={(e) =>
+              setInstitucional({ ...institucional, antiguedadVinculo: e.value })
+            }
           />
         </div>
 
-        <div className="form-group">
+        <div className="institucional-group">
           <label>¿La situación ocurrió en?</label>
           <Select
             placeholder={"Seleccionar"}
             options={opcionesLugarSituacion}
             name="lugarSituacion"
-            value={form.lugarSituacion}
-            onChange={(e) => setForm({ ...form, lugarSituacion: e.value })}
+            value={opcionesLugarSituacion.find(
+              (opt) => opt.value === institucional.lugarSituacion
+            )}
+            onChange={(e) =>
+              setInstitucional({ ...institucional, lugarSituacion: e.value })
+            }
           />
         </div>
 
-        <div className="form-group">
+        <div className="institucional-group">
           <label>¿Puede reconocer al agresor/a?</label>
           <Select
             options={opcionesSiNo}
             placeholder={"Seleccionar"}
             name="puedeReconocerAgresor"
-            value={form.puedeReconocerAgresor}
+            value={opcionesSiNo.find(
+              (opt) => opt.value === institucional.puedeReconocerAgresor
+            )}
             onChange={(e) =>
-              setForm({ ...form, puedeReconocerAgresor: e.value })
+              setInstitucional({
+                ...institucional,
+                puedeReconocerAgresor: e.value,
+              })
             }
           />
         </div>
 
-        <div className="form-group">
+        <div className="institucional-group">
           <label>Cantidad de agresores/as</label>
           <input
             type="number"
             name="cantidadAgresores"
-            value={form.cantidadAgresores}
+            value={institucional.cantidadAgresores}
             onChange={handleChange}
           />
         </div>
 
-        <div className="form-group">
+        <div className="institucional-group">
           <label>¿Transita embarazo actualmente?</label>
           <Select
             options={opcionesSiNo}
             placeholder={"Seleccionar"}
             name="transitaEmbarazo"
-            value={form.transitaEmbarazo}
-            onChange={(e) => setForm({ ...form, transitaEmbarazo: e.value })}
+            value={opcionesSiNo.find(
+              (opt) => opt.value === institucional.transitaEmbarazo
+            )}
+            onChange={(e) =>
+              setInstitucional({ ...institucional, transitaEmbarazo: e.value })
+            }
           />
         </div>
 
-        <div className="form-group">
+        <div className="institucional-group">
           <label>¿Transita etapa de puerperio actualmente?</label>
           <Select
             options={opcionesSiNo}
             placeholder={"Seleccionar"}
             name="transitaPuerperio"
-            value={form.transitaPuerperio}
-            onChange={(e) => setForm({ ...form, transitaPuerperio: e.value })}
+            value={opcionesSiNo.find(
+              (opt) => opt.value === institucional.transitaPuerperio
+            )}
+            onChange={(e) =>
+              setInstitucional({ ...institucional, transitaPuerperio: e.value })
+            }
           />
         </div>
 
-        <div className="form-group">
+        <div className="institucional-group">
           <label>¿Se produjo algún aborto a causa de la violencia?</label>
           <Select
             options={opcionesSiNo}
             name="abortoCausaViolencia"
-            value={form.abortoCausaViolencia}
             placeholder={"Seleccionar"}
+            value={opcionesSiNo.find(
+              (opt) => opt.value === institucional.abortoCausaViolencia
+            )}
             onChange={(e) =>
-              setForm({ ...form, abortoCausaViolencia: e.value })
+              setInstitucional({
+                ...institucional,
+                abortoCausaViolencia: e.value,
+              })
             }
           />
         </div>
 
-        <div className="form-group">
+        <div className="institucional-group">
           <label>¿Existe denuncia judicial?</label>
           <Select
             options={opcionesSiNo}
             name="existeDenuncia"
-            value={form.existeDenuncia}
             placeholder={"Seleccionar"}
-            onChange={(e) => setForm({ ...form, existeDenuncia: e.value })}
-          />
-        </div>
-
-        <div className="form-group">
-          <label>¿Existen medidas de protección?</label>
-          <Select
-            options={opcionesSiNo}
-            name="existenMedidasProteccion"
-            value={form.existenMedidasProteccion}
-            placeholder={"Seleccionar"}
+            value={opcionesSiNo.find(
+              (opt) => opt.value === institucional.existeDenuncia
+            )}
             onChange={(e) =>
-              setForm({ ...form, existenMedidasProteccion: e.value })
+              setInstitucional({ ...institucional, existeDenuncia: e.value })
             }
           />
         </div>
 
-        <div className="form-group">
+        <div className="institucional-group">
+          <label>¿Existen medidas de protección?</label>
+          <Select
+            options={opcionesSiNo}
+            name="existenMedidasProteccion"
+            placeholder={"Seleccionar"}
+            value={opcionesSiNo.find(
+              (opt) => opt.value === institucional.existenMedidasProteccion
+            )}
+            onChange={(e) =>
+              setInstitucional({
+                ...institucional,
+                existenMedidasProteccion: e.value,
+              })
+            }
+          />
+        </div>
+
+        <div className="institucional-group">
           <label>¿La situación actual está judicializada?</label>
           <Select
             options={opcionesSiNo}
             name="estaJudicializada"
-            value={form.estaJudicializada}
             placeholder={"Seleccionar"}
-            onChange={(e) => setForm({ ...form, estaJudicializada: e.value })}
+            value={opcionesSiNo.find(
+              (opt) => opt.value === institucional.estaJudicializada
+            )}
+            onChange={(e) =>
+              setInstitucional({ ...institucional, estaJudicializada: e.value })
+            }
           />
         </div>
-        <div className="form-group">
+        <div className="institucional-group">
           <label htmlFor="expediente">Expediente GEDEBA</label>
           <input
             type="text"
             name="expediente"
-            value={form.expediente}
+            value={institucional.expediente}
             onChange={handleChange}
           />
         </div>

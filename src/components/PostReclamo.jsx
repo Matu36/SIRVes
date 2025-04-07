@@ -95,6 +95,31 @@ export default function PostReclamo() {
     expediente: "",
   });
 
+  // INSTITUCIONAL //
+
+  const [institucional, setInstitucional] = useState({
+    tipoReporte: "",
+    registroPor: "",
+    tipoSituacion: "",
+    tipoViolencia: "",
+    modalidadViolencia: "",
+    frecuenciaMaltrato: "",
+    esViolenciaVRG: "",
+    antiguedadVinculo: "",
+    lugarSituacion: "",
+    puedeReconocerAgresor: "",
+    cantidadAgresores: "",
+    transitaEmbarazo: "",
+    transitaPuerperio: "",
+    abortoCausaViolencia: "",
+    existeDenuncia: "",
+    existenMedidasProteccion: "",
+    estaJudicializada: "",
+    fechaSituacion: "",
+    fechaReporte: "",
+    expediente: "",
+  });
+
   const GuardarReporte = () => {
     const datosAEnviar = [Usuario1, trabajador, reclamo1];
 
@@ -115,6 +140,8 @@ export default function PostReclamo() {
         setReclamo1={setReclamo1}
         VRG={VRG}
         setVRG={setVRG}
+        institucional={institucional}
+        setInstitucional={setInstitucional}
       />
       <TipoDeUsuario
         personaDataProp={persona}

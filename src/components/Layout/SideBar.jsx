@@ -57,7 +57,7 @@ function SideBar({ isOpen, setIsOpen }) {
             role="button"
           >
             <FaRegFileAlt className="sidebarIcons text-muted" size="1.50em" />{" "}
-            Reclamos
+            Reportes
           </a>
           <ul className="collapse sub-menu" id="collapseReclamos">
             <li>
@@ -65,7 +65,7 @@ function SideBar({ isOpen, setIsOpen }) {
                 to="/reclamos/nuevo-Reclamo"
                 onClick={() => setIsOpen(false)}
               >
-                Nuevo reclamo
+                Nuevo reporte
               </Link>
             </li>
             <li>
@@ -73,7 +73,7 @@ function SideBar({ isOpen, setIsOpen }) {
                 to="/reclamos/ver-Reclamos"
                 onClick={() => setIsOpen(false)}
               >
-                Ver reclamos
+                Ver reportes
               </Link>
             </li>
           </ul>
