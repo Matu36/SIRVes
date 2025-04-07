@@ -55,6 +55,9 @@ export default function TipoDeUsuario({
     }
   };
 
+  console.log(Usuario1);
+  console.log(reportantes);
+
   return (
     <div className="container">
       <div className="tituloCeleste">

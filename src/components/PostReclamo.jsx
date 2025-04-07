@@ -3,7 +3,6 @@ import TipoReclamo from "./ReclamosTIpos/TipoReclamo";
 import TipoDeUsuario from "./UsuariosTipos/TipoDeUsuario";
 import { useParams } from "react-router-dom";
 import { personas } from "../utils/Personas";
-import Trabajador from "./UsuariosTipos/Trabajador";
 
 export default function PostReclamo() {
   const { id } = useParams();
