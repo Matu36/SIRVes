@@ -74,6 +74,8 @@ export default function PostReclamo() {
     expedienteGDEBA: "",
   });
 
+  // VRG //
+
   const GuardarReporte = () => {
     const datosAEnviar = [Usuario1, trabajador, reclamo1];
 

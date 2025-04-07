@@ -8,7 +8,7 @@ import "../styles/data-table.css";
 
 function Layout() {
   const { data, isFetched } = useQuery({
-    queryKey: ["tramitesCount"],
+    // queryKey: ["tramitesCount"],
   });
 
   return (
