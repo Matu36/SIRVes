@@ -6,10 +6,8 @@ import {
   FaUserPlus,
   FaTrash,
   FaExclamationTriangle,
-  FaEdit,
   FaUsers,
 } from "react-icons/fa";
-import { Modal, Button } from "react-bootstrap";
 
 export default function TipoDeUsuario({
   personaDataProp,
@@ -21,8 +19,6 @@ export default function TipoDeUsuario({
   const [tipo, setTipo] = useState("");
   const [reportantes, setReportantes] = useState([]);
   const [reportados, setReportados] = useState([]);
-  const [showModal, setShowModal] = useState(false);
-  const [currentPersonaIndex, setCurrentPersonaIndex] = useState(null);
 
   useEffect(() => {
     if (personaDataProp) {
@@ -57,23 +53,6 @@ export default function TipoDeUsuario({
     } else if (tipoLista === "reportados") {
       setReportados(reportados.filter((_, i) => i !== index));
     }
-  };
-
-  const handleModificar = (index) => {
-    setCurrentPersonaIndex(index);
-    setShowModal(true);
-  };
-
-  const handleConfirmarModificar = () => {
-    console.log(
-      "Modificando datos del agente en el índice:",
-      currentPersonaIndex
-    );
-    setShowModal(false);
-  };
-
-  const handleCancelarModificar = () => {
-    setShowModal(false);
   };
 
   return (
@@ -122,12 +101,6 @@ export default function TipoDeUsuario({
               <FaUserPlus /> Agregar Reportante
             </button>
 
-            <button
-              className="btn btn-outline-guardar btn-round"
-              onClick={() => handleModificar(index)}
-            >
-              <FaEdit /> Modificar datos del agente
-            </button>
             <button
               className="btn btn-danger btn-round"
               onClick={() => eliminarPersona("reportantes", index)}
@@ -182,12 +155,7 @@ export default function TipoDeUsuario({
             >
               <FaUserPlus /> Agregar Reportado
             </button>
-            <button
-              className="btn btn-outline-guardar btn-round"
-              onClick={() => handleModificar(index)}
-            >
-              <FaEdit /> Modificar datos del agente
-            </button>
+
             <button
               className="btn btn-danger btn-round"
               onClick={() => eliminarPersona("reportados", index)}
@@ -208,27 +176,6 @@ export default function TipoDeUsuario({
           <FaUserPlus /> Agregar Reportado
         </button>
       )}
-
-      <Modal show={showModal} onHide={handleCancelarModificar} centered>
-        <Modal.Dialog size="sm">
-          {" "}
-          // Esto reduce el tamaño del modal
-          <Modal.Header closeButton>
-            <Modal.Title>Confirmar Modificación</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <p>¿Está seguro que desea modificar los datos del agente?</p>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleCancelarModificar}>
-              Cancelar
-            </Button>
-            <Button variant="primary" onClick={handleConfirmarModificar}>
-              Confirmar
-            </Button>
-          </Modal.Footer>
-        </Modal.Dialog>
-      </Modal>
     </div>
   );
 }
