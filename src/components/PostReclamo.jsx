@@ -76,6 +76,25 @@ export default function PostReclamo() {
 
   // VRG //
 
+  const [VRG, setVRG] = useState({
+    tipoReporte: "",
+    fechaReporte: "",
+    registrante: "",
+    tipoSituacion: "",
+    tipoViolencia: "",
+    modalidadViolencia: "",
+    convivenciaConAgresor: "",
+    vinculoAgresor: "",
+    denunciaJudicial: "",
+    medidasProteccion: "",
+    tramitaLicencia: "",
+    tramiteLicencia: "",
+    prorrogaLicencia: "",
+    accionesLlevadas: "",
+    seguimientoAcciones: "",
+    expediente: "",
+  });
+
   const GuardarReporte = () => {
     const datosAEnviar = [Usuario1, trabajador, reclamo1];
 
@@ -94,6 +113,8 @@ export default function PostReclamo() {
         reclamoDataProp={persona}
         reclamo1={reclamo1}
         setReclamo1={setReclamo1}
+        VRG={VRG}
+        setVRG={setVRG}
       />
       <TipoDeUsuario
         personaDataProp={persona}

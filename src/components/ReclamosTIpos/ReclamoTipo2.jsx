@@ -2,28 +2,7 @@ import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { FaBalanceScale } from "react-icons/fa";
 
-export default function ReclamoTipo2({ reclamoDataProp }) {
-  const [VRG, setVRG] = useState({
-    tipoReporte: "",
-    fechaReporte: "",
-    registrante: "",
-    tipoSituacion: "",
-    tipoViolencia: "",
-    modalidadViolencia: "",
-    convivenciaConAgresor: "",
-    vinculoAgresor: "",
-    denunciaJudicial: "",
-    medidasProteccion: "",
-    tramitaLicencia: "",
-    tramiteLicencia: "",
-    prorrogaLicencia: "",
-    accionesLlevadas: "",
-    seguimientoAcciones: "",
-    expediente: "",
-  });
-
-  console.log(VRG);
-
+export default function ReclamoTipo2({ reclamoDataProp, VRG, setVRG }) {
   useEffect(() => {
     if (reclamoDataProp?.reclamo) {
       setVRG((prev) => ({
