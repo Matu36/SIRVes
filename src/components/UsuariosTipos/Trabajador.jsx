@@ -9,31 +9,29 @@ export default function Trabajador({
 }) {
   useEffect(() => {
     if (personaDataProp && personaDataProp.documento) {
-      const persona = personaDataProp;
-      setTrabajador((prev) => ({
-        ...prev,
-        nombre: persona.nombre || "",
-        fechaNacimiento: persona.fechaNacimiento || "",
-        domicilio: persona.domicilio || "",
-        telefono: persona.telefono || "",
-        genero: persona.genero || "",
-        email: persona.email || "",
-        discapacidad: persona.discapacidad || "",
-        cobertura: persona.coberturaSocial || "",
-        hospitalTrabajo: persona.hospitalTrabajo || "",
-        localidadHospital: persona.localidadHospital || "",
-        regionSanitariaHospital: persona.regionSanitariaHospital || "",
-        agrupamiento: persona.agrupamiento || "",
-        contratacion: persona.contratacion || "",
-        disciplina: persona.disciplina || "",
-        observaciones: persona.observaciones || "",
-        tipoDocumento: persona.tipoDocumento || "",
-        documento: persona.documento || "",
-        localidad: persona.localidad || "",
-        partido: persona.partido || "",
-        provincia: persona.provincia || "",
-        pais: persona.pais || "",
-      }));
+      setTrabajador({
+        nombre: personaDataProp.nombre || "",
+        fechaNacimiento: personaDataProp.fechaNacimiento || "",
+        domicilio: personaDataProp.domicilio || "",
+        telefono: personaDataProp.telefono || "",
+        genero: personaDataProp.genero || "",
+        email: personaDataProp.email || "",
+        discapacidad: personaDataProp.discapacidad || "",
+        cobertura: personaDataProp.coberturaSocial || "",
+        hospitalTrabajo: personaDataProp.hospitalTrabajo || "",
+        localidadHospital: personaDataProp.localidadHospital || "",
+        regionSanitariaHospital: personaDataProp.regionSanitariaHospital || "",
+        agrupamiento: personaDataProp.agrupamiento || "",
+        contratacion: personaDataProp.contratacion || "",
+        disciplina: personaDataProp.disciplina || "",
+        observaciones: personaDataProp.observaciones || "",
+        tipoDocumento: personaDataProp.tipoDocumento || "",
+        documento: personaDataProp.documento || "",
+        localidad: personaDataProp.localidad || "",
+        partido: personaDataProp.partido || "",
+        provincia: personaDataProp.provincia || "",
+        pais: personaDataProp.pais || "",
+      });
     }
   }, [personaDataProp]);
 

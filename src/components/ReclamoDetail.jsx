@@ -15,7 +15,7 @@ export default function ReclamoDetail() {
     <div className="">
       <div className="tituloCeleste">
         <FaInfoCircle className="titulocelesteicono" />
-        <span className="titulocelestespan">Detalle del reclamo</span>
+        <span className="titulocelestespan">Detalle del reporte</span>
       </div>
       <br />
       <div className="reclamo-detail">
@@ -33,9 +33,7 @@ export default function ReclamoDetail() {
           <p>
             <strong>Descripción:</strong> {persona.reclamo.descripcion}
           </p>
-          <p>
-            <strong>Fecha del Reclamo:</strong> {persona.reclamo.fechaReclamo}
-          </p>
+
           <p>
             <strong>Estado:</strong> {persona.reclamo.estado}
           </p>
@@ -44,9 +42,6 @@ export default function ReclamoDetail() {
         <>
           <p>
             <strong>Fecha del Reclamo:</strong> {persona.reclamo.fechaReclamo}
-          </p>
-          <p>
-            <strong>Estado:</strong> {persona.reclamo.estado}
           </p>
         </>
 

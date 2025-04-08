@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Select from "react-select";
 import { personas } from "../../utils/Personas";
 import { MdContacts } from "react-icons/md";
@@ -6,46 +6,38 @@ import { MdContacts } from "react-icons/md";
 export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
   // 1. Cuando llega un prop con datos externos (personaDataProp), los uso:
   useEffect(() => {
-    if (personaDataProp && personaDataProp.documento) {
-      const persona = personaDataProp;
-      setUsuario1((prev) => ({
-        ...prev,
-        tipoDocumento: persona.tipoDocumento || "",
-        documento: persona.documento || "",
-        nombre: persona.nombre || "",
-        fechaNacimiento: persona.fechaNacimiento || "",
-        domicilio: persona.domicilio || "",
-        localidad: persona.localidad || "",
-        partido: persona.partido || "",
-        provincia: persona.provincia || "",
-        pais: persona.pais || "",
-        telefono: persona.telefono || "",
-        genero: persona.genero
-          ? { value: persona.genero, label: persona.genero }
-          : null,
-        email: persona.email || "",
-        discapacidad: persona.discapacidad
-          ? {
-              value: persona.discapacidad,
-              label: persona.discapacidad,
-            }
-          : null,
-        cobertura: persona.coberturaSocial || "",
-        esMenor: persona.esMenor || "",
-        personaCargoNombre: persona.personaACargo || "",
-        personaCargoApellido: persona.personaACargo || "",
-        // personaCargoDireccion: persona.personaACargo || "",
-        personaCargoTelefono: persona.personaACargo || "",
-        personaCargoEmail: persona.personaACargo || "",
-      }));
+    if (personaDataProp) {
+      setUsuario1({
+        tipoDocumento: personaDataProp.tipoDocumento || "",
+        documento: personaDataProp.documento || "",
+        nombre: personaDataProp.nombre || "",
+        fechaNacimiento: personaDataProp.fechaNacimiento || "",
+        domicilio: personaDataProp.domicilio || "",
+        localidad: personaDataProp.localidad || "",
+        partido: personaDataProp.partido || "",
+        provincia: personaDataProp.provincia || "",
+        pais: personaDataProp.pais || "",
+        telefono: personaDataProp.telefono || "",
+        email: personaDataProp.email || "",
+        genero: personaDataProp.genero || "",
+        discapacidad: personaDataProp.discapacidad || "",
+        cobertura: personaDataProp.cobertura || "",
+        esMenor: personaDataProp.esMenor || "",
+        personaCargoApellido: personaDataProp.personaCargoApellido || "",
+        personaCargoNombre: personaDataProp.personaCargoNombre || "",
+        personaCargoTelefono: personaDataProp.personaCargoTelefono || "",
+        personaCargoEmail: personaDataProp.personaCargoEmail || "",
+      });
     }
   }, [personaDataProp]);
 
+  console.log(personaDataProp);
+
   // 2. Cuando cambia el documento, busco coincidencias en la lista de personas:
   useEffect(() => {
-    if (!Usuario1.documento) return;
+    if (!Usuario1?.documento) return;
 
-    const personaEncontrada = personas.find(
+    const personaEncontrada = personas?.find(
       (p) => p.documento === Usuario1.documento
     );
 
@@ -73,14 +65,13 @@ export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
           : null,
         cobertura: personaEncontrada.coberturaSocial || "",
         esMenor: personaEncontrada.esMenor || "",
-        personaCargoNombre: personaEncontrada.personaACargo || "",
-        personaCargoApellido: personaEncontrada.personaACargo || "",
-        // personaCargoDireccion: personaEncontrada.personaACargo || "",
-        personaCargoTelefono: personaEncontrada.personaACargo || "",
-        personaCargoEmail: personaEncontrada.personaACargo || "",
+        personaCargoNombre: personaEncontrada.personaACargo?.nombre || "",
+        personaCargoApellido: personaEncontrada.personaACargo?.apellido || "",
+        personaCargoTelefono: personaEncontrada.personaACargo?.telefono || "",
+        personaCargoEmail: personaEncontrada.personaACargo?.email || "",
       }));
     }
-  }, [Usuario1.documento, personas]);
+  }, [Usuario1?.documento, personas]);
 
   return (
     <div className="usuario-form">
@@ -97,7 +88,7 @@ export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
             ]}
             placeholder="Seleccionar Tipo de Documento"
             value={
-              Usuario1.tipoDocumento
+              Usuario1?.tipoDocumento
                 ? {
                     value: Usuario1.tipoDocumento,
                     label: Usuario1.tipoDocumento.toUpperCase(),
@@ -117,7 +108,7 @@ export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
             id="documento"
             className="form-control"
             placeholder="Nro de Documento"
-            value={Usuario1.documento}
+            value={Usuario1?.documento}
             onChange={(e) =>
               setUsuario1({ ...Usuario1, documento: e.target.value })
             }
@@ -131,7 +122,7 @@ export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
             id="nombre"
             className="form-control"
             placeholder="Nombre y Apellido"
-            value={Usuario1.nombre}
+            value={Usuario1?.nombre}
             onChange={(e) =>
               setUsuario1({ ...Usuario1, nombre: e.target.value })
             }
@@ -144,7 +135,7 @@ export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
             type="date"
             id="fechaNacimiento"
             className="form-control"
-            value={Usuario1.fechaNacimiento}
+            value={Usuario1?.fechaNacimiento}
             onChange={(e) =>
               setUsuario1({ ...Usuario1, fechaNacimiento: e.target.value })
             }
@@ -158,7 +149,7 @@ export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
             id="domicilio"
             className="form-control"
             placeholder="Domicilio"
-            value={Usuario1.domicilio}
+            value={Usuario1?.domicilio}
             onChange={(e) =>
               setUsuario1({ ...Usuario1, domicilio: e.target.value })
             }
@@ -172,7 +163,7 @@ export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
             id="localidad"
             className="form-control"
             placeholder="Localidad"
-            value={Usuario1.localidad}
+            value={Usuario1?.localidad}
             onChange={(e) =>
               setUsuario1({ ...Usuario1, localidad: e.target.value })
             }
@@ -186,7 +177,7 @@ export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
             id="partido"
             className="form-control"
             placeholder="Partido"
-            value={Usuario1.partido}
+            value={Usuario1?.partido}
             onChange={(e) =>
               setUsuario1({ ...Usuario1, partido: e.target.value })
             }
@@ -200,7 +191,7 @@ export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
             id="provincia"
             className="form-control"
             placeholder="Provincia"
-            value={Usuario1.provincia}
+            value={Usuario1?.provincia}
             onChange={(e) =>
               setUsuario1({ ...Usuario1, provincia: e.target.value })
             }
@@ -214,7 +205,7 @@ export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
             id="pais"
             className="form-control"
             placeholder="País"
-            value={Usuario1.pais}
+            value={Usuario1?.pais}
             onChange={(e) => setUsuario1({ ...Usuario1, pais: e.target.value })}
           />
         </div>
@@ -226,7 +217,7 @@ export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
             id="telefono"
             className="form-control"
             placeholder="Teléfono"
-            value={Usuario1.telefono}
+            value={Usuario1?.telefono}
             onChange={(e) =>
               setUsuario1({ ...Usuario1, telefono: e.target.value })
             }
@@ -240,7 +231,7 @@ export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
             id="email"
             className="form-control"
             placeholder="Email"
-            value={Usuario1.email}
+            value={Usuario1?.email}
             onChange={(e) =>
               setUsuario1({ ...Usuario1, email: e.target.value })
             }
@@ -262,10 +253,10 @@ export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
             placeholder="Seleccionar Género"
             value={
               typeof Usuario1?.genero === "string" &&
-              Usuario1.genero.trim() !== ""
+              Usuario1?.genero.trim() !== ""
                 ? {
-                    value: Usuario1.genero,
-                    label: Usuario1.genero.replace("_", " "),
+                    value: Usuario1?.genero,
+                    label: Usuario1?.genero.replace("_", " "),
                   }
                 : null
             }
@@ -285,10 +276,10 @@ export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
             ]}
             placeholder="Discapacidad"
             value={
-              Usuario1.discapacidad
+              Usuario1?.discapacidad
                 ? {
-                    value: Usuario1.discapacidad,
-                    label: Usuario1.discapacidad === "si" ? "Sí" : "No",
+                    value: Usuario1?.discapacidad,
+                    label: Usuario1?.discapacidad === "si" ? "Sí" : "No",
                   }
                 : null
             }
@@ -305,7 +296,7 @@ export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
             id="cobertura"
             className="form-control"
             placeholder="Cobertura Social"
-            value={Usuario1.cobertura}
+            value={Usuario1?.cobertura}
             onChange={(e) =>
               setUsuario1({ ...Usuario1, cobertura: e.target.value })
             }
@@ -321,7 +312,7 @@ export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
               { value: "no", label: "No" },
             ]}
             placeholder="Seleccionar"
-            value={Usuario1.esMenor}
+            value={Usuario1?.esMenor}
             onChange={(selectedOption) =>
               setUsuario1({ ...Usuario1, esMenor: selectedOption?.value })
             }
@@ -329,7 +320,7 @@ export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
         </div>
       </div>
 
-      {Usuario1.esMenor === "si" && (
+      {Usuario1?.esMenor === "si" && (
         <>
           <br />
           <div className="tituloCeleste">
@@ -347,7 +338,7 @@ export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
                 id="apellido"
                 className="form-control"
                 placeholder="Apellido"
-                value={Usuario1.personaCargoApellido}
+                value={Usuario1?.personaCargoApellido}
                 onChange={(e) =>
                   setUsuario1({
                     ...Usuario1,
@@ -363,7 +354,7 @@ export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
                 id="nombre"
                 className="form-control"
                 placeholder="Nombre"
-                value={Usuario1.personaCargoNombre}
+                value={Usuario1?.personaCargoNombre}
                 onChange={(e) =>
                   setUsuario1({
                     ...Usuario1,
@@ -379,7 +370,7 @@ export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
                 id="telefono"
                 className="form-control"
                 placeholder="Teléfono"
-                value={Usuario1.personaCargoTelefono}
+                value={Usuario1?.personaCargoTelefono}
                 onChange={(e) =>
                   setUsuario1({
                     ...Usuario1,
@@ -395,7 +386,7 @@ export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
                 id="email"
                 className="form-control"
                 placeholder="Email"
-                value={Usuario1.personaCargoEmail}
+                value={Usuario1?.personaCargoEmail}
                 onChange={(e) =>
                   setUsuario1({
                     ...Usuario1,
