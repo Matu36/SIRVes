@@ -66,7 +66,7 @@ export default function TipoDeUsuario({
             esMenor: "",
             personaCargoNombre: "",
             personaCargoApellido: "",
-            personaCargoDireccion: "",
+            // personaCargoDireccion: "",
             personaCargoTelefono: "",
             personaCargoEmail: "",
           },
@@ -127,7 +127,7 @@ export default function TipoDeUsuario({
             esMenor: "",
             personaCargoNombre: "",
             personaCargoApellido: "",
-            personaCargoDireccion: "",
+            // personaCargoDireccion: "",
             personaCargoTelefono: "",
             personaCargoEmail: "",
           },
@@ -186,8 +186,6 @@ export default function TipoDeUsuario({
       }
     }
   };
-
-  console.log(trabajador);
 
   return (
     <div className="container">

@@ -34,7 +34,7 @@ export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
         esMenor: persona.esMenor || "",
         personaCargoNombre: persona.personaACargo || "",
         personaCargoApellido: persona.personaACargo || "",
-        personaCargoDireccion: persona.personaACargo || "",
+        // personaCargoDireccion: persona.personaACargo || "",
         personaCargoTelefono: persona.personaACargo || "",
         personaCargoEmail: persona.personaACargo || "",
       }));
@@ -75,7 +75,7 @@ export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
         esMenor: personaEncontrada.esMenor || "",
         personaCargoNombre: personaEncontrada.personaACargo || "",
         personaCargoApellido: personaEncontrada.personaACargo || "",
-        personaCargoDireccion: personaEncontrada.personaACargo || "",
+        // personaCargoDireccion: personaEncontrada.personaACargo || "",
         personaCargoTelefono: personaEncontrada.personaACargo || "",
         personaCargoEmail: personaEncontrada.personaACargo || "",
       }));

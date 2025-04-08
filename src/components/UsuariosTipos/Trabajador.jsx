@@ -69,6 +69,63 @@ export default function Trabajador({
     }
   }, [trabajador.documento, personas]);
 
+  const disciplinaOptions = [
+    { value: "medico", label: "Médico" },
+    { value: "psicologo", label: "Psicólogo" },
+    { value: "enfermero", label: "Enfermero" },
+    { value: "administrativo", label: "Administrativo" },
+    { value: "etc", label: "Etc" },
+  ];
+
+  // Opciones simuladas
+  const localidadOptions = [
+    { value: "la plata", label: "La Plata" },
+    { value: "mar del plata", label: "Mar del Plata" },
+    { value: "bahía blanca", label: "Bahía Blanca" },
+  ];
+
+  const partidoOptions = [
+    { value: "la plata", label: "La Plata" },
+    { value: "general pueyrredón", label: "General Pueyrredón" },
+    { value: "bahía blanca", label: "Bahía Blanca" },
+  ];
+
+  const provinciaOptions = [
+    { value: "buenos aires", label: "Buenos Aires" },
+    { value: "córdoba", label: "Córdoba" },
+    { value: "santa fe", label: "Santa Fe" },
+  ];
+
+  const paisOptions = [
+    { value: "argentina", label: "Argentina" },
+    { value: "uruguay", label: "Uruguay" },
+    { value: "chile", label: "Chile" },
+  ];
+
+  const coberturaOptions = [
+    { value: "osde", label: "OSDE" },
+    { value: "ioma", label: "IOMA" },
+    { value: "pami", label: "PAMI" },
+  ];
+
+  const hospitalOptions = [
+    { value: "hospital san martín", label: "Hospital San Martín" },
+    { value: "hospital italiano", label: "Hospital Italiano" },
+    { value: "hospital posadas", label: "Hospital Posadas" },
+  ];
+
+  const localidadHospitalOptions = [
+    { value: "la plata", label: "La Plata" },
+    { value: "morón", label: "Morón" },
+    { value: "quilmes", label: "Quilmes" },
+  ];
+
+  const regionSanitariaOptions = [
+    { value: "región i", label: "Región I" },
+    { value: "región v", label: "Región V" },
+    { value: "región xi", label: "Región XI" },
+  ];
+
   return (
     <div className="trabajador-form">
       <div className="grid-container">
@@ -85,7 +142,7 @@ export default function Trabajador({
             placeholder="Seleccionar Tipo de Documento"
             value={{
               value: trabajador.tipoDocumento,
-              label: trabajador.tipoDocumento,
+              label: trabajador.tipoDocumento.toUpperCase(),
             }}
             onChange={(e) =>
               setTrabajador({ ...trabajador, tipoDocumento: e.value })
@@ -152,9 +209,11 @@ export default function Trabajador({
           <label htmlFor="localidad">Localidad de Residencia</label>
           <Select
             id="localidad"
-            // options={/* Cargar opciones de localidad */}
+            options={localidadOptions}
             placeholder="Seleccionar Localidad"
-            value={{ value: trabajador.localidad, label: trabajador.localidad }}
+            value={localidadOptions.find(
+              (option) => option.value === trabajador.localidad
+            )}
             onChange={(e) =>
               setTrabajador({ ...trabajador, localidad: e.value })
             }
@@ -165,9 +224,11 @@ export default function Trabajador({
           <label htmlFor="partido">Partido de Residencia</label>
           <Select
             id="partido"
-            // options={/* Cargar opciones de partido */}
+            options={partidoOptions}
             placeholder="Seleccionar Partido"
-            value={{ value: trabajador.partido, label: trabajador.partido }}
+            value={partidoOptions.find(
+              (option) => option.value === trabajador.partido
+            )}
             onChange={(e) => setTrabajador({ ...trabajador, partido: e.value })}
           />
         </div>
@@ -176,9 +237,11 @@ export default function Trabajador({
           <label htmlFor="provincia">Provincia de Residencia</label>
           <Select
             id="provincia"
-            // options={/* Cargar opciones de provincia */}
+            options={provinciaOptions}
             placeholder="Seleccionar Provincia"
-            value={{ value: trabajador.provincia, label: trabajador.provincia }}
+            value={provinciaOptions.find(
+              (option) => option.value === trabajador.provincia
+            )}
             onChange={(e) =>
               setTrabajador({ ...trabajador, provincia: e.value })
             }
@@ -189,9 +252,11 @@ export default function Trabajador({
           <label htmlFor="pais">País de Residencia</label>
           <Select
             id="pais"
-            // options={/* Cargar opciones de país */}
+            options={paisOptions}
             placeholder="Seleccionar País"
-            value={{ value: trabajador.pais, label: trabajador.pais }}
+            value={paisOptions.find(
+              (option) => option.value === trabajador.pais
+            )}
             onChange={(e) => setTrabajador({ ...trabajador, pais: e.value })}
           />
         </div>
@@ -264,9 +329,11 @@ export default function Trabajador({
           <label htmlFor="cobertura">Cobertura Social</label>
           <Select
             id="cobertura"
-            // options={/* Cargar opciones de cobertura */}
+            options={coberturaOptions}
             placeholder="Seleccionar Cobertura Social"
-            value={{ value: trabajador.cobertura, label: trabajador.cobertura }}
+            value={coberturaOptions.find(
+              (option) => option.value === trabajador.cobertura
+            )}
             onChange={(e) =>
               setTrabajador({ ...trabajador, cobertura: e.value })
             }
@@ -277,12 +344,11 @@ export default function Trabajador({
           <label htmlFor="hospitalTrabajo">Hospital donde Trabaja</label>
           <Select
             id="hospitalTrabajo"
-            // options={/* Cargar opciones de hospitales */}
+            options={hospitalOptions}
             placeholder="Seleccionar Hospital"
-            value={{
-              value: trabajador.hospitalTrabajo,
-              label: trabajador.hospitalTrabajo,
-            }}
+            value={hospitalOptions.find(
+              (option) => option.value === trabajador.hospitalTrabajo
+            )}
             onChange={(e) =>
               setTrabajador({ ...trabajador, hospitalTrabajo: e.value })
             }
@@ -293,12 +359,11 @@ export default function Trabajador({
           <label htmlFor="localidadHospital">Localidad del Hospital</label>
           <Select
             id="localidadHospital"
-            // options={/* Cargar opciones de localidad hospital */}
+            options={localidadHospitalOptions}
             placeholder="Seleccionar Localidad Hospital"
-            value={{
-              value: trabajador.localidadHospital,
-              label: trabajador.localidadHospital,
-            }}
+            value={localidadHospitalOptions.find(
+              (option) => option.value === trabajador.localidadHospital
+            )}
             onChange={(e) =>
               setTrabajador({ ...trabajador, localidadHospital: e.value })
             }
@@ -311,12 +376,11 @@ export default function Trabajador({
           </label>
           <Select
             id="regionSanitariaHospital"
-            // options={/* Cargar opciones de región sanitaria */}
+            options={regionSanitariaOptions}
             placeholder="Seleccionar Región Sanitaria"
-            value={{
-              value: trabajador.regionSanitariaHospital,
-              label: trabajador.regionSanitariaHospital,
-            }}
+            value={regionSanitariaOptions.find(
+              (option) => option.value === trabajador.regionSanitariaHospital
+            )}
             onChange={(e) =>
               setTrabajador({ ...trabajador, regionSanitariaHospital: e.value })
             }
@@ -355,20 +419,14 @@ export default function Trabajador({
           <label htmlFor="disciplina">Disciplina</label>
           <Select
             id="disciplina"
-            options={[
-              { value: "medico", label: "Médico" },
-              { value: "psicologo", label: "Psicólogo" },
-              { value: "enfermero", label: "Enfermero" },
-              { value: "administrativo", label: "Administrativo" },
-              { value: "etc", label: "Etc" },
-            ]}
+            options={disciplinaOptions}
             placeholder="Seleccionar Disciplina"
-            value={{
-              value: trabajador.disciplina,
-              label:
-                (trabajador.disciplina?.charAt(0).toUpperCase() ?? "") +
-                (trabajador.disciplina?.slice(1) ?? ""),
-            }}
+            value={disciplinaOptions.find(
+              (option) => option.value === trabajador.disciplina
+            )}
+            onChange={(e) =>
+              setTrabajador({ ...trabajador, disciplina: e.value })
+            }
           />
         </div>
 

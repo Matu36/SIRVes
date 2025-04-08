@@ -11,62 +11,11 @@ export default function PostReclamo() {
 
   // ESTADOS PARA HACER EL POST DEL REPORTE //
 
-  // USUARIOS
-  const [Usuario1, setUsuario1] = useState([
-    {
-      idReporte: null,
-      tipoUsuario: 1,
-      tipoDocumento: "",
-      documento: "",
-      nombre: "",
-      fechaNacimiento: "",
-      domicilio: "",
-      localidad: "",
-      partido: "",
-      provincia: "",
-      pais: "",
-      telefono: "",
-      genero: null,
-      email: "",
-      discapacidad: null,
-      cobertura: "",
-      esMenor: "",
-      personaCargoNombre: "",
-      personaCargoApellido: "",
-      personaCargoDireccion: "",
-      personaCargoTelefono: "",
-      personaCargoEmail: "",
-    },
-  ]);
+  // ESTADO DE USUARIO INICIAL VACIO //
+  const [Usuario1, setUsuario1] = useState([]);
 
-  // TRABAJADORES
-  const [trabajador, setTrabajador] = useState([
-    {
-      idReporte: null,
-      tipoUsuario: 2,
-      tipoDocumento: "",
-      documento: "",
-      nombre: "",
-      fechaNacimiento: "",
-      domicilio: "",
-      localidad: "",
-      partido: "",
-      provincia: "",
-      pais: "",
-      telefono: "",
-      genero: null,
-      email: "",
-      discapacidad: null,
-      cobertura: "",
-      hospitalTrabajo: "",
-      localidadHospital: "",
-      regionSanitariaHospital: "",
-      agrupamiento: "",
-      contratacion: "",
-      disciplina: "",
-      observaciones: "",
-    },
-  ]);
+  // ESTADO DE TRABAJADOR INICIAL VACIO //
+  const [trabajador, setTrabajador] = useState([]);
 
   // LABORALES - RECLAMO1 //
   const [reclamo1, setReclamo1] = useState({
