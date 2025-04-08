@@ -4,54 +4,55 @@ import { personas } from "../../utils/Personas";
 import { MdContacts } from "react-icons/md";
 
 export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
+  // 1. Cuando llega un prop con datos externos (personaDataProp), los uso:
   useEffect(() => {
-    if (personaDataProp) {
-      setUsuario1({
-        tipoDocumento: personaDataProp.tipoDocumento || "",
-        documento: personaDataProp.documento || "",
-        nombre: personaDataProp.nombre || "",
-        fechaNacimiento: personaDataProp.fechaNacimiento || "",
-        domicilio: personaDataProp.domicilio || "",
-        localidad: personaDataProp.localidad || "",
-        partido: personaDataProp.partido || "",
-        provincia: personaDataProp.provincia || "",
-        pais: personaDataProp.pais || "",
-        telefono: personaDataProp.telefono || "",
-        genero: personaDataProp.genero
-          ? { value: personaDataProp.genero, label: personaDataProp.genero }
+    if (personaDataProp && personaDataProp.documento) {
+      const persona = personaDataProp;
+      setUsuario1((prev) => ({
+        ...prev,
+        tipoDocumento: persona.tipoDocumento || "",
+        documento: persona.documento || "",
+        nombre: persona.nombre || "",
+        fechaNacimiento: persona.fechaNacimiento || "",
+        domicilio: persona.domicilio || "",
+        localidad: persona.localidad || "",
+        partido: persona.partido || "",
+        provincia: persona.provincia || "",
+        pais: persona.pais || "",
+        telefono: persona.telefono || "",
+        genero: persona.genero
+          ? { value: persona.genero, label: persona.genero }
           : null,
-        email: personaDataProp.email || "",
-        discapacidad: personaDataProp.discapacidad
+        email: persona.email || "",
+        discapacidad: persona.discapacidad
           ? {
-              value: personaDataProp.discapacidad,
-              label: personaDataProp.discapacidad,
+              value: persona.discapacidad,
+              label: persona.discapacidad,
             }
           : null,
-        cobertura: personaDataProp.coberturaSocial || "",
-        esMenor: personaDataProp.esMenor || "",
-        personaCargoNombre: personaDataProp.personaACargo || "",
-        personaCargoApellido: personaDataProp.personaACargo || "",
-        personaCargoDireccion: personaDataProp.personaACargo || "",
-        personaCargoTelefono: personaDataProp.personaACargo || "",
-        personaCargoEmail: personaDataProp.personaACargo || "",
-      });
+        cobertura: persona.coberturaSocial || "",
+        esMenor: persona.esMenor || "",
+        personaCargoNombre: persona.personaACargo || "",
+        personaCargoApellido: persona.personaACargo || "",
+        personaCargoDireccion: persona.personaACargo || "",
+        personaCargoTelefono: persona.personaACargo || "",
+        personaCargoEmail: persona.personaACargo || "",
+      }));
     }
   }, [personaDataProp]);
 
-  const handleDocumentoChange = (e) => {
-    const doc = e.target.value;
-    setUsuario1((prevState) => ({ ...prevState, documento: doc }));
+  // 2. Cuando cambia el documento, busco coincidencias en la lista de personas:
+  useEffect(() => {
+    if (!Usuario1.documento) return;
 
-    // Buscar el documento en el arreglo personas
     const personaEncontrada = personas.find(
-      (persona) => persona.documento === doc
+      (p) => p.documento === Usuario1.documento
     );
 
-    // Si se encuentra, autocompletar los datos
     if (personaEncontrada) {
-      setUsuario1({
-        tipoDocumento: personaEncontrada.tipoDocumento || "",
-        documento: doc,
+      setUsuario1((prev) => ({
+        ...prev,
+        tipoDocumento: personaEncontrada.tipoDocumento || prev.tipoDocumento,
         nombre: personaEncontrada.nombre || "",
         fechaNacimiento: personaEncontrada.fechaNacimiento || "",
         domicilio: personaEncontrada.domicilio || "",
@@ -77,9 +78,9 @@ export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
         personaCargoDireccion: personaEncontrada.personaACargo || "",
         personaCargoTelefono: personaEncontrada.personaACargo || "",
         personaCargoEmail: personaEncontrada.personaACargo || "",
-      });
+      }));
     }
-  };
+  }, [Usuario1.documento, personas]);
 
   return (
     <div className="usuario-form">
@@ -117,7 +118,9 @@ export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
             className="form-control"
             placeholder="Nro de Documento"
             value={Usuario1.documento}
-            onChange={handleDocumentoChange}
+            onChange={(e) =>
+              setUsuario1({ ...Usuario1, documento: e.target.value })
+            }
           />
         </div>
 

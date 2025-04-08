@@ -47,6 +47,8 @@ export default function TipoDeUsuario({
         setUsuario1([
           ...Usuario1,
           {
+            idReporte: null,
+            tipoUsuario: 1,
             tipoDocumento: "",
             documento: "",
             nombre: "",
@@ -67,13 +69,14 @@ export default function TipoDeUsuario({
             personaCargoDireccion: "",
             personaCargoTelefono: "",
             personaCargoEmail: "",
-            tipo: 1,
           },
         ]);
       } else if (tipo === "trabajador") {
         setTrabajador([
           ...trabajador,
           {
+            idReporte: null,
+            tipoUsuario: 2,
             tipoDocumento: "",
             documento: "",
             nombre: "",
@@ -88,13 +91,13 @@ export default function TipoDeUsuario({
             email: "",
             discapacidad: null,
             cobertura: "",
-            esMenor: "",
-            personaCargoNombre: "",
-            personaCargoApellido: "",
-            personaCargoDireccion: "",
-            personaCargoTelefono: "",
-            personaCargoEmail: "",
-            tipo: 2,
+            hospitalTrabajo: "",
+            localidadHospital: "",
+            regionSanitariaHospital: "",
+            agrupamiento: "",
+            contratacion: "",
+            disciplina: "",
+            observaciones: "",
           },
         ]);
       }
@@ -105,6 +108,8 @@ export default function TipoDeUsuario({
         setUsuario1([
           ...Usuario1,
           {
+            idReporte: null,
+            tipoUsuario: 1,
             tipoDocumento: "",
             documento: "",
             nombre: "",
@@ -125,13 +130,14 @@ export default function TipoDeUsuario({
             personaCargoDireccion: "",
             personaCargoTelefono: "",
             personaCargoEmail: "",
-            tipo: 1,
           },
         ]);
       } else if (tipo === "trabajador") {
         setTrabajador([
           ...trabajador,
           {
+            idReporte: null,
+            tipoUsuario: 2,
             tipoDocumento: "",
             documento: "",
             nombre: "",
@@ -146,13 +152,13 @@ export default function TipoDeUsuario({
             email: "",
             discapacidad: null,
             cobertura: "",
-            esMenor: "",
-            personaCargoNombre: "",
-            personaCargoApellido: "",
-            personaCargoDireccion: "",
-            personaCargoTelefono: "",
-            personaCargoEmail: "",
-            tipo: 2,
+            hospitalTrabajo: "",
+            localidadHospital: "",
+            regionSanitariaHospital: "",
+            agrupamiento: "",
+            contratacion: "",
+            disciplina: "",
+            observaciones: "",
           },
         ]);
       }
