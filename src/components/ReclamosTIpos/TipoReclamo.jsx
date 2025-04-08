@@ -30,7 +30,15 @@ export default function TipoReclamo({
 
   useEffect(() => {
     if (reclamoDataProp?.reclamo?.tipoReporte) {
-      setTipoSeleccionado(reclamoDataProp.reclamo.tipoReporte);
+      const tipoMap = {
+        1: "tipo1",
+        2: "tipo2",
+        3: "tipo3",
+        tipo1: "tipo1",
+        tipo2: "tipo2",
+        tipo3: "tipo3",
+      };
+      setTipoSeleccionado(tipoMap[reclamoDataProp.reclamo.tipoReporte]);
     }
   }, [reclamoDataProp]);
 
@@ -46,6 +54,7 @@ export default function TipoReclamo({
         options={opciones}
         onChange={(opcion) => setTipoSeleccionado(opcion.value)}
         placeholder="Seleccione el tipo de reclamo..."
+        value={opciones.find((opt) => opt.value === tipoSeleccionado) || null}
       />
       <br />
       {/* Renderizar el formulario según la selección */}
