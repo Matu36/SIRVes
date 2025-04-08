@@ -57,19 +57,23 @@ export default function ReclamoTipo1({
   useEffect(() => {
     if (reclamoDataProp?.reclamo) {
       const reclamo = reclamoDataProp.reclamo;
-      +setReclamo1((prev) => ({
-        ...prev,
+
+      console.log("Reclamo encontrado:", reclamo);
+
+      setReclamo1({
         fechaSituacion: reclamo.fechaSituacion || "",
         fechaReporte: reclamo.fechaReclamo || "",
         viaIngreso: reclamo.vincReportante || "",
-        tipoReporte: reclamo || "",
-        opcionesTipoLaborales: reclamo || "",
-        registrador: reclamo || "",
-        tipoViolencia: reclamo || "",
-        frecuenciaMaltrato: reclamo || "",
-        percepcion: reclamo || "",
-        expedienteGDEBA: reclamo || "",
-      }));
+        tipoReporte: reclamo.tipoReporte || "",
+        opcionesTipoLaborales: reclamo.opcionesTipoLaborales || "",
+        registrador: reclamo.registrador || "",
+        tipoViolencia: reclamo.tipoViolencia || "",
+        frecuenciaMaltrato: reclamo.frecuenciaMaltrato || "",
+        percepcion: reclamo.percepcion || "",
+        expedienteGDEBA: reclamo.expGEDEBA || "",
+      });
+    } else {
+      console.log("No hay reclamo en reclamoDataProp:", reclamoDataProp);
     }
   }, [reclamoDataProp]);
 

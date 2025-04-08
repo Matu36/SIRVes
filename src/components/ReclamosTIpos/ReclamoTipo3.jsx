@@ -9,34 +9,41 @@ export default function ReclamoTipo3({
 }) {
   useEffect(() => {
     if (reclamoDataProp?.reclamo) {
-      setInstitucional((prev) => ({
-        ...prev,
-        tipoReporte: reclamoDataProp.reclamo.tipoReporte || "",
-        registroPor: reclamoDataProp.reclamo.registroPor || "",
-        tipoSituacion: reclamoDataProp.reclamo.tipoSituacion || "",
-        tipoViolencia: reclamoDataProp.reclamo.tipoViolencia || "",
-        modalidadViolencia: reclamoDataProp.reclamo.modalidadViolencia || "",
-        frecuenciaMaltrato: reclamoDataProp.reclamo.frecuenciaMaltrato || "",
-        esViolenciaVRG: reclamoDataProp.reclamo.esViolenciaVRG || "",
-        antiguedadVinculo: reclamoDataProp.reclamo.antiguedadVinculo || "",
-        lugarSituacion: reclamoDataProp.reclamo.lugarSituacion || "",
-        puedeReconocerAgresor:
-          reclamoDataProp.reclamo.puedeReconocerAgresor || "",
-        cantidadAgresores: reclamoDataProp.reclamo.cantidadAgresores || "",
-        transitaEmbarazo: reclamoDataProp.reclamo.transitaEmbarazo || "",
-        transitaPuerperio: reclamoDataProp.reclamo.transitaPuerperio || "",
-        abortoCausaViolencia:
-          reclamoDataProp.reclamo.abortoCausaViolencia || "",
-        existeDenuncia: reclamoDataProp.reclamo.existeDenuncia || "",
-        existenMedidasProteccion:
-          reclamoDataProp.reclamo.existenMedidasProteccion || "",
-        estaJudicializada: reclamoDataProp.reclamo.estaJudicializada || "",
-        fechaSituacion: reclamoDataProp.reclamo.fechaSituacion || "",
-        fechaReporte: reclamoDataProp.reclamo.fechaReporte || "",
-        expediente: reclamoDataProp.reclamo.expediente || "",
-      }));
+      const reclamo = reclamoDataProp.reclamo;
+
+      console.log("Reclamo encontrado (Institucional):", reclamo);
+
+      setInstitucional({
+        tipoReporte: reclamo.tipoReporte || "",
+        registroPor: reclamo.registroPor || "",
+        tipoSituacion: reclamo.tipoSituacion || "",
+        tipoViolencia: reclamo.tipoViolencia || "",
+        modalidadViolencia: reclamo.modalidadViolencia || "",
+        frecuenciaMaltrato: reclamo.frecuenciaMaltrato || "",
+        esViolenciaVRG: reclamo.esViolenciaVRG || "",
+        antiguedadVinculo: reclamo.antiguedadVinculo || "",
+        lugarSituacion: reclamo.lugarSituacion || "",
+        puedeReconocerAgresor: reclamo.puedeReconocerAgresor || "",
+        cantidadAgresores: reclamo.cantidadAgresores || "",
+        transitaEmbarazo: reclamo.transitaEmbarazo || "",
+        transitaPuerperio: reclamo.transitaPuerperio || "",
+        abortoCausaViolencia: reclamo.abortoCausaViolencia || "",
+        existeDenuncia: reclamo.existeDenuncia || "",
+        existenMedidasProteccion: reclamo.existenMedidasProteccion || "",
+        estaJudicializada: reclamo.estaJudicializada || "",
+        fechaSituacion: reclamo.fechaSituacion || "",
+        fechaReporte: reclamo.fechaReporte || "",
+        expediente: reclamo.expediente || "",
+      });
+    } else {
+      console.log(
+        "No hay reclamo en reclamoDataProp (Institucional):",
+        reclamoDataProp
+      );
     }
   }, [reclamoDataProp]);
+
+  console.log(reclamoDataProp.reclamo);
 
   const opcionesTipoReporte = [
     { value: "individual", label: "Individual" },
@@ -114,8 +121,8 @@ export default function ReclamoTipo3({
         <span className="titulocelestespan">Institucional</span>
       </div>
       <br />
-      <div className="institucional-container">
-        <div className="institucional-group">
+      <div className="form-container">
+        <div className="form-group">
           <label>Tipo de reporte</label>
           <Select
             options={opcionesTipoReporte}

@@ -5,29 +5,35 @@ import { FaBalanceScale } from "react-icons/fa";
 export default function ReclamoTipo2({ reclamoDataProp, VRG, setVRG }) {
   useEffect(() => {
     if (reclamoDataProp?.reclamo) {
-      setVRG((prev) => ({
-        ...prev,
-        tipoReporte: reclamoDataProp.reclamo.tipoReporte || "",
-        fechaReporte: reclamoDataProp.reclamo.fechaReclamo || "",
-        registrante: reclamoDataProp.reclamo.registrante || "",
-        tipoSituacion: reclamoDataProp.reclamo.tipoSituacion || "",
-        tipoViolencia: reclamoDataProp.reclamo.tipo || "",
-        modalidadViolencia: reclamoDataProp.reclamo.modalidadViolencia || "",
-        convivenciaConAgresor:
-          reclamoDataProp.reclamo.convivenciaConAgresor || "",
-        vinculoAgresor: reclamoDataProp.reclamo.vinculoAgresor || "",
-        denunciaJudicial: reclamoDataProp.reclamo.denunciaJudicial || "",
-        medidasProteccion: reclamoDataProp.reclamo.medidasProteccion || "",
-        tramitaLicencia: reclamoDataProp.reclamo.tramitaLicencia || "",
-        tramiteLicencia: reclamoDataProp.reclamo.tramiteLicencia || "",
-        prorrogaLicencia: reclamoDataProp.reclamo.prorrogaLicencia || "",
-        accionesLlevadas: reclamoDataProp.reclamo.accionesLlevadas || "",
-        seguimientoAcciones: reclamoDataProp.reclamo.seguimientoAcciones || "",
-        expediente: reclamoDataProp.reclamo.expGEDEBA || "",
-        fechaSituacion: reclamoDataProp.reclamo.fechaSituacion || "",
-      }));
+      const reclamo = reclamoDataProp.reclamo;
+
+      console.log("Reclamo encontrado (VRG):", reclamo);
+
+      setVRG({
+        tipoReporte: reclamo.tipoReporte || "",
+        fechaReporte: reclamo.fechaReclamo || "",
+        registrante: reclamo.registrante || "",
+        tipoSituacion: reclamo.tipoSituacion || "",
+        tipoViolencia: reclamo.tipo || "",
+        modalidadViolencia: reclamo.modalidadViolencia || "",
+        convivenciaConAgresor: reclamo.convivenciaConAgresor || "",
+        vinculoAgresor: reclamo.vinculoAgresor || "",
+        denunciaJudicial: reclamo.denunciaJudicial || "",
+        medidasProteccion: reclamo.medidasProteccion || "",
+        tramitaLicencia: reclamo.tramitaLicencia || "",
+        tramiteLicencia: reclamo.tramiteLicencia || "",
+        prorrogaLicencia: reclamo.prorrogaLicencia || "",
+        accionesLlevadas: reclamo.accionesLlevadas || "",
+        seguimientoAcciones: reclamo.seguimientoAcciones || "",
+        expediente: reclamo.expGEDEBA || "",
+        fechaSituacion: reclamo.fechaSituacion || "",
+      });
+    } else {
+      console.log("No hay reclamo en reclamoDataProp (VRG):", reclamoDataProp);
     }
   }, [reclamoDataProp]);
+
+  console.log(reclamoDataProp.reclamo);
 
   const handleChange = (e) => {
     setVRG({ ...VRG, [e.target.name]: e.target.value });
@@ -140,18 +146,18 @@ export default function ReclamoTipo2({ reclamoDataProp, VRG, setVRG }) {
                       VRG.tipoViolencia === "fisica"
                         ? "Física"
                         : VRG.tipoViolencia === "psicologica"
-                        ? "Psicológica"
-                        : VRG.tipoViolencia === "sexual"
-                        ? "Sexual"
-                        : VRG.tipoViolencia === "economica"
-                        ? "Económica y patrimonial"
-                        : VRG.tipoViolencia === "simbolica"
-                        ? "Simbólica"
-                        : VRG.tipoViolencia === "digital"
-                        ? "Digital"
-                        : VRG.tipoViolencia === "politica"
-                        ? "Política"
-                        : "",
+                          ? "Psicológica"
+                          : VRG.tipoViolencia === "sexual"
+                            ? "Sexual"
+                            : VRG.tipoViolencia === "economica"
+                              ? "Económica y patrimonial"
+                              : VRG.tipoViolencia === "simbolica"
+                                ? "Simbólica"
+                                : VRG.tipoViolencia === "digital"
+                                  ? "Digital"
+                                  : VRG.tipoViolencia === "politica"
+                                    ? "Política"
+                                    : "",
                   }
                 : null
             }
@@ -188,22 +194,23 @@ export default function ReclamoTipo2({ reclamoDataProp, VRG, setVRG }) {
                       VRG.modalidadViolencia === "institucional"
                         ? "Institucional"
                         : VRG.modalidadViolencia === "obstetrica"
-                        ? "Obstétrica"
-                        : VRG.modalidadViolencia === "laboral"
-                        ? "Laboral"
-                        : VRG.modalidadViolencia === "mediatica"
-                        ? "Mediática"
-                        : VRG.modalidadViolencia === "domestica"
-                        ? "Doméstica"
-                        : VRG.modalidadViolencia === "libertad_reproductiva"
-                        ? "Contra la libertad reproductiva"
-                        : VRG.modalidadViolencia === "espacio_publico"
-                        ? "En espacio público"
-                        : VRG.modalidadViolencia === "telematica"
-                        ? "Telemática"
-                        : VRG.modalidadViolencia === "otros"
-                        ? "Otros"
-                        : "",
+                          ? "Obstétrica"
+                          : VRG.modalidadViolencia === "laboral"
+                            ? "Laboral"
+                            : VRG.modalidadViolencia === "mediatica"
+                              ? "Mediática"
+                              : VRG.modalidadViolencia === "domestica"
+                                ? "Doméstica"
+                                : VRG.modalidadViolencia ===
+                                    "libertad_reproductiva"
+                                  ? "Contra la libertad reproductiva"
+                                  : VRG.modalidadViolencia === "espacio_publico"
+                                    ? "En espacio público"
+                                    : VRG.modalidadViolencia === "telematica"
+                                      ? "Telemática"
+                                      : VRG.modalidadViolencia === "otros"
+                                        ? "Otros"
+                                        : "",
                   }
                 : null
             }
@@ -232,12 +239,12 @@ export default function ReclamoTipo2({ reclamoDataProp, VRG, setVRG }) {
                       VRG.convivenciaConAgresor === "convive"
                         ? "Convive"
                         : VRG.convivenciaConAgresor === "no_convive"
-                        ? "No convive"
-                        : VRG.convivenciaConAgresor === "convivio"
-                        ? "No convive, pero convivió"
-                        : VRG.convivenciaConAgresor === "sin_dato"
-                        ? "Sin datos"
-                        : "",
+                          ? "No convive"
+                          : VRG.convivenciaConAgresor === "convivio"
+                            ? "No convive, pero convivió"
+                            : VRG.convivenciaConAgresor === "sin_dato"
+                              ? "Sin datos"
+                              : "",
                   }
                 : null
             }
@@ -272,22 +279,22 @@ export default function ReclamoTipo2({ reclamoDataProp, VRG, setVRG }) {
                       VRG.vinculoAgresor === "pareja"
                         ? "Pareja/Novix"
                         : VRG.vinculoAgresor === "expareja"
-                        ? "Expareja"
-                        : VRG.vinculoAgresor === "padre"
-                        ? "Padre"
-                        : VRG.vinculoAgresor === "padrastro"
-                        ? "Padrastro"
-                        : VRG.vinculoAgresor === "hijo"
-                        ? "Hijo"
-                        : VRG.vinculoAgresor === "superior"
-                        ? "Superior jerárquico"
-                        : VRG.vinculoAgresor === "companero"
-                        ? "Compañero de trabajo"
-                        : VRG.vinculoAgresor === "otros"
-                        ? "Otros"
-                        : VRG.vinculoAgresor === "sin_vinculo"
-                        ? "Sin vínculo"
-                        : "",
+                          ? "Expareja"
+                          : VRG.vinculoAgresor === "padre"
+                            ? "Padre"
+                            : VRG.vinculoAgresor === "padrastro"
+                              ? "Padrastro"
+                              : VRG.vinculoAgresor === "hijo"
+                                ? "Hijo"
+                                : VRG.vinculoAgresor === "superior"
+                                  ? "Superior jerárquico"
+                                  : VRG.vinculoAgresor === "companero"
+                                    ? "Compañero de trabajo"
+                                    : VRG.vinculoAgresor === "otros"
+                                      ? "Otros"
+                                      : VRG.vinculoAgresor === "sin_vinculo"
+                                        ? "Sin vínculo"
+                                        : "",
                   }
                 : null
             }
@@ -316,8 +323,8 @@ export default function ReclamoTipo2({ reclamoDataProp, VRG, setVRG }) {
                       VRG.denunciaJudicial === "si"
                         ? "Sí"
                         : VRG.denunciaJudicial === "no"
-                        ? "No"
-                        : "No sabe",
+                          ? "No"
+                          : "No sabe",
                   }
                 : null
             }
@@ -345,8 +352,8 @@ export default function ReclamoTipo2({ reclamoDataProp, VRG, setVRG }) {
                       VRG.medidasProteccion === "si"
                         ? "Sí"
                         : VRG.medidasProteccion === "no"
-                        ? "No"
-                        : "No sabe",
+                          ? "No"
+                          : "No sabe",
                   }
                 : null
             }
@@ -398,8 +405,8 @@ export default function ReclamoTipo2({ reclamoDataProp, VRG, setVRG }) {
                       VRG.tramiteLicencia === "primera"
                         ? "Primera tramitación"
                         : VRG.tramiteLicencia === "anterior"
-                        ? "Ya tramitó en otra oportunidad"
-                        : "No tramitó",
+                          ? "Ya tramitó en otra oportunidad"
+                          : "No tramitó",
                   }
                 : null
             }

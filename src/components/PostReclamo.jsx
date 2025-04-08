@@ -19,6 +19,7 @@ export default function PostReclamo() {
 
   // LABORALES - RECLAMO1 //
   const [reclamo1, setReclamo1] = useState({
+    tipoReporte: 1,
     fechaSituacion: "",
     fechaReporte: "",
     viaIngreso: "",
@@ -34,7 +35,7 @@ export default function PostReclamo() {
   // VRG //
 
   const [VRG, setVRG] = useState({
-    tipoReporte: "",
+    tipoReporte: 2,
     fechaReporte: "",
     registrante: "",
     tipoSituacion: "",
@@ -55,7 +56,7 @@ export default function PostReclamo() {
   // INSTITUCIONAL //
 
   const [institucional, setInstitucional] = useState({
-    tipoReporte: "",
+    tipoReporte: 3,
     registroPor: "",
     tipoSituacion: "",
     tipoViolencia: "",

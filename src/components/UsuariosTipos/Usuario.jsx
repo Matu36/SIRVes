@@ -31,8 +31,6 @@ export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
     }
   }, [personaDataProp]);
 
-  console.log(personaDataProp);
-
   // 2. Cuando cambia el documento, busco coincidencias en la lista de personas:
   useEffect(() => {
     if (!Usuario1?.documento) return;

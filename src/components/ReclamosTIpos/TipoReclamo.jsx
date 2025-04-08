@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { FaExclamationTriangle } from "react-icons/fa";
 import ReclamoTipo1 from "./ReclamoTipo1";
@@ -27,6 +27,12 @@ export default function TipoReclamo({
     },
     { value: "tipo3", label: "Institucional" },
   ];
+
+  useEffect(() => {
+    if (reclamoDataProp?.reclamo?.tipoReporte) {
+      setTipoSeleccionado(reclamoDataProp.reclamo.tipoReporte);
+    }
+  }, [reclamoDataProp]);
 
   return (
     <div className="container">

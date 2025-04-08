@@ -20,6 +20,7 @@ export const personas = [
       expGEDEBA: "12345",
       vincReportante: "jefe",
       fechaSituacion: "12/12/1985",
+      tipoReporte: 1,
     },
   },
   {
@@ -41,6 +42,7 @@ export const personas = [
     observaciones: "Turno nocturno",
     reclamo: {
       tipo: "Condiciones laborales",
+      tipoReporte: 2,
       descripcion: "Solicita revisión de turnos nocturnos excesivos",
       estado: "En proceso",
       fechaReclamo: "2024-01-10",
@@ -68,6 +70,7 @@ export const personas = [
       estado: "Resuelto",
       fechaReclamo: "2023-12-20",
       fechaSituacion: "03/07/1985",
+      tipoReporte: 3,
     },
   },
   {
