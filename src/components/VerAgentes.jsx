@@ -30,6 +30,8 @@ export default function VerAgentes() {
   const handleClean = () => {
     setFilteredData([]);
     setIsSearching("");
+    setSearchDoc("");
+    setSearchId("");
   };
 
   return (
