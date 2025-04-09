@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 export default function GetIntervenciones() {
   const [searchReclamoId, setSearchReclamoId] = useState("");
   const [filteredData, setFilteredData] = useState([]);
+  const [clicked, setClicked] = useState({ isClicked: false });
 
   const handleSearch = () => {
     if (!searchReclamoId.trim()) return;
@@ -64,7 +65,7 @@ export default function GetIntervenciones() {
       name: "Acciones",
       cell: (row) => (
         <Dropdown handleClick={() => setClicked({ isClicked: true })}>
-          <Link to={`/reclamos/ver-Reclamos/${row.id}`}>
+          <Link to={`/intervenciones/ver-Intervencion/${row.id}`}>
             <button className="dropdown-item w-100 dropdown-item-custom">
               <FaInfoCircle size="1em" />
               <span style={{ marginLeft: "10px", textDecoration: "none" }}>
@@ -72,7 +73,7 @@ export default function GetIntervenciones() {
               </span>
             </button>
           </Link>
-          <Link to={`/reclamos/editar-Reclamos/${row.id}`}>
+          <Link to={`/intervenciones/editar-Intervencion/${row.id}`}>
             <button className="dropdown-item w-100 dropdown-item-custom">
               <FaInfoCircle size="1em" />
               <span style={{ marginLeft: "10px", textDecoration: "none" }}>

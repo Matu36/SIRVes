@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaProcedures } from "react-icons/fa";
 import Select from "react-select";
+import { personas } from "../utils/Personas";
+import { useParams } from "react-router-dom";
 
 export default function PostIntervenciones() {
+  const [idEditar, setIdEditar] = useState();
+
   const [formData, setFormData] = useState({
+    id: null,
     nroAbordaje: "",
     nroInternoSecuencial: "",
     tipoAbordaje: null,
@@ -14,6 +19,58 @@ export default function PostIntervenciones() {
     usuario: "",
     informeAdjunto: null,
   });
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (id) {
+      setIdEditar(Number(id));
+    }
+  }, [id]);
+
+  useEffect(() => {
+    if (idEditar) {
+      let intervencionEncontrada = null;
+
+      for (const persona of personas) {
+        const intervenciones = persona.reclamo?.intervenciones || [];
+
+        intervencionEncontrada = intervenciones.find(
+          (i) => i.id === Number(idEditar)
+        );
+
+        if (intervencionEncontrada) {
+          break;
+        }
+      }
+
+      if (intervencionEncontrada) {
+        console.log("Intervención encontrada:", intervencionEncontrada);
+
+        setFormData({
+          nroAbordaje: intervencionEncontrada.nroAbordaje || "",
+          nroInternoSecuencial:
+            intervencionEncontrada.nroInternoSecuencial || "",
+          tipoAbordaje:
+            tipoAbordajeOptions.find(
+              (opt) => opt.label === intervencionEncontrada.tipoAbordaje
+            ) || null,
+          fechaAbordaje: intervencionEncontrada.fechaAbordaje || "",
+          accionRecomendada: intervencionEncontrada.accionRecomendada || "",
+          tipoSituacion:
+            tipoSituacionOptions.find(
+              (opt) => opt.label === intervencionEncontrada.tipoSituacion
+            ) || null,
+          descripcionAbordaje: intervencionEncontrada.descripcionAbordaje || "",
+          usuario: intervencionEncontrada.usuario || "",
+          informeAdjunto: null,
+          id: intervencionEncontrada.id || null,
+        });
+      } else {
+        console.log("No se encontró la intervención con id", idEditar);
+      }
+    }
+  }, [idEditar, personas]);
 
   const tipoAbordajeOptions = [
     { value: "nominal", label: "Nominal" },

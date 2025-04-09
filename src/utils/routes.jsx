@@ -10,6 +10,7 @@ import ModificarAgentes from "../pages/ModificarAgentes";
 import EditarReclamos from "../pages/EditarReclamos";
 import Intervenciones from "../pages/Intervenciones";
 import VerIntervenciones from "../pages/VerIntervenciones";
+import GetIntervencionDetail from "../pages/GetIntervencionDetail";
 
 const Perfil1 = `${import.meta.env.VITE_ROL_ADMIN_PERSONAL}`;
 const Perfil3 = `${import.meta.env.VITE_ROL_CARGA_PERSONAL}`;
@@ -60,6 +61,14 @@ const router = createBrowserRouter(
             },
             {
               path: "/intervenciones/nueva-Intervencion",
+              element: <Intervenciones />,
+            },
+            {
+              path: "/intervenciones/ver-Intervencion/:id",
+              element: <GetIntervencionDetail />,
+            },
+            {
+              path: "/intervenciones/editar-Intervencion/:id",
               element: <Intervenciones />,
             },
           ],
