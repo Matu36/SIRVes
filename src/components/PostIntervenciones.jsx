@@ -9,6 +9,7 @@ export default function PostIntervenciones() {
 
   const [formData, setFormData] = useState({
     id: null,
+    idReporte: null,
     nroAbordaje: "",
     nroInternoSecuencial: "",
     tipoAbordaje: null,
@@ -75,6 +76,21 @@ export default function PostIntervenciones() {
     { value: "institucional", label: "Institucional" },
   ];
 
+  const reportes = [
+    { value: 1, label: "REPORTE 1" },
+    { value: 2, label: "REPORTE 2" },
+    { value: 3, label: "REPORTE 3" },
+    { value: 4, label: "REPORTE 4" },
+    { value: 5, label: "REPORTE 5" },
+    { value: 6, label: "REPORTE 6" },
+    { value: 7, label: "REPORTE 7" },
+    { value: 8, label: "REPORTE 8" },
+    { value: 9, label: "REPORTE 9" },
+    { value: 10, label: "REPORTE 10" },
+    { value: 11, label: "REPORTE 11" },
+    { value: 12, label: "REPORTE 12" },
+  ];
+
   const tipoSituacionOptions = [
     { value: "acompaniamiento", label: "Acompañamiento" },
     { value: "cierre", label: "Cierre de Intervención/finalizada" },
@@ -131,15 +147,20 @@ export default function PostIntervenciones() {
       <form onSubmit={handleSubmit}>
         <div className="form-container">
           <div className="form-group">
-            <label>Seleccionar tipo de Reporte</label>
-            <input
-              type="text"
-              name="nroAbordaje"
-              value={formData.nroAbordaje}
-              onChange={handleInputChange}
-              placeholder="Ingrese el número de abordaje"
+            <label>Asociar Reporte</label>
+            <Select
+              name="nroReporte"
+              options={reportes}
+              value={reportes.find((r) => r.value === formData.idReporte)}
+              onChange={(selectedOption) =>
+                handleInputChange({
+                  target: { name: "idReporte", value: selectedOption.value },
+                })
+              }
+              placeholder="Seleccione un Reporte"
             />
           </div>
+
           <div className="form-group">
             <label>Nro de Abordaje</label>
             <input
