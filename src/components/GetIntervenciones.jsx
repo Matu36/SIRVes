@@ -1,30 +1,91 @@
-import React, { useState, useEffect } from "react";
-import { FaSearch, FaFilter, FaInfoCircle } from "react-icons/fa";
+import React, { useState } from "react";
 import { personas } from "../utils/Personas";
+import DataTable from "react-data-table-component";
+import { FaSearch, FaFilter, FaInfoCircle } from "react-icons/fa";
+import { usePagination } from "../hooks/usePagination";
+import Dropdown from "../components/UI/Dropdown";
+import { Link } from "react-router-dom";
 
 export default function GetIntervenciones() {
-  const [searchId, setSearchId] = useState("");
+  const [searchReclamoId, setSearchReclamoId] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-  const [isSearching, setIsSearching] = useState(false);
 
   const handleSearch = () => {
-    const result = personas.filter((persona) => {
-      const matchesReclamoId =
-        searchId.trim() !== "" && !isNaN(Number(searchId))
-          ? persona.reclamo && persona.reclamo.id === Number(searchId)
-          : true;
+    if (!searchReclamoId.trim()) return;
 
-      return matchesReclamoId;
+    const result = [];
+
+    personas.forEach((persona) => {
+      if (persona.reclamo?.id === Number(searchReclamoId)) {
+        persona.reclamo.intervenciones?.forEach((intervencion) => {
+          result.push({
+            nombre: persona.nombre,
+            documento: persona.documento,
+            ...intervencion,
+          });
+        });
+      }
     });
 
     setFilteredData(result);
-    setIsSearching(true);
   };
 
   const handleClean = () => {
+    setSearchReclamoId("");
     setFilteredData([]);
-    setIsSearching("");
   };
+
+  const columns = [
+    {
+      name: "Nombre",
+      selector: (row) => row.nombre,
+      sortable: true,
+    },
+    {
+      name: "Documento",
+      selector: (row) => row.documento,
+      sortable: true,
+    },
+    {
+      name: "N° Abordaje",
+      selector: (row) => row.nroAbordaje,
+      sortable: true,
+    },
+    {
+      name: "Tipo Situación",
+      selector: (row) => row.tipoSituacion,
+      sortable: true,
+    },
+    {
+      name: "Fecha Abordaje",
+      selector: (row) => row.fechaAbordaje,
+    },
+    {
+      name: "Acciones",
+      cell: (row) => (
+        <Dropdown handleClick={() => setClicked({ isClicked: true })}>
+          <Link to={`/reclamos/ver-Reclamos/${row.id}`}>
+            <button className="dropdown-item w-100 dropdown-item-custom">
+              <FaInfoCircle size="1em" />
+              <span style={{ marginLeft: "10px", textDecoration: "none" }}>
+                Ver Intervención
+              </span>
+            </button>
+          </Link>
+          <Link to={`/reclamos/editar-Reclamos/${row.id}`}>
+            <button className="dropdown-item w-100 dropdown-item-custom">
+              <FaInfoCircle size="1em" />
+              <span style={{ marginLeft: "10px", textDecoration: "none" }}>
+                Editar Intervención
+              </span>
+            </button>
+          </Link>
+        </Dropdown>
+      ),
+    },
+  ];
+
+  const { paginationOptions, customStyles } = usePagination(filteredData);
 
   return (
     <div>
@@ -32,43 +93,28 @@ export default function GetIntervenciones() {
         <FaSearch className="titulocelesteicono" />
         <span className="titulocelestespan">Búsqueda de intervenciones</span>
       </div>
-      <br />
+
       <div className="filtros-container">
         <div className="titulofiltroseicono">
           <span>
-            <FaFilter style={{ marginRight: "8px" }} /> Filtros
+            <FaFilter style={{ marginRight: "8px" }} />
+            Filtros
           </span>
         </div>
+
         <div className="inputs-tramites">
           <div
             className="input-group mb-3 inputSearch"
             style={{ maxWidth: "20%" }}
           >
             <div className="input-label-filtros">
-              Nro de Intervención
+              Nro de Reclamo
               <input
                 type="text"
                 className="form-control"
                 placeholder="Buscar por Nro de Reclamo"
-                onChange={(e) => setSearchId(e.target.value)}
-                value={searchId}
-                autoComplete="off"
-              />
-            </div>
-          </div>
-
-          <div
-            className="input-group mb-3 inputSearch"
-            style={{ maxWidth: "20%" }}
-          >
-            <div className="input-label-filtros">
-              Nro Reclamo
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Buscar por número de Reclamo"
-                onChange={(e) => setSearchId(e.target.value)}
-                value={searchId}
+                onChange={(e) => setSearchReclamoId(e.target.value)}
+                value={searchReclamoId}
                 autoComplete="off"
               />
             </div>
@@ -84,72 +130,21 @@ export default function GetIntervenciones() {
           Limpiar
         </button>
       </div>
-      <br />
-      {filteredData.map((persona) => (
-        <div key={persona.id}>
-          <div className="tituloCeleste">
-            <FaInfoCircle className="titulocelesteicono" />
-            <span className="titulocelestespan">Detalle del reporte</span>
-          </div>
-          <br />
-          <div className="reclamo-detail">
-            <h3>{persona.nombre}</h3>
 
-            <ul>
-              <br />
-              {persona.reclamo?.intervenciones?.map((intv) => (
-                <li key={intv.id} style={{ marginBottom: "1rem" }}>
-                  <p>
-                    <strong>Reclamo:</strong> {persona.reclamo?.descripcion}
-                  </p>
-
-                  <p>
-                    <strong>Intervenciones:</strong>
-                  </p>
-                  <p>
-                    <strong>N° Abordaje:</strong> {intv.nroAbordaje}
-                  </p>
-                  <p>
-                    <strong>N° Interno Secuencial:</strong>{" "}
-                    {intv.nroInternoSecuencial}
-                  </p>
-                  <p>
-                    <strong>Tipo de Abordaje:</strong> {intv.tipoAbordaje}
-                  </p>
-                  <p>
-                    <strong>Fecha de Abordaje:</strong> {intv.fechaAbordaje}
-                  </p>
-                  <p>
-                    <strong>Acción Recomendada:</strong>{" "}
-                    {intv.accionRecomendada}
-                  </p>
-                  <p>
-                    <strong>Tipo de Situación:</strong> {intv.tipoSituacion}
-                  </p>
-                  <p>
-                    <strong>Descripción:</strong> {intv.descripcionAbordaje}
-                  </p>
-                  <p>
-                    <strong>Usuario:</strong> {intv.usuario}
-                  </p>
-                  {intv.informeAdjunto && (
-                    <p>
-                      <strong>Informe Adjunto:</strong>{" "}
-                      <a
-                        href={intv.informeAdjunto}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Ver archivo
-                      </a>
-                    </p>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
+      {filteredData.length > 0 && (
+        <div style={{ marginTop: "2rem" }}>
+          <DataTable
+            columns={columns}
+            className="DataTableContainer"
+            data={filteredData}
+            customStyles={customStyles}
+            pagination
+            striped
+            paginationComponentOptions={paginationOptions}
+            noDataComponent={null}
+          />
         </div>
-      ))}
+      )}
     </div>
   );
 }
