@@ -45,8 +45,6 @@ export default function PostIntervenciones() {
       }
 
       if (intervencionEncontrada) {
-        console.log("Intervención encontrada:", intervencionEncontrada);
-
         setFormData({
           nroAbordaje: intervencionEncontrada.nroAbordaje || "",
           nroInternoSecuencial:

@@ -11,6 +11,7 @@ import EditarReclamos from "../pages/EditarReclamos";
 import Intervenciones from "../pages/Intervenciones";
 import VerIntervenciones from "../pages/VerIntervenciones";
 import GetIntervencionDetail from "../pages/GetIntervencionDetail";
+import AgentesEdit from "../pages/AgentesEdit";
 
 const Perfil1 = `${import.meta.env.VITE_ROL_ADMIN_PERSONAL}`;
 const Perfil3 = `${import.meta.env.VITE_ROL_CARGA_PERSONAL}`;
@@ -84,6 +85,10 @@ const router = createBrowserRouter(
             {
               path: "/agentes/modificar-Agentes",
               element: <ModificarAgentes />,
+            },
+            {
+              path: "/agentes/editar-Agentes",
+              element: <AgentesEdit />,
             },
           ],
         },
