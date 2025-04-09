@@ -13,6 +13,7 @@ export const personas = [
     discapacidad: "No",
     coberturaSocial: "OSDE",
     reclamo: {
+      id: 1,
       tipo: "Cobertura médica",
       descripcion: "Problema con la autorización de una cirugía",
       estado: "Pendiente",
@@ -21,6 +22,21 @@ export const personas = [
       vincReportante: "jefe",
       fechaSituacion: "12/12/1985",
       tipoReporte: 1,
+      intervenciones: [
+        {
+          id: 1,
+          nroAbordaje: "001",
+          nroInternoSecuencial: "A1",
+          tipoAbordaje: "Llamado telefónico",
+          fechaAbordaje: "2024-02-16",
+          accionRecomendada: "Esperar confirmación médica",
+          tipoSituacion: "Evaluación inicial",
+          descripcionAbordaje:
+            "Se contactó con el afiliado para pedir más detalles",
+          usuario: "admin",
+          informeAdjunto: null,
+        },
+      ],
     },
   },
   {
@@ -41,6 +57,7 @@ export const personas = [
     disciplina: "Enfermería",
     observaciones: "Turno nocturno",
     reclamo: {
+      id: 2,
       tipo: "Condiciones laborales",
       tipoReporte: 2,
       descripcion: "Solicita revisión de turnos nocturnos excesivos",
@@ -50,6 +67,20 @@ export const personas = [
       vincReportante: "compañeros",
       fechaSituacion: "1985/12/03",
       jerarquia: "Superior",
+      intervenciones: [
+        {
+          id: 2,
+          nroAbordaje: "002",
+          nroInternoSecuencial: "B2",
+          tipoAbordaje: "Reunión con supervisor",
+          fechaAbordaje: "2024-01-15",
+          accionRecomendada: "Revisar rotación de turnos",
+          tipoSituacion: "Revisión en curso",
+          descripcionAbordaje: "Se informó la situación al área de RRHH",
+          usuario: "gestor1",
+          informeAdjunto: null,
+        },
+      ],
     },
   },
   {
@@ -65,12 +96,27 @@ export const personas = [
     discapacidad: "Sí",
     coberturaSocial: "PAMI",
     reclamo: {
+      id: 3,
       tipo: "Atención médica",
       descripcion: "Falta de atención prioritaria para discapacitados",
       estado: "Resuelto",
       fechaReclamo: "2023-12-20",
       fechaSituacion: "03/07/1985",
       tipoReporte: 3,
+      intervenciones: [
+        {
+          id: 3,
+          nroAbordaje: "003",
+          nroInternoSecuencial: "C3",
+          tipoAbordaje: "Presencial",
+          fechaAbordaje: "2023-12-21",
+          accionRecomendada: "Brindar prioridad en atención",
+          tipoSituacion: "Caso cerrado",
+          descripcionAbordaje: "Se garantizó atención preferente",
+          usuario: "coordinador1",
+          informeAdjunto: null,
+        },
+      ],
     },
   },
   {

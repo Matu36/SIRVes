@@ -1889,6 +1889,10 @@ input,
   margin-bottom: 15px;
 }
 
+.reclamo-detail h3 {
+  text-align: center;
+}
+
 .reclamo-detail p {
   color: #333;
   font-size: 1.1rem;

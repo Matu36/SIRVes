@@ -104,7 +104,7 @@ function SideBar({ isOpen, setIsOpen }) {
                 to="/intervenciones/ver-Intervenciones"
                 onClick={() => setIsOpen(false)}
               >
-                Ver intervencionesS
+                Ver intervenciones
               </Link>
             </li>
           </ul>
