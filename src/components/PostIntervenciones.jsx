@@ -55,6 +55,7 @@ export default function PostIntervenciones() {
               (opt) => opt.label === intervencionEncontrada.tipoAbordaje
             ) || null,
           fechaAbordaje: intervencionEncontrada.fechaAbordaje || "",
+          idReporte: intervencionEncontrada.idReporte || "",
           accionRecomendada: intervencionEncontrada.accionRecomendada || "",
           tipoSituacion:
             tipoSituacionOptions.find(

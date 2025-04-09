@@ -25,6 +25,7 @@ export const personas = [
       intervenciones: [
         {
           id: 1,
+          idReporte: 1,
           nroAbordaje: "001",
           nroInternoSecuencial: "A1",
           tipoAbordaje: "Llamado telefónico",
@@ -71,6 +72,7 @@ export const personas = [
       intervenciones: [
         {
           id: 2,
+          idReporte: 1,
           nroAbordaje: "002",
           nroInternoSecuencial: "B2",
           tipoAbordaje: "Reunión con supervisor",
