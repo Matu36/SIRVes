@@ -140,7 +140,7 @@ export default function Trabajador({
             placeholder="Seleccionar Tipo de Documento"
             value={{
               value: trabajador.tipoDocumento,
-              label: trabajador.tipoDocumento.toUpperCase(),
+              label: trabajador.tipoDocumento?.toUpperCase(),
             }}
             onChange={(e) =>
               setTrabajador({ ...trabajador, tipoDocumento: e.value })
