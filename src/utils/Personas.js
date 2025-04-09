@@ -42,7 +42,7 @@ export const personas = [
   {
     id: 2,
     tipo: "trabajador",
-    nombre: "María González",
+    nombre: "juan González",
     tipoDocumento: "PASAPORTE",
     documento: "28456789",
     fechaNacimiento: "1985-10-23",

@@ -51,6 +51,12 @@ export default function EditarAgentes() {
     console.log("Datos modificados:", formData);
   };
 
+  const removeAccents = (str) =>
+    str
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
+
   const handleSearch = () => {
     const result = personas.filter((persona) => {
       const matchesId =
@@ -63,9 +69,12 @@ export default function EditarAgentes() {
           ? persona.documento.toLowerCase().includes(searchDoc.toLowerCase())
           : true;
 
+      const normalizedSearchNombre = removeAccents(searchNombre.trim());
+      const normalizedPersonaNombre = removeAccents(persona.nombre);
+
       const matchesNombre =
-        searchNombre.trim() !== ""
-          ? persona.nombre.toLowerCase().includes(searchNombre.toLowerCase())
+        normalizedSearchNombre.length >= 4
+          ? normalizedPersonaNombre.includes(normalizedSearchNombre)
           : true;
 
       return matchesId && matchesDoc && matchesNombre;
@@ -78,6 +87,8 @@ export default function EditarAgentes() {
   const handleClean = () => {
     setFilteredData([]);
     setIsSearching("");
+    setSearchDoc("");
+    setSearchNombre("");
   };
   return (
     <div>
