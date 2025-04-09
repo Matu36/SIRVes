@@ -40,8 +40,7 @@ export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
     );
 
     if (personaEncontrada) {
-      setUsuario1((prev) => ({
-        ...prev,
+      setUsuario1({
         tipoDocumento: personaEncontrada.tipoDocumento || prev.tipoDocumento,
         nombre: personaEncontrada.nombre || "",
         fechaNacimiento: personaEncontrada.fechaNacimiento || "",
@@ -67,7 +66,7 @@ export default function Usuario({ personaDataProp, Usuario1, setUsuario1 }) {
         personaCargoApellido: personaEncontrada.personaACargo?.apellido || "",
         personaCargoTelefono: personaEncontrada.personaACargo?.telefono || "",
         personaCargoEmail: personaEncontrada.personaACargo?.email || "",
-      }));
+      });
     }
   }, [Usuario1?.documento, personas]);
 
