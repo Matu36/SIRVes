@@ -7,6 +7,7 @@ export default function EditarAgentes() {
   const [searchDoc, setSearchDoc] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
+  const [searchNombre, setSearchNombre] = useState("");
 
   const [formData, setFormData] = useState({
     nombre: "",
@@ -62,7 +63,12 @@ export default function EditarAgentes() {
           ? persona.documento.toLowerCase().includes(searchDoc.toLowerCase())
           : true;
 
-      return matchesId && matchesDoc;
+      const matchesNombre =
+        searchNombre.trim() !== ""
+          ? persona.nombre.toLowerCase().includes(searchNombre.toLowerCase())
+          : true;
+
+      return matchesId && matchesDoc && matchesNombre;
     });
 
     setFilteredData(result);
@@ -97,9 +103,9 @@ export default function EditarAgentes() {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Buscar por Nro de Reclamo"
-                onChange={(e) => setSearchId(e.target.value)}
-                value={searchId}
+                placeholder="Buscar por Nombre"
+                onChange={(e) => setSearchNombre(e.target.value)}
+                value={searchNombre}
                 autoComplete="off"
               />
             </div>
@@ -110,7 +116,7 @@ export default function EditarAgentes() {
             style={{ maxWidth: "20%" }}
           >
             <div className="input-label-filtros">
-              Documento
+              DOCUMENTO
               <input
                 type="text"
                 className="form-control"
@@ -227,7 +233,7 @@ export default function EditarAgentes() {
           <br />
           <div className="d-flex justify-content-center">
             <button className="btn btn-guardar md" onClick={handleSubmit}>
-              Modificar Agente
+              Modificar datos del Agente
             </button>
           </div>
         </form>
